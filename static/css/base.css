@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    color: #565D47;
+    font-family: 'Lato';
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Dancing Script', sans-serif;
+}
+
+.alert-container .col-12 {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #EAAC9D;
+}
+
+.site-wide-alert {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    background-color: #EAAC9D;
+    border-color: #EAAC9D;
+    ;
+}
+
+.logo {
+    max-width: 100px;
+    font-family: 'Dancing Script',
+        sans-serif;
+    color: #FFD700;
+    font-size: 50px;
+}
+
+.rounded-logo {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.gold-text {
+    background: linear-gradient(45deg, #ffd700, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 3px rgba(212, 175, 55, 0.5);
+}
+
+.full-viewport {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(234, 172, 157, 0.5);
+    z-index: 1;
+}
+
+.image-container {
+    position: relative;
+    z-index: 0;
+}
+
+.content-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: white;
+}
+
+.content-container h1,
+.content-container p {
+    margin-bottom: 20px;
+}
+
+/* Additional styles for buttons */
+.btn-custom {
+    background-color: #B49C73;
+    color: white;
+}
+
+/* Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
