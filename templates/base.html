@@ -50,96 +50,96 @@
 <body>
 
     <!--<header>-->
-    <header class="navalert-container">
-        <div class="container-fluid alert-container">
-            <div class="row d-none d-sm-block">
-                <div class="col-12">
-                    <div class="site-wide-alert alert alert-warning text-center">
-                        <strong><i class="fa-solid fa-truck"></i> Free Delivery and returns on all orders</strong>
+    <header>        
+        <div class="navalert-container">
+            <div class="container-fluid alert-container">
+                <div class="row d-none d-sm-block">
+                    <div class="col-12">
+                        <div class="site-wide-alert alert alert-warning text-center">
+                            <strong><i class="fa-solid fa-truck"></i> Free Delivery and returns on all orders</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!--<nav>-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F0DAA4;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="media/logo_round.png" class="img-fluid logo rounded-logo" alt="Logo of Perfect Pointes">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
-                            <i class="fa-solid fa-house me-1"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-solid fa-user me-1"></i> My account
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa-solid fa-heart me-1"></i> Shop
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Find your pointes"
-                                aria-label="Search">
-                            <button class="btn btn-custom" type="submit">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{% if grand_total %} {% else %} {% endif %} nav-link" href="#">
-                            <i class="fa-solid fa-cart-shopping me-1"></i> Bag
-                            <span class="my-0">
-                                {% if grand_total %}
-                                €{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                €0.00
-                                {% endif %}
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-                <li class="nav-item dropdown">
-                    {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> Product Management </a>
-                    {% endif %}
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item text-dark" href="#">My Profile</a>
+        <!--<nav>-->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F0DAA4;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="media/logo_round.png" class="img-fluid logo rounded-logo" alt="Logo of Perfect Pointes">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+                                <i class="fa-solid fa-house me-1"></i> Home
+                            </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item text-dark" href="{% url 'account_logout' %}">Logout</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-user me-1"></i> My account
+                            </a>
                         </li>
-                        {% else %}
-                        <li>
-                            <a class="dropdown-item text-dark" href="{% url 'account_signup' %}">Register</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-dark" href="{% url 'account_login' %}">Login</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-heart me-1"></i> Shop
+                            </a>
                         </li>
                     </ul>
-                    {% endif %}
-                </li>
-            </div>
-        </div>
-    </nav>
-</div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Find your pointes"
+                                    aria-label="Search">
+                                <button class="btn btn-custom" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{% if grand_total %} {% else %} {% endif %} nav-link" href="#">
+                                <i class="fa-solid fa-cart-shopping me-1"></i> Bag
+                                <span class="my-0">
+                                    {% if grand_total %}
+                                    €{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                    €0.00
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"> Product Management </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item text-dark" href="#">My Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-dark" href="{% url 'account_logout' %}">Logout</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item text-dark" href="{% url 'account_signup' %}">Register</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-dark" href="{% url 'account_login' %}">Login</a>
+                                </li>
+                            </ul>
+                            {% endif %}
+                            {% endif %}
+                        </li>
+                    </div>
+                </div>
+            </nav>
+        </header>
     
     {% if messages %}
         <div class="message-container"></div>
