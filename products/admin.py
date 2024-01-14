@@ -40,4 +40,6 @@ class PointeShoeProductAdmin(admin.ModelAdmin):
                     'brand', 
                     'availability', 
                     'sku')
+    
+    ordering = ('sku',)
 
