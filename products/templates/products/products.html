@@ -2,19 +2,50 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{ products }}
+
+    <main>
+        <div class="container">
+            <div class="row">
             </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <h1 class="gold-text logo">Products</h1>
+                    <div class="col m12 s12 center">A selection of all our 
+                        pointe shoes, browse our categories and brands 
+                        for your perfect shoe!
+                    </div>
+                    <hr class="gold-text">
+                </div>
+
+                <!-- Product List -->
+                <div class="container-fluid mt-5">
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ product.pointe_shoe.image.url }}" class="card-img-top hover-zoom ripple" alt="{{ product.title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title gold-text mb-3">{{ product.title }}</h5>
+                                    <p class="card-text lead mb-0">{{ product.pointe_shoe.category.name }}</p>
+                                    <p class="card-text text-uppercase">{{ product.brand.name }}</p>
+                                    <p class="card-text bg-dark text-white rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                                    style="width: 35px; height: 35px;">{{ product.pointe_shoe.status }} x</p>
+                                    <h6 class="mb-3">{{ product.pointe_shoe.price }} EUR</h6>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
         </div>
-    </div>
+        
+        </div>
+        </div>
+        </main>
+
 {% endblock %}

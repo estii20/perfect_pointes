@@ -23,6 +23,10 @@ h3 {
     font-family: 'Dancing Script', sans-serif;
 }
 
+.container-fluid {
+    width: 100%;
+}
+
 .alert-container .col-12 {
     padding-left: 0;
     padding-right: 0;
@@ -35,7 +39,6 @@ h3 {
     padding: 5px 15px;
     background-color: #EAAC9D;
     border-color: #EAAC9D;
-    ;
 }
 
 .logo {
@@ -54,8 +57,6 @@ h3 {
 }
 
 .navbar {
-    margin-right: -15px;
-    margin-left: -15px;
     padding-right: 15px;
     padding-left: 15px;
 }
