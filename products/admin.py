@@ -1,45 +1,33 @@
 from django.contrib import admin
-from .models import Category, PointeShoeBrand, PointeShoe, PointeShoeProduct
+from .models import Category, PointeShoeBrand, PointeShoe, Size, Width, PointeShoeProduct
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 
-                    'description', 
-                    'friendly_name')
+    list_display = ('name', 'description', 'friendly_name')
+
 
 @admin.register(PointeShoeBrand)
 class PointeShoeBrandAdmin(admin.ModelAdmin):
-    list_display = ('name', 
-                    'description', 
-                    'logo', 
-                    'category', 
-                    'friendly_name', 
-                    'sku')
+    list_display = ('name', 'description', 'logo', 'category', 'friendly_name', 'sku')
+
+
+@admin.register(Size)
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ('size',)
+
+
+@admin.register(Width)
+class WidthAdmin(admin.ModelAdmin):
+    list_display = ('width',)
+
 
 @admin.register(PointeShoe)
 class PointeShoeAdmin(admin.ModelAdmin):
-    list_display = ('name', 
-                    'sku', 
-                    'size', 
-                    'brand', 
-                    'width', 
-                    'shank', 
-                    'color', 
-                    'price', 
-                    'status', 
-                    'arch', 
-                    'link', 
-                    'ribbon', 
-                    'image', 
-                    'image_url')
+    list_display = ('name', 'sku', 'brand', 'width', 'shank', 'color', 'price', 'status', 'arch', 'link', 'ribbon', 'feature', 'category')
+    filter_horizontal = ('available_sizes', 'available_widths')
+
 
 @admin.register(PointeShoeProduct)
 class PointeShoeProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 
-                    'pointe_shoe', 
-                    'brand', 
-                    'availability', 
-                    'sku')
-    
-    ordering = ('sku',)
-
+    list_display = ('title', 'pointe_shoe', 'brand', 'availability', 'sku')

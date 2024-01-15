@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Category(models.Model):
-    
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -32,10 +31,29 @@ class PointeShoeBrand(models.Model):
         return self.friendly_name
 
 
+class Size(models.Model):
+    size = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.size
+
+
+class Width(models.Model):
+    width = models.CharField(max_length=5, choices=[
+        ('x', 'X'),
+        ('xx', 'XX'),
+        ('xxx', 'XXX'),
+        ('xxxx', 'XXXX'),
+        ('xxxxx', 'XXXXX'),
+    ])
+
+    def __str__(self):
+        return self.width
+
+
 class PointeShoe(models.Model):
     name = models.CharField(max_length=100)
     sku = models.CharField(max_length=50, unique=True)
-    size = models.CharField(max_length=50)
     brand = models.ForeignKey(PointeShoeBrand, on_delete=models.CASCADE)
     width_choices = [
         ('x', 'X'),
@@ -72,14 +90,19 @@ class PointeShoe(models.Model):
         ('pink', 'Ribbon Pink'),
     ]
     ribbon = models.CharField(max_length=5, choices=ribbon_choices)
+    feature = models.TextField(blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    available_sizes = models.ManyToManyField(Size)
+    available_widths = models.ManyToManyField(Width)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    image_url = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
 class PointeShoeProduct(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=100)
     pointe_shoe = models.ForeignKey(PointeShoe, on_delete=models.CASCADE)
     brand = models.ForeignKey(PointeShoeBrand, on_delete=models.CASCADE)
@@ -87,4 +110,6 @@ class PointeShoeProduct(models.Model):
     sku = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.title} - {self.pointe_shoe.width} - {self.pointe_shoe.shank} - {self.pointe_shoe.ribbon} - {self.pointe_shoe.color} - {self.pointe_shoe.category.name} - {self.pointe_shoe.size} - {self.brand.name}"
+        sizes = ', '.join(str(size) for size in self.pointe_shoe.available_sizes.all())
+        widths = ', '.join(str(width) for width in self.pointe_shoe.available_widths.all())
+        return f"{self.title} - {self.pointe_shoe.width} - {self.pointe_shoe.shank} - {self.pointe_shoe.ribbon} - {self.pointe_shoe.color} - {self.pointe_shoe.category.name} - Sizes: {sizes} - Widths: {widths} - {self.brand.name}"
