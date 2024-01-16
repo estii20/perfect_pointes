@@ -25,11 +25,7 @@ h3 {
 
 /* Alert */
 
-.navalert-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.alert-container {
     padding-left: 0;
     padding-right: 0;
 }
@@ -48,7 +44,7 @@ h3 {
     border-color: #EAAC9D;
 }
 
-/* Navbar */
+/* Logo */
 
 .logo {
     max-width: 100px;
@@ -64,6 +60,8 @@ h3 {
     height: 100px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Navbar */
 
 .navbar {
     margin-bottom: 0;
@@ -86,6 +84,8 @@ h3 {
 .navbar .navbar-toggler {
     border: 0;
 }
+
+/* Homepage */
 
 .gold-text {
     background: linear-gradient(45deg, #ffd700, #d4af37);
@@ -136,6 +136,7 @@ h3 {
 }
 
 /* Additional styles for buttons */
+
 .btn-custom {
     background-color: #B49C73;
     color: white;
