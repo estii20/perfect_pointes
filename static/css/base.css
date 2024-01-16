@@ -23,8 +23,15 @@ h3 {
     font-family: 'Dancing Script', sans-serif;
 }
 
-.container-fluid {
-    width: 100%;
+/* Alert */
+
+.navalert-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .alert-container .col-12 {
@@ -40,6 +47,8 @@ h3 {
     background-color: #EAAC9D;
     border-color: #EAAC9D;
 }
+
+/* Navbar */
 
 .logo {
     max-width: 100px;
@@ -57,8 +66,9 @@ h3 {
 }
 
 .navbar {
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-bottom: 0;
+    width: 100%;
+    border: 0;
 }
 
 .navbar-nav a.nav-link {
@@ -71,6 +81,10 @@ h3 {
 
 .navbar-nav .dropdown-menu .dropdown-item::marker {
     display: none;
+}
+
+.navbar .navbar-toggler {
+    border: 0;
 }
 
 .gold-text {
