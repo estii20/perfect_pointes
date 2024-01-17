@@ -27,7 +27,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lato:wght@300&display=swap"
             rel="stylesheet">
         <!-- Favicon CSS -->
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{{ MEDIA_URL }}media/favicon.ico" type="image/x-icon">
         <!-- Base CSS -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -82,10 +82,19 @@
                                 <i class="fa-solid fa-house me-1"></i> Home
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa-solid fa-user me-1"></i> My account
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user me-1"></i>
+                                My Account
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                                {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                                {% else %}
+                                <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
+                                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                                {% endif %}
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
