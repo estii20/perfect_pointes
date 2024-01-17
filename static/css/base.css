@@ -5,16 +5,13 @@
     box-sizing: border-box;
 }
 
-html {
-    height: 100%;
-    margin: 0;
-}
-
+html,
 body {
     height: 100%;
-    color: #565D47;
-    font-family: 'Lato';
     margin: 0;
+    font-family: 'Lato', sans-serif;
+    color: #565D47;
+    overflow-x: hidden;
 }
 
 h1,
@@ -135,11 +132,26 @@ h3 {
     margin-bottom: 20px;
 }
 
+.no-gutter-row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+}
+
 /* Additional styles for buttons */
 
 .btn-custom {
     background-color: #B49C73;
-    color: white;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    background-color: #8c734d;
 }
 
 /* Media Queries */
