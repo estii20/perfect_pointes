@@ -154,6 +154,42 @@ h3 {
     background-color: #8c734d;
 }
 
+/* Product Page */
+
+.hoverable-image {
+    transition: transform 0.2s;
+}
+
+.hoverable-image:hover {
+    transform: scale(1.1);
+}
+
+.gold-text-padding {
+    padding-top: 20px;
+}
+
+.rounded-custom {
+    border-radius: 15px;
+    border: 2px solid #ccc;
+}
+
+.rounded-custom:hover {
+    border-color: #8c734d;
+}
+
+.rounded-image {
+    border-radius: 15px;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
