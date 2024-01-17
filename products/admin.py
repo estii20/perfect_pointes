@@ -30,4 +30,4 @@ class PointeShoeAdmin(admin.ModelAdmin):
 
 @admin.register(PointeShoeProduct)
 class PointeShoeProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pointe_shoe', 'brand', 'availability', 'sku')
+    list_display = ('title', 'pointe_shoe', 'brand', 'availability', 'sku', 'image', 'price')

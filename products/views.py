@@ -6,6 +6,7 @@ def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = PointeShoeProduct.objects.all()
+    print(products)
 
     context = {
         'products': products,
