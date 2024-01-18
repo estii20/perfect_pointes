@@ -71,7 +71,11 @@ class PointeShoe(models.Model):
         ('sh', 'SH'),
     ]
     shank = models.CharField(max_length=2, choices=shank_choices)
-    color = models.CharField(max_length=50)
+    color_choices = [
+        ('satin_pink', 'Satin Pink'),
+        ('satin_beige', 'Satin Beige'),
+    ]
+    color = models.CharField(max_length=50, choices=color_choices)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     status_choices = [
         ('beginner', 'Beginner'),
