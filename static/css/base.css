@@ -190,6 +190,33 @@ h3 {
     border-radius: 5px;
 }
 
+.ribbon {
+    position: relative;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+}
+    
+.ribbon::before,
+.ribbon::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    height: 0;
+    border-width: 20px;
+    top: 100%;
+}
+    
+.ribbon::before {
+    border-color: transparent transparent #EAAC9D transparent;
+    left: 0;
+}
+    
+.ribbon::after {
+    border-color: transparent transparent #EAAC9D transparent;
+    right: 0;
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */

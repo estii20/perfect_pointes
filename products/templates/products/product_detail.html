@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-12 center">
+                    <h1 class="gold-text gold-text-padding">{{ product.title }} Pointe Shoe</h1>
+                    <hr class="gold-text">
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <!-- Product Details -->
+                        <div class="card mb-4">
+                            {% if product.image %}
+                            <a href="{{ product.image.url }}" target="_blank">
+                                <img src="{{ product.image.url }}" class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                alt="{{ product.title }}">
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <img src="{{ MEDIA_URL }}media/no-image.jpg" class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                    alt="{{ product.title }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h2 class="card-title card-title gold-text mb-3">{{ product.title }}</h2>
+                                <p class="card-text lead mb-0">{{ product.pointe_shoe.category.name }}</p>
+                                <p class="card-text card-text text-uppercase">{{ product.brand.name }}</p>
+                                <p class="card-text mb-3">{{ product.pointe_shoe.price }} EUR</p>
+                                <p class="card-text">
+                                    <strong>Color:</strong> {{ product.pointe_shoe.get_color_display }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Shank:</strong> {{ product.pointe_shoe.get_shank_display }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Ribbon:</strong> {{ product.pointe_shoe.get_ribbon_display }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Sizes:</strong>
+                                    {% for size in product.pointe_shoe.available_sizes.all %}
+                                    {{ size.size }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Widths:</strong>
+                                    {% for width in product.pointe_shoe.available_widths.all %}
+                                    {{ width.width }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <a href="{% url 'products' %}" class="btn btn-custom">Back to Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+{% endblock %}
