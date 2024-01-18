@@ -148,10 +148,31 @@ h3 {
     background-color: #B49C73;
     color: #fff;
     transition: background-color 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-custom:hover {
     background-color: #8c734d;
+}
+
+.btn-custom::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 80%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.btn-custom:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 1;
 }
 
 /* Product Page */
@@ -190,38 +211,98 @@ h3 {
     border-radius: 5px;
 }
 
+/* From https: //css-tricks.com/snippets/css/ribbon/ */
 .ribbon {
+    font-size: 16px !important;
+
+    width: 50%;
+
     position: relative;
-    background-color: #3498db;
+    background: #e6846c;
     color: #fff;
-    padding: 10px 20px;
-    display: inline-block;
+    text-align: center;
+    padding: 1em 2em;
+    margin: 2em auto 3em;
 }
-    
-.ribbon::before,
-.ribbon::after {
-    content: '';
+
+.ribbon:before,
+.ribbon:after {
+    content: "";
     position: absolute;
+    display: block;
+    bottom: -1em;
+    border: 1.5em solid #e6846c;
+    z-index: -1;
+}
+
+.ribbon:before {
+    left: -2em;
+    border-right-width: 1.5em;
+    border-left-color: transparent;
+}
+
+.ribbon:after {
+    right: -2em;
+    border-left-width: 1.5em;
+    border-right-color: transparent;
+}
+
+.ribbon .ribbon-content:before,
+.ribbon .ribbon-content:after {
+    content: "";
+    position: absolute;
+    display: block;
     border-style: solid;
-    height: 0;
-    border-width: 20px;
-    top: 100%;
+    border-color: #e6846c transparent transparent transparent;
+    bottom: -1em;
 }
-    
-.ribbon::before {
-    border-color: transparent transparent #EAAC9D transparent;
+
+.ribbon .ribbon-content:before {
     left: 0;
+    border-width: 1em 0 0 1em;
 }
-    
-.ribbon::after {
-    border-color: transparent transparent #EAAC9D transparent;
+
+.ribbon .ribbon-content:after {
     right: 0;
+    border-width: 1em 1em 0 0;
+}
+
+.non-semantic-protector {
+    position: relative;
+    z-index: 1;
+}
 
 /* Media Queries */
 
-/* Slightly larger container on xl screens */
+/* Responsive font size for smaller screens */
+@media (max-width: 767px) {
+    .gold-text {
+        font-size: 6vw;
+    }
+}
+
+/* Responsive font size for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+    .gold-text {
+        font-size: 4vw;
+    }
+}
+
+/* Responsive font size for larger screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .gold-text {
+        font-size: 4vw;
+    }
+}
+
+/* Container and font size on xl screens */
 @media (min-width: 1200px) {
     .container {
         max-width: 80%;
     }
+
+    .gold-text {
+        font-size: 3vw;
+    }
 }
+
