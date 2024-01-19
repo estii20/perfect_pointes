@@ -104,10 +104,9 @@
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <form class="d-flex">
-                                <input class="form-control me-2" style="background-color: #fdf2d8;"
-                                type="search" placeholder="Find your pointes"
-                                    aria-label="Search">
+                            <form class="d-flex" method="GET" action="{% url 'products' %}">
+                                <input class="form-control me-2" style="background-color: #fdf2d8;" type="search" name="q"
+                                    placeholder="Find your pointes" aria-label="Search" value="{{ search_term }}">
                                 <button class="btn btn-custom" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
