@@ -181,6 +181,12 @@ h3 {
     background-color: #fdf2d8;
 }
 
+.dropbtn {
+    background-color: #B49C73;
+    font-size: 18px;
+    border: none;
+}
+
 .hoverable-image {
     transition: transform 0.2s;
 }
