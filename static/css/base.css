@@ -177,6 +177,10 @@ h3 {
 
 /* Product Page */
 
+.light-pink-bg {
+    background-color: #F0DAA4;
+}
+
 .hoverable-image {
     transition: transform 0.2s;
 }
@@ -204,11 +208,16 @@ h3 {
 
 .overlay-text {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px;
-    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 /* From https: //css-tricks.com/snippets/css/ribbon/ */
@@ -270,6 +279,11 @@ h3 {
 .non-semantic-protector {
     position: relative;
     z-index: 1;
+}
+
+/* Dropdown options */
+.custom-dropdown {
+    width: 150px;
 }
 
 /* Media Queries */
