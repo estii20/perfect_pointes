@@ -65,24 +65,29 @@
                 <div class="container-fluid mt-5">
                     <div class="row">
                         {% for product in products %}
+                        {% if product.availability %}
                         <div class="col-md-4 mb-4">
                             <div class="card rounded-custom">
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <img src="{{ product.image.url }}" class="card-img-top rounded-image hover-zoom ripple img-fluid" alt="{{ product.title }}">
+                                    <img src="{{ product.image.url }}" class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                        alt="{{ product.title }}">
+                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
                                 </a>
                                 {% else %}
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <img src="{{ MEDIA_URL }}media/no-image.jpg" alt="{{ product.name }}" class="card-img-top rounded-image hover-zoom ripple img-fluid"
-                                    alt="{{ product.title }}">
+                                    <img src="{{ MEDIA_URL }}media/no-image.jpg" alt="{{ product.name }}"
+                                        class="card-img-top rounded-image hover-zoom ripple img-fluid" alt="{{ product.title }}">
+                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
                                 </a>
-                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
                                 {% endif %}
                                 <div class="card-body non-semantic-protector">
-                                    <strong><p class="card-text ribbon d-flex align-items-center justify-content-center shadow-1-strong"
-                                        style="min-width: 100px; height: 35px;">
-                                        {{ product.pointe_shoe.status | title }}
-                                    </p></strong>
+                                    <strong>
+                                        <p class="card-text ribbon d-flex align-items-center justify-content-center shadow-1-strong"
+                                            style="min-width: 100px; height: 35px;">
+                                            {{ product.pointe_shoe.status | title }}
+                                        </p>
+                                    </strong>
                                     <h5 class="card-title gold-text mb-3 my-5">{{ product.title }}</h5>
                                     <p class="card-text lead mb-0">{{ product.pointe_shoe.category.name }}</p>
                                     <p class="card-text text-uppercase">{{ product.brand.name }}</p>
@@ -91,6 +96,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

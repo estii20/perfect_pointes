@@ -26,8 +26,8 @@ def all_products(request):
 
         if 'color' in request.GET:
             colors = request.GET.getlist('color')
-            products = products.filter(pointe_shoe__color__in=colors)
-            color_names = [color.get_friendly_name() for color in color_objects]
+            color_objects = Color.objects.filter(name__in=colors)
+            products = products.filter(pointe_shoe__color__in=color_objects)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -52,6 +52,9 @@ def all_products(request):
         'current_colors': colors,
         'all_colors': all_colors,
     }
+
+    if query:
+        context['search_term'] = query
 
     return render(request, 'products/products.html', context)
 

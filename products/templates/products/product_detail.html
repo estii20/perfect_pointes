@@ -69,6 +69,13 @@
                                 </button>
                                 <p class="card-text lead mb-0"><strong>{{ product.pointe_shoe.category.name }}</strong></p>
                                 <p class="card-text card-text text-uppercase"><strong>{{ product.brand.name }}</strong></p>
+                                {% if product.pointe_shoe.brand.description %}
+                                <p class="card-text my-3">{{ product.pointe_shoe.brand.description }}</p>
+                                {% endif %}
+                                {% if product.pointe_shoe.brand.logo %}
+                                <img src="{{ product.pointe_shoe.brand.logo.url }}" alt="{{ product.pointe_shoe.brand.name }}" class="img-fluid my-3"
+                                    width="50">
+                                {% endif %}
                                 <p class="card-text mb-3"><strong>{{ product.pointe_shoe.price }} EUR</strong></p>
                                 <p class="card-text">
                                     <strong>Color:</strong> {{ product.pointe_shoe.get_color_display }}
