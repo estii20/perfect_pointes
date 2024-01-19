@@ -19,6 +19,45 @@
                         </div>
                     </div>
                 </div>
+                <ul class="nav flex-column justify-content-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="brandDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Brands
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="brandDropdown">
+                            {% for brand in all_brands %}
+                            <a class="dropdown-item" href="{% url 'products' %}?brand={{ brand.name }}">{{ brand.name | title }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                
+                    <!-- Color Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="colorDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Colors
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="colorDropdown">
+                            {% for color in all_colors %}
+                            <a class="dropdown-item" href="{% url 'products' %}?color={{ color }}">{{ color | title }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                
+                    <!-- Category Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="categoryDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            {% for category in all_categories %}
+                            <a class="dropdown-item" href="{% url 'products' %}?category={{ category.name }}">{{ category.name | title }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                </ul>
 
                 <!-- Product List -->
                 <div class="container-fluid mt-5">
