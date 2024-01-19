@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand
+from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand, Color
 
 
 def all_products(request):
@@ -27,6 +27,7 @@ def all_products(request):
         if 'color' in request.GET:
             colors = request.GET.getlist('color')
             products = products.filter(pointe_shoe__color__in=colors)
+            color_names = [color.get_friendly_name() for color in color_objects]
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -39,7 +40,7 @@ def all_products(request):
 
     all_categories = Category.objects.all()
     all_brands = PointeShoeBrand.objects.all()
-    all_colors = products.values_list('pointe_shoe__color', flat=True).distinct()
+    all_colors = Color.objects.all()
 
     context = {
         'products': products,

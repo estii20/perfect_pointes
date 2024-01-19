@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, PointeShoeBrand, PointeShoe, Size, Width, PointeShoeProduct
+from .models import Category, PointeShoeBrand, PointeShoe, Size, Width, PointeShoeProduct, Color
 
 
 @admin.register(Category)
@@ -27,6 +27,11 @@ class SizeAdmin(admin.ModelAdmin):
 @admin.register(Width)
 class WidthAdmin(admin.ModelAdmin):
     list_display = ('width',)
+
+
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'friendly_name')
 
 
 @admin.register(PointeShoe)
