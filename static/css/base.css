@@ -332,6 +332,18 @@ input::placeholder {
     border-color: #555;
 }
 
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
 /* Media Queries */
 
 /* Responsive font size for smaller screens */
