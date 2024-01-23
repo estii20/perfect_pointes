@@ -29,7 +29,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="brandDropdown">
                             {% for brand in all_brands %}
+                            {% if brand in all_brands %}
                             <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc{{ brand.name }}">{{ brand.name | title }}</a>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </li>
@@ -42,7 +44,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="colorDropdown">
                             {% for color in all_colors %}
-                            <a class="dropdown-item" href="{% url 'products' %}?sort=color&direction=asc{{ color }}">{{ color.get_friendly_name| title }}</a>
+                            {% if color in all_colors %}
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=color&direction=asc&color={{ color }}">
+                                {{ color.get_friendly_name | title }}
+                            </a>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </li>
@@ -55,8 +61,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                             {% for category in all_categories %}
+                            {% if category in all_categories %}
                             <a class="dropdown-item" 
                             href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">{{category.get_friendly_name | title }}</a>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </li>
@@ -118,6 +126,38 @@
         </div>
         </div>
     </main>
+    {% endblock %}
+
+    {% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('.btt-link').click(function (e) {
+            window.scrollTo(0, 0);
+        })
+    </script>
+    
+    <script type="text/javascript">
+        $('#sort-selector').change(function () {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if (selectedVal != "reset") {
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 
 
 {% endblock %}
