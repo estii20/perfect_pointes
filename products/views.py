@@ -12,8 +12,23 @@ def all_products(request):
     categories = None
     brands = None
     colors = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
         if 'category' in request.GET:
             categories = request.GET.getlist('category')
             products = products.filter(pointe_shoe__category__name__in=categories)
@@ -42,6 +57,8 @@ def all_products(request):
     all_brands = PointeShoeBrand.objects.all()
     all_colors = Color.objects.all()
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'products': products,
         'search_term': query,
@@ -51,6 +68,7 @@ def all_products(request):
         'all_brands': all_brands,
         'current_colors': colors,
         'all_colors': all_colors,
+        'current_sorting': current_sorting,
     }
 
     if query:

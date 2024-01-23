@@ -34,7 +34,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <h2 class="card-title card-title gold-text mb-3">{{ product.title }}</h2>
-                                <button type="button" class="btn btn-secondary" data-toggle="popover" 
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
                                 title=
                                     "Shank:
                                     S – soft
@@ -51,7 +51,7 @@
                                 </button>
                                 
                                 <!-- Popover for Width -->
-                                <button type="button" class="btn btn-secondary" data-toggle="popover" 
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
                                 title=
                                     "Width:
                                     X, XX = Narrow fit width
@@ -62,12 +62,12 @@
                                 </button>
                                 
                                 <!-- Popover for Sizes -->
-                                <button type="button" class="btn btn-secondary" data-toggle="popover" 
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
                                 title="Select size one up from street shoe"
                                     data-content="Explanation about Sizes.">
                                     Size Info
                                 </button>
-                                <p class="card-text lead mb-0"><strong>{{ product.pointe_shoe.category.name }}</strong></p>
+                                <p class="card-text lead mb-0 my-5"><strong>{{ product.pointe_shoe.category.name }}</strong></p>
                                 <p class="card-text card-text text-uppercase"><strong>{{ product.brand.name }}</strong></p>
                                 {% if product.pointe_shoe.brand.description %}
                                 <p class="card-text my-3">{{ product.pointe_shoe.brand.description }}</p>
@@ -89,7 +89,7 @@
                                 <p class="card-text">
                                     <strong>Feature:</strong> {{ product.pointe_shoe.feature }}
                                 </p>
-                                <!-- Dropdown for size and width delection -->
+                                <!-- Dropdown for size and width -->
                                 <div class="form-group">
                                     <label for="sizesDropdown"><strong>Sizes:</strong></label>
                                     <select class="form-control custom-dropdown" id="sizesDropdown" multiple disabled>
@@ -117,7 +117,7 @@
 
 
 <script>
-    // Enable Bootstrap Popovers
+    // Bootstrap Popovers
     $(function () {
         $('[data-toggle="popover"]').popover();
     });

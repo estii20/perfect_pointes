@@ -96,10 +96,25 @@
                                 {% endif %}
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'products' %}">
+                        <!-- Shop Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-solid fa-heart me-1"></i> Shop
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="shopDropdown">
+                                {% for brand in all_brands %}
+                                <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc&brand={{ brand.name }}">
+                                    {{ brand.name | title }}
+                                </a>
+                                {% endfor %}
+                                {% for category in all_categories %}
+                                <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">
+                                    {{ category.get_friendly_name | title }}
+                                </a>
+                                {% endfor %}
+                                <a class="dropdown-item" href="{% url 'products' %}">All Pointe Shoes</a>
+                            </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">

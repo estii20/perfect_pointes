@@ -14,7 +14,7 @@
                     <div class="col-12 center">
                         <h1 class="gold-text gold-text-padding">Pointe Shoes</h1>
                         <div class="col m12 s12 center">A selection of all our
-                            pointe shoes, browse our categories and brands
+                            pointe shoes, sort and browse our categories and brands
                             for your perfect shoe!
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="brandDropdown">
                             {% for brand in all_brands %}
-                            <a class="dropdown-item" href="{% url 'products' %}?brand={{ brand.name }}">{{ brand.name | title }}</a>
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc{{ brand.name }}">{{ brand.name | title }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -42,7 +42,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="colorDropdown">
                             {% for color in all_colors %}
-                            <a class="dropdown-item" href="{% url 'products' %}?color={{ color }}">{{ color.get_friendly_name| title }}</a>
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=color&direction=asc{{ color }}">{{ color.get_friendly_name| title }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -55,8 +55,21 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                             {% for category in all_categories %}
-                            <a class="dropdown-item" href="{% url 'products' %}?category={{ category.name }}">{{ category.name | title }}</a>
+                            <a class="dropdown-item" 
+                            href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">{{category.get_friendly_name | title }}</a>
                             {% endfor %}
+                        </div>
+                    </li>
+
+                    <!-- Price Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white dropup" href="#" id="priceDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Price
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="priceDropdown">
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">Low to High</a>
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=desc">High to Low</a>
                         </div>
                     </li>
                 </ul>
@@ -66,7 +79,7 @@
                     <div class="row">
                         {% for product in products %}
                         {% if product.availability %}
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-4 mb-4 h-100">
                             <div class="card rounded-custom">
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
@@ -89,7 +102,7 @@
                                         </p>
                                     </strong>
                                     <h5 class="card-title gold-text mb-3 my-5">{{ product.title }}</h5>
-                                    <p class="card-text lead mb-0">{{ product.pointe_shoe.category.name }}</p>
+                                    <p class="card-text lead mb-0">{{ product.pointe_shoe.category.friendly_name }}</p>
                                     <p class="card-text text-uppercase">{{ product.brand.name }}</p>
                                     <h6 class="mb-3">{{ product.pointe_shoe.price }} EUR</h6>
                                     <a href="{% url 'product_detail' product.id %}" class="btn btn-custom">More Details</a>

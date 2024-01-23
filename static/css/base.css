@@ -291,9 +291,45 @@ input::placeholder {
     z-index: 1;
 }
 
-/* Dropdown options */
+/* Size and Width Dropdown */
 .custom-dropdown {
+    position: relative;
+    display: inline-block;
     width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #B49C73;
+    cursor: pointer;
+}
+
+.custom-dropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.custom-dropdown::before {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #555;
+    pointer-events: none;
+}
+
+.custom-dropdown select:focus {
+    outline: none;
+    border-color: #555;
 }
 
 /* Media Queries */
