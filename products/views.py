@@ -8,7 +8,7 @@ from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand, Co
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = PointeShoeProduct.objects.all()
+    products = PointeShoeProduct.objects.filter(availability=True)
     query = None
     categories = None
     brands = None
@@ -57,9 +57,13 @@ def all_products(request):
             queries = Q(title__icontains=query) | Q(pointe_shoe__description__icontains=query)
             products = products.filter(queries)
 
-    all_categories = Category.objects.all()
-    all_brands = PointeShoeBrand.objects.all()
-    all_colors = Color.objects.all()
+    all_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    all_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    all_colors = Color.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
+    available_brands = all_brands.filter(id__in=products.values_list('brand__id', flat=True))
+    available_categories = all_categories.filter(id__in=products.values_list('pointe_shoe__category__id', flat=True))
+    available_colors = all_colors.filter(id__in=products.values_list('pointe_shoe__color__id', flat=True))
 
     current_sorting = f'{sort}_{direction}'
 
@@ -73,6 +77,9 @@ def all_products(request):
         'current_colors': colors,
         'all_colors': all_colors,
         'current_sorting': current_sorting,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
+        'available_colors': available_colors,
     }
 
     if query:
