@@ -346,6 +346,11 @@ input::placeholder {
 
 /* Bag */
 
+.btn-gold {
+    background-color: gold;
+    color: #000;
+}
+
 /* Media Queries */
 
 /* Responsive font size for smaller screens */
