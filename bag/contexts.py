@@ -1,12 +1,35 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from products.models import PointeShoeProduct, Size, Width
 
 
 def bag_contents(request):
-
     bag_items = []
     total = 0
     product_count = 0
+    bag = request.session.get('bag', {})
+
+    for item_id, item_data in bag.items():
+        pointe_shoe_product = get_object_or_404(PointeShoeProduct, pk=item_id)
+
+        if isinstance(item_data, dict):
+            for item_key, quantity in item_data.get('items', {}).items():
+                size_id, width_id = map(int, item_key.split('_'))
+
+                size = get_object_or_404(Size, pk=size_id)
+                width = get_object_or_404(Width, pk=width_id)
+
+                total += quantity * pointe_shoe_product.price
+                product_count += quantity
+
+                bag_items.append({
+                    'product_id': item_id,
+                    'quantity': quantity,
+                    'pointe_shoe_product': pointe_shoe_product,
+                    'size': size,
+                    'width': width,
+                })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
@@ -14,9 +37,9 @@ def bag_contents(request):
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
-    
+
     context = {
         'bag_items': bag_items,
         'total': total,
