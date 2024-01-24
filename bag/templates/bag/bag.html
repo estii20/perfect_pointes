@@ -25,17 +25,30 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
+                                <th scope="col">Pointe Shoe</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Color</th>
                                 <th scope="col">Quantity</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">#</th> 
+                                <th scope="col">Size</th>
+                                <th scope="col">Width</th>
+                                <th scope="col">Ribbon</th>
+                                <th scope="col">Price</th> 
                             </tr>
                         </thead>
                         <tbody>
                             {% for item in bag_items %}
                             <tr>
-                                <td>{{ item.product.title }}</td>
+                                <td>{{ item.pointe_shoe_product.title }}</td>
+                                <td class="p-3 w-25">
+                                    <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
+                                </td>
+                                <td>{{ item.pointe_shoe_product.brand.name }}</td>
+                                <td>{{ item.pointe_shoe_product.pointe_shoe.get_color_display }}</td>
                                 <td>{{ item.quantity }}</td>
-                                <td>{{ item.product.price }}</td>
+                                <td>{{ item.size.size }}</td>
+                                <td>{{ item.width.width }}</td>
+                                <td>{{ item.pointe_shoe_product.pointe_shoe.get_ribbon_display }}</td>
+                                <td>{{ item.pointe_shoe_product.price }}</td>
                                 <td>
                                     <!-- Remove item or update quantity -->
                                     <button class="btn btn-outline-danger btn-sm">
@@ -51,8 +64,8 @@
                     </table>
                 </div>
                 <div class="text-end mt-4">
-                    <p class="lead">Total: €{{ total_price }}</p>
-                    <a href="{% url 'checkout' %}" class="btn btn-custom btn-lg">
+                    <p class="lead">Total: €{{ grand_total|floatformat:2 }}</p>
+                    <a href="#" class="btn btn-custom btn-lg">
                         Proceed to Checkout
                     </a>
                 </div>
