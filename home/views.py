@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import views
 from products.models import PointeShoeBrand, Category, PointeShoeProduct
 
 
