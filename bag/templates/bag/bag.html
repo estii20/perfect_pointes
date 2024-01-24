@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column">
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h2 class="gold-text gold-text-padding logo-font mb-4">Shopping Bag</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row flex-grow-1">
+            <div class="col">
+                {% if bag_items %}
+                <div class="table-responsive rounded">
+                    <!-- Bag items table-->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">#</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in bag_items %}
+                            <tr>
+                                <td>{{ item.product.title }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.product.price }}</td>
+                                <td>
+                                    <!-- Remove item or update quantity -->
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        Remove
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        Update Quantity
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-end mt-4">
+                    <p class="lead">Total: €{{ total_price }}</p>
+                    <a href="{% url 'checkout' %}" class="btn btn-custom btn-lg">
+                        Proceed to Checkout
+                    </a>
+                </div>
+                {% else %}
+                <div class="text-center">
+                    <p class="lead mb-5">Your bag is empty.</p>
+                    <a href="{% url 'products' %}" class="btn btn-custom btn-lg">
+                        <span class="logo-font mb-4 text-uppercase">Continue Shopping</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

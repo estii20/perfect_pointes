@@ -335,35 +335,37 @@ input::placeholder {
 .btt-button {
     height: 42px;
     width: 42px;
-    position: fixed;
     bottom: 10px;
     right: 10px;
 }
 
-.btt-link {
+.btt-top {
     cursor: pointer;
+    text-decoration: none;
 }
+
+/* Bag */
 
 /* Media Queries */
 
 /* Responsive font size for smaller screens */
 @media (max-width: 767px) {
     .gold-text {
-        font-size: 6vw;
+        font-size: 3rem;
     }
 }
 
 /* Responsive font size for medium screens */
 @media (min-width: 768px) and (max-width: 991px) {
     .gold-text {
-        font-size: 4vw;
+        font-size: 4rem;
     }
 }
 
 /* Responsive font size for larger screens */
 @media (min-width: 992px) and (max-width: 1199px) {
     .gold-text {
-        font-size: 4vw;
+        font-size: 4rem;
     }
 }
 
@@ -374,7 +376,7 @@ input::placeholder {
     }
 
     .gold-text {
-        font-size: 3vw;
+        font-size: 5rem;
     }
 }
 
