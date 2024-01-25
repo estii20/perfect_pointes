@@ -360,21 +360,30 @@ input::placeholder {
     }
 }
 
-/* Responsive font size for medium screens */
+/* Responsive font and image size for medium screens */
 @media (min-width: 768px) and (max-width: 991px) {
     .gold-text {
         font-size: 4rem;
     }
+
+    .smaller-image {
+        height: 100px;
+    }
 }
 
-/* Responsive font size for larger screens */
+/* Responsive font and image size for larger screens */
 @media (min-width: 992px) and (max-width: 1199px) {
     .gold-text {
         font-size: 4rem;
     }
+
+    .smaller-image {
+        height: 150px;
+        
+    }
 }
 
-/* Container and font size on xl screens */
+/* Container, image and font size on xl screens */
 @media (min-width: 1200px) {
     .container {
         max-width: 80%;
@@ -383,5 +392,7 @@ input::placeholder {
     .gold-text {
         font-size: 5rem;
     }
-}
 
+    .smaller-image {
+        height: 200px;
+}

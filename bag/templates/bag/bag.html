@@ -25,6 +25,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
+                                <th scope="col"></th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Size</th>
                                 <th scope="col">Width</th>
@@ -35,6 +36,9 @@
                             {% for item in bag_items %}
                             <tr>
                                 <td>{{ item.pointe_shoe_product.title }}</td>
+                                <td class="p-3 w-25 smaller-image">
+                                    <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
+                                </td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.size.size }}</td>
                                 <td>{{ item.width.width }}</td>
