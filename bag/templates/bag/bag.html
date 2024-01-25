@@ -49,25 +49,24 @@
                     </table>
                 </div>
                 <div class="text-end mt-4">
-                    <p class="lead mb-0">Total: €{{ grand_total|floatformat:2 }}</p>
+                    <p class="lead mb-0">Bag Total: €{{ total|floatformat:2 }}</p>
+                    <p class="lead mb-0">Delivery: €{{ delivery|floatformat:2 }}</p>
+                    <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
+                    {% if free_delivery_delta > 0 %}
+                    <p class="mb-1 text-danger">
+                        You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
+                    </p>
+                    {% endif %}
                 </div>
-                <div class="d-flex justify-content-center mt-3">
-                    <button class="btn btn-outline-danger btn-sm me-2">
-                        Remove
-                    </button>
-                    <button class="btn btn-outline-primary btn-sm">
-                        Update Quantity
-                    </button>
-                </div>
-                <div class="text-end mt-2">
+                <div class="text-end mt-2 py-3 px-4">
                     <a href="#" class="btn btn-custom btn-lg">
-                        Proceed to Checkout
+                        Checkout
                     </a>
                 </div>
                 {% else %}
                 <div class="text-center mt-5">
                     <p class="lead mb-4">Your bag is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-custom btn-lg">
+                    <a href="{% url 'products' %}" class="btn btn-custom btn-lg py-3 px-4">
                         <span class="logo-font text-uppercase">Continue Shopping</span>
                     </a>
                 </div>

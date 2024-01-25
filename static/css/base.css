@@ -131,6 +131,11 @@ input::placeholder {
     border-radius: 10px;
 }
 
+.gold-frame {
+    background-color: #f1e0b7;
+    border: 4px double gold;
+}
+
 .content-container h1,
 .content-container p {
     margin-bottom: 20px;
