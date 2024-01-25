@@ -25,55 +25,46 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
-                                <th scope="col">Pointe Shoe</th>
-                                <th scope="col">Brand</th>
-                                <th scope="col">Color</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Size</th>
                                 <th scope="col">Width</th>
-                                <th scope="col">Ribbon</th>
-                                <th scope="col">Price</th> 
+                                <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for item in bag_items %}
                             <tr>
                                 <td>{{ item.pointe_shoe_product.title }}</td>
-                                <td class="p-3 w-25">
-                                    <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
-                                </td>
-                                <td>{{ item.pointe_shoe_product.brand.name }}</td>
-                                <td>{{ item.pointe_shoe_product.pointe_shoe.get_color_display }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.size.size }}</td>
                                 <td>{{ item.width.width }}</td>
-                                <td>{{ item.pointe_shoe_product.pointe_shoe.get_ribbon_display }}</td>
                                 <td>{{ item.pointe_shoe_product.price }}</td>
-                                <td>
-                                    <!-- Remove item or update quantity -->
-                                    <button class="btn btn-outline-danger btn-sm">
-                                        Remove
-                                    </button>
-                                    <button class="btn btn-outline-primary btn-sm">
-                                        Update Quantity
-                                    </button>
-                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
                 <div class="text-end mt-4">
-                    <p class="lead">Total: €{{ grand_total|floatformat:2 }}</p>
+                    <p class="lead mb-0">Total: €{{ grand_total|floatformat:2 }}</p>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-danger btn-sm me-2">
+                        Remove
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm">
+                        Update Quantity
+                    </button>
+                </div>
+                <div class="text-end mt-2">
                     <a href="#" class="btn btn-custom btn-lg">
                         Proceed to Checkout
                     </a>
                 </div>
                 {% else %}
-                <div class="text-center">
-                    <p class="lead mb-5">Your bag is empty.</p>
+                <div class="text-center mt-5">
+                    <p class="lead mb-4">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-custom btn-lg">
-                        <span class="logo-font mb-4 text-uppercase">Continue Shopping</span>
+                        <span class="logo-font text-uppercase">Continue Shopping</span>
                     </a>
                 </div>
                 {% endif %}
