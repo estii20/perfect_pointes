@@ -305,7 +305,6 @@ input::placeholder {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #B49C73;
     cursor: pointer;
 }
 
@@ -335,6 +334,14 @@ input::placeholder {
 .custom-dropdown select:focus {
     outline: none;
     border-color: #555;
+}
+
+.custom-dropdown::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
 }
 
 .btt-button {
@@ -400,4 +407,5 @@ input::placeholder {
 
     .smaller-image {
         height: 200px;
+    }
 }

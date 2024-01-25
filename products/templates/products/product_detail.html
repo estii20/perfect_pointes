@@ -99,7 +99,7 @@
                                                 <div class="form-group">
                                                     <label for="quantity"><strong>Quantity:</strong></label>
                                                     <div class="input-group">
-                                                        <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99"
+                                                        <input class="form-control rounded w-50 qty_input" type="number" name="quantity" value="1" min="1" max="99"
                                                             data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                         <!-- Dropdown for Sizes -->
                                         <div class="form-group mb-3">
                                             <label for="sizesDropdown"><strong>Sizes:</strong></label>
-                                            <select class="form-control custom-dropdown" id="sizesDropdown" name="size_id">
+                                            <select class="form-control rounded w-50 custom-dropdown" id="sizesDropdown" name="size_id">
                                                 {% for size in product.pointe_shoe.available_sizes.all %}
                                                 <option value="{{ size.id }}">{{ size.size }}</option>
                                                 {% endfor %}
@@ -119,7 +119,7 @@
                                         <!-- Dropdown for Widths -->
                                         <div class="form-group mb-3">
                                             <label for="widthsDropdown"><strong>Widths:</strong></label>
-                                            <select class="form-control custom-dropdown" id="widthsDropdown" name="width_id">
+                                            <select class="form-control rounded w-50 custom-dropdown" id="widthsDropdown" name="width_id">
                                                 {% for width in product.pointe_shoe.available_widths.all %}
                                                 <option value="{{ width.id }}">{{ width.width }}</option>
                                                 {% endfor %}
