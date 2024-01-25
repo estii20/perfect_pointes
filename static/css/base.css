@@ -363,8 +363,13 @@ input::placeholder {
     color: #000;
 }
 
-.update-link {
+.btn-link {
     cursor: pointer;
+}
+
+.update-column {
+    width: 150px;
+    white-space: nowrap;
 }
 
 /* Media Queries */

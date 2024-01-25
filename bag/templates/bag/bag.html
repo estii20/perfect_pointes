@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block page_header %}
-
 {% endblock %}
 
 {% block content %}
@@ -24,98 +24,112 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Product</th>
+                                <th scope="col">Shoe</th>
                                 <th scope="col"></th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Width</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">€</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Remove</th>
+                                <th scope="col">Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for item in bag_items %}
                             <tr>
-                                <td>{{ item.pointe_shoe_product.title }}</td>
-                                <td class="p-3 w-25 smaller-image">
+                                <td>Name: {{ item.pointe_shoe_product.title }}<br>Size: {{ item.size.size }}<br>Width:
+                                    {{ item.width.width }}</td>
+                                <td class="p-3 smaller-image">
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
                                 </td>
                                 <td>{{ item.quantity }}</td>
-                                <td>{{ item.size.size }}</td>
-                                <td>{{ item.width.width }}</td>
-                                <td>{{ item.pointe_shoe_product.price }}</td>
-                                <td>
+                                <td>€{{ item.pointe_shoe_product.price }}</td>
+                                <td class="update-column">
                                     <form action="{% url 'adjust_bag' product_id=item.product_id %}" method="POST">
                                         {% csrf_token %}
-                                        <input type="hidden" name="quantity" value="{{ item.quantity }}">
-                                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99">
-                                        <button type="submit" class="btn btn-link">Update</button>
-                                    </form>
-                                    <form action="{% url 'remove_from_bag' product_id=item.product_id %}" method="POST">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-link">Remove</button>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <input type="hidden" name="quantity" value="{{ item.quantity }}">
+                                            <input type="number" name="updated_quantity" value="{{ item.quantity }}"
+                                                min="1" max="99"
+                                                class="form-control form-control-sm d-inline-block me-2">
+                                            <button type="submit"
+                                                class="btn btn-link text-decoration-none text-primary btn-sm">Update</button>
+                                        </div>
                                     </form>
                                 </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                                </table>
-                                </div>
-                                <div class="text-end mt-4">
-                                    <p class="lead mb-0">Bag Total: €{{ total|floatformat:2 }}</p>
-                                    <p class="lead mb-0">Delivery: €{{ delivery|floatformat:2 }}</p>
-                                    <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
-                                    {% if free_delivery_delta > 0 %}
-                                    <p class="mb-1 text-danger">
-                                        You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
+                                <td>
+                                    <form action="{% url 'remove_from_bag' product_id=item.product_id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit"
+                                            class="btn btn-link text-decoration-none text-danger btn-sm"><i
+                                                class="fa-solid fa-trash"></i> Remove</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <p class="my-0">€{{ item.pointe_shoe_product.price | calc_subtotal:item.quantity }}
                                     </p>
-                                    {% endif %}
-                                </div>
-                                <div class="text-end mt-2 py-3 px-4">
-                                    <a href="#" class="btn btn-custom btn-lg">Checkout</a>
-                                </div>
-                                {% else %}
-                                <div class="text-center mt-5">
-                                    <p class="lead mb-4">Your bag is empty.</p>
-                                    <a href="{% url 'products' %}" class="btn btn-custom btn-lg py-3 px-4">
-                                        <span class="logo-font text-uppercase">Continue Shopping</span>
-                                    </a>
-                                </div>
-                                {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-                {% endblock %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-end mt-4">
+                    <p class="lead mb-0">Bag Total: €{{ total|floatformat:2 }}</p>
+                    <p class="lead mb-0">Delivery: €{{ delivery|floatformat:2 }}</p>
+                    <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
+                    {% if free_delivery_delta > 0 %}
+                    <p class="mb-1 text-danger">
+                        You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
+                    </p>
+                    {% endif %}
+                </div>
+                <div class="text-end mt-2 py-3 px-4">
+                    <a href="#" class="btn btn-custom btn-lg">Checkout</a>
+                </div>
+                {% else %}
+                <div class="text-center mt-5">
+                    <p class="lead mb-4">Your bag is empty.</p>
+                    <a href="{% url 'products' %}" class="btn btn-custom btn-lg py-3 px-4">
+                        <span class="logo-font text-uppercase">Continue Shopping</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
 
-            {% block postloadjs %}
-            {{ block.super }}
+{% block postloadjs %}
+{{ block.super }}
 
-            <script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Update quantity on click
-                    document.querySelectorAll('.update-link').forEach(function (link) {
-                        link.addEventListener('click', function (event) {
-                            event.preventDefault(); 
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        // Update quantity on click
+        $('.update-link').click(function (event) {
+            event.preventDefault();
+            $(this).closest('form').submit();
+        });
 
-
-                            link.closest('form').submit();
-                        });
-                    });
-
-                    // Remove item and reload on click
-                    $('.remove-item').click(function (e) {
-                        e.preventDefault();
-
-                        var csrfToken = "{{ csrf_token }}";
-                        var productId = $(this).attr('id').split('remove_')[1];
-                        var size = $(this).data('product_size');
-                        var url = `/remove_from_bag/${productId}/`;  // Add leading slash and adjust URL path
-                        var data = { 'csrfmiddlewaretoken': csrfToken, 'product_size': size };
-
-                        $.post(url, data)
-                            .done(function () {
-                                location.reload();
-                            });
-                    });
-                    </script>
-            {% endblock %}
+        // Remove item and reload on click
+        $('.remove-item').click(function (e) {
+            e.preventDefault();
+            var csrfToken = "{{ csrf_token }}";
+            var productId = $(this).attr('id').split('remove_')[1];
+            $.ajax({
+                url: "{% url 'remove_from_bag' 0 %}".replace('0', productId),
+                type: 'POST',
+                data: {
+                    csrfmiddlewaretoken: csrfToken
+                },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
