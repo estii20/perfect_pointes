@@ -91,10 +91,15 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
 
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
 
     context = {
+        'available_brands': available_brands,
+        'available_categories': available_categories,
         'product': product,
     }
+    
 
     return render(request, 'products/product_detail.html', context)
