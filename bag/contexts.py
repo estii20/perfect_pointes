@@ -24,7 +24,7 @@ def bag_contents(request):
                 product_count += quantity
 
                 bag_items.append({
-                    'product_id': item_id,  # Include product_id in the context
+                    'item_id': item_id,
                     'quantity': quantity,
                     'pointe_shoe_product': pointe_shoe_product,
                     'size': size,

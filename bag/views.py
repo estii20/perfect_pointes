@@ -33,31 +33,36 @@ def add_to_bag(request, product_id):
     return redirect(redirect_url)
 
 
-def adjust_bag(request, product_id):
+def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
-    quantity = int(request.POST.get('quantity'))
-    size = request.POST.get('product_size')
-    
-    bag = request.session.get('bag', {})
-    if product_id in bag:
-        if size:
-            bag[product_id]['items_by_size'][size] = quantity
-        else:
-            bag[product_id] = quantity if quantity > 0 else None
-        request.session['bag'] = bag
 
+    quantity = int(request.POST.get('quantity'))
+    bag = request.session.get('bag', {})
+
+    if quantity > 0:
+        bag[item_id] = quantity
+    else:
+        bag.pop(item_id, None)
+
+    request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
 
-def remove_from_bag(request, product_id):
+def remove_from_bag(request, item_id):
     """Remove the item from the shopping bag"""
+
     try:
         bag = request.session.get('bag', {})
-        if product_id in bag:
-            bag.pop(product_id)
-            request.session['bag'] = bag
-            return HttpResponse(status=200)
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
+            del bag[item_id]['items_by_size'][size]
+            if not bag[item_id]['items_by_size']:
+                bag.pop(item_id)
         else:
-            return HttpResponse(status=404)
+            bag.pop(item_id)
+
+        request.session['bag'] = bag
+        return HttpResponse(status=200)
+
     except Exception as e:
         return HttpResponse(status=500)

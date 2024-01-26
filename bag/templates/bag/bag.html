@@ -25,11 +25,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Shoe</th>
-                                <th scope="col"></th>
+                                <th scope="col d-none d-sm-table-cell"></th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">€</th>
-                                <th scope="col">Update</th>
-                                <th scope="col">Remove</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
                         </thead>
@@ -38,32 +36,52 @@
                             <tr>
                                 <td>Name: {{ item.pointe_shoe_product.title }}<br>Size: {{ item.size.size }}<br>Width:
                                     {{ item.width.width }}</td>
-                                <td class="p-3 smaller-image">
+                                <td class="p-3 smaller-image d-none d-sm-table-cell">
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
                                 </td>
-                                <td>{{ item.quantity }}</td>
-                                <td>€{{ item.pointe_shoe_product.price }}</td>
-                                <td class="update-column">
-                                    <form action="{% url 'adjust_bag' product_id=item.product_id %}" method="POST">
+                                <td>
+                                    <form class="update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
                                         {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="quantity"><strong>Quantity:</strong></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button class="decrement-qty btn btn-sm rounded-0" data-item_id="{{ item.item_id }}"
+                                                        id="decrement-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-minus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control form-control-sm qty_input" type="number" name="quantity"
+                                                    value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
+                                                    id="id_qty_{{ item.item_id }}">
+                                                <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm rounded-0" data-item_id="{{ item.item_id }}"
+                                                        id="increment-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-plus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="d-flex align-items-center mb-2">
-                                            <input type="hidden" name="quantity" value="{{ item.quantity }}">
-                                            <input type="number" name="updated_quantity" value="{{ item.quantity }}"
-                                                min="1" max="99"
-                                                class="form-control form-control-sm d-inline-block me-2">
-                                            <button type="submit"
-                                                class="btn btn-link text-decoration-none text-primary btn-sm">Update</button>
+                                            <button type="submit" class="update-btn btn btn-link text-decoration-none text-primary btn-sm">
+                                                Update
+                                            </button>
                                         </div>
                                     </form>
-                                </td>
-                                <td>
-                                    <form action="{% url 'remove_from_bag' product_id=item.product_id %}" method="POST">
+                                    <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">
                                         {% csrf_token %}
-                                        <button type="submit"
-                                            class="btn btn-link text-decoration-none text-danger btn-sm"><i
-                                                class="fa-solid fa-trash"></i> Remove</button>
+                                        <button type="submit" id="remove_{{ item.item_id }}"
+                                            class="remove-btn btn btn-link text-decoration-none text-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Remove
+                                        </button>
                                     </form>
                                 </td>
+                                <td>€{{ item.pointe_shoe_product.price }}</td>
                                 <td>
                                     <p class="my-0">€{{ item.pointe_shoe_product.price | calc_subtotal:item.quantity }}
                                     </p>
@@ -102,34 +120,26 @@
 
 {% block postloadjs %}
 {{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        // Update quantity on click
-        $('.update-link').click(function (event) {
-            event.preventDefault();
-            $(this).closest('form').submit();
-        });
+    // Update quantity on click
+    $('.update-link').click(function (e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
 
-        // Remove item and reload on click
-        $('.remove-item').click(function (e) {
-            e.preventDefault();
-            var csrfToken = "{{ csrf_token }}";
-            var productId = $(this).attr('id').split('remove_')[1];
-            $.ajax({
-                url: "{% url 'remove_from_bag' 0 %}".replace('0', productId),
-                type: 'POST',
-                data: {
-                    csrfmiddlewaretoken: csrfToken
-                },
-                success: function (data) {
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+    // Remove item and reload on click
+    $('.remove-btn').click(function (e) {
+        var csrfToken = "{{ csrf_token }}";
+        var productId = $(this).attr('id').split('remove_')[1];
+        var url = "/remove_from_bag/" + productId + "/";
+        var data = { 'csrfmiddlewaretoken': csrfToken };
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
             });
-        });
     });
 </script>
 {% endblock %}

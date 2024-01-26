@@ -64,8 +64,8 @@
                                     title="Select size one up from street shoe" data-content="Explanation about Sizes.">
                                     Size Info
                                 </button>
-                                <p class="card-text lead mb-0 my-5"><strong>{{ product.pointe_shoe.category.name
-                                        }}</strong></p>
+                                <p class="card-text lead mb-0 my-5"><strong>
+                                    {{ product.pointe_shoe.category.name }}</strong></p>
                                 <p class="card-text card-text text-uppercase"><strong>{{ product.brand.name }}</strong>
                                 </p>
                                 {% if product.pointe_shoe.brand.description %}
@@ -102,7 +102,7 @@
                                                             <button class="btn btn-black rounded-0 decrement-qty"
                                                                 data-item_id="{{ product.id }}"
                                                                 id="decrement-qty_{{ product.id }}">
-                                                                <span class="icon">
+                                                                <span">
                                                                     <i class="fas fa-minus"></i>
                                                                 </span>
                                                             </button>
@@ -115,7 +115,7 @@
                                                             <button class="btn btn-black rounded-0 increment-qty"
                                                                 data-item_id="{{ product.id }}"
                                                                 id="increment-qty_{{ product.id }}">
-                                                                <span class="icon">
+                                                                <span>
                                                                     <i class="fas fa-plus"></i>
                                                                 </span>
                                                             </button>
@@ -164,19 +164,11 @@
         </div>
     </div>
 </main>
-
-
-<script>
-    // Bootstrap Popovers
-    $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-
-</script>
-
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+
+
 {% endblock %}
