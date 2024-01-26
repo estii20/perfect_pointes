@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block page_header %}
-
 {% endblock %}
 
 {% block content %}
@@ -21,22 +20,24 @@
                         <div class="card mb-4">
                             {% if product.image %}
                             <a href="{{ product.image.url }}" target="_blank">
-                                <img src="{{ product.image.url }}" class="card-img-top rounded-image hover-zoom ripple img-fluid"
-                                alt="{{ product.title }}">
+                                <img src="{{ product.image.url }}"
+                                    class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                    alt="{{ product.title }}">
                                 <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
                             </a>
                             {% else %}
                             <a href="">
-                                <img src="{{ MEDIA_URL }}media/no-image.jpg" class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                <img src="{{ MEDIA_URL }}media/no-image.jpg"
+                                    class="card-img-top rounded-image hover-zoom ripple img-fluid"
                                     alt="{{ product.title }}">
-                                    <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span class="overlay-text">Arch</span></div>
+                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span
+                                        class="overlay-text">Arch</span></div>
                             </a>
                             {% endif %}
                             <div class="card-body">
                                 <h2 class="card-title card-title gold-text mb-3">{{ product.title }}</h2>
-                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
-                                title=
-                                    "Shank:
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover"
+                                    title="Shank:
                                     S – soft
                                     
                                     M – medium
@@ -45,36 +46,34 @@
                                     
                                     SS – super soft
                                     
-                                    SH – super hard"
-                                    data-content="Explanation about Shank.">
+                                    SH – super hard" data-content="Explanation about Shank.">
                                     Shank Info
                                 </button>
-                                
+
                                 <!-- Popover for Width -->
-                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
-                                title=
-                                    "Width:
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover"
+                                    title="Width:
                                     X, XX = Narrow fit width
                                     XXX = Middle fit width
-                                    XXXX, XXXXX = Wide fit width"
-                                    data-content="Explanation about Width.">
+                                    XXXX, XXXXX = Wide fit width" data-content="Explanation about Width.">
                                     Width Info
                                 </button>
-                                
+
                                 <!-- Popover for Sizes -->
-                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover" 
-                                title="Select size one up from street shoe"
-                                    data-content="Explanation about Sizes.">
+                                <button type="button" class="btn btn-secondary btn btn-custom" data-toggle="popover"
+                                    title="Select size one up from street shoe" data-content="Explanation about Sizes.">
                                     Size Info
                                 </button>
-                                <p class="card-text lead mb-0 my-5"><strong>{{ product.pointe_shoe.category.name }}</strong></p>
-                                <p class="card-text card-text text-uppercase"><strong>{{ product.brand.name }}</strong></p>
+                                <p class="card-text lead mb-0 my-5"><strong>{{ product.pointe_shoe.category.name
+                                        }}</strong></p>
+                                <p class="card-text card-text text-uppercase"><strong>{{ product.brand.name }}</strong>
+                                </p>
                                 {% if product.pointe_shoe.brand.description %}
                                 <p class="card-text my-3">{{ product.pointe_shoe.brand.description }}</p>
                                 {% endif %}
                                 {% if product.pointe_shoe.brand.logo %}
-                                <img src="{{ product.pointe_shoe.brand.logo.url }}" alt="{{ product.pointe_shoe.brand.name }}" class="img-fluid my-3"
-                                    width="50">
+                                <img src="{{ product.pointe_shoe.brand.logo.url }}"
+                                    alt="{{ product.pointe_shoe.brand.name }}" class="img-fluid my-3" width="50">
                                 {% endif %}
                                 <p class="card-text mb-3"><strong>{{ product.pointe_shoe.price }} EUR</strong></p>
                                 <p class="card-text">
@@ -99,38 +98,61 @@
                                                 <div class="form-group">
                                                     <label for="quantity"><strong>Quantity:</strong></label>
                                                     <div class="input-group">
-                                                        <input class="form-control rounded w-50 qty_input" type="number" name="quantity" value="1" min="1" max="99"
-                                                            data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                                        <div class="input-group-prepend">
+                                                            <button class="btn btn-black rounded-0 decrement-qty"
+                                                                data-item_id="{{ product.id }}"
+                                                                id="decrement-qty_{{ product.id }}">
+                                                                <span class="icon">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <input class="form-control qty_input" type="number"
+                                                            name="quantity" value="1" min="1" max="99"
+                                                            data-item_id="{{ product.id }}"
+                                                            id="id_qty_{{ product.id }}">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-black rounded-0 increment-qty"
+                                                                data-item_id="{{ product.id }}"
+                                                                id="increment-qty_{{ product.id }}">
+                                                                <span class="icon">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                
+
                                         <!-- Dropdown for Sizes -->
                                         <div class="form-group mb-3">
                                             <label for="sizesDropdown"><strong>Sizes:</strong></label>
-                                            <select class="form-control rounded w-50 custom-dropdown" id="sizesDropdown" name="size_id">
+                                            <select class="form-control rounded w-50 custom-dropdown" id="sizesDropdown"
+                                                name="size_id">
                                                 {% for size in product.pointe_shoe.available_sizes.all %}
                                                 <option value="{{ size.id }}">{{ size.size }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
-                                
+
                                         <!-- Dropdown for Widths -->
                                         <div class="form-group mb-3">
                                             <label for="widthsDropdown"><strong>Widths:</strong></label>
-                                            <select class="form-control rounded w-50 custom-dropdown" id="widthsDropdown" name="width_id">
+                                            <select class="form-control rounded w-50 custom-dropdown"
+                                                id="widthsDropdown" name="width_id">
                                                 {% for width in product.pointe_shoe.available_widths.all %}
                                                 <option value="{{ width.id }}">{{ width.width }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
-                                
+
                                         <div class="row">
                                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         </div>
-                                
-                                        <button type="submit" class="btn btn-gold">Add to basket <i class="fa fa-plus"></i></button>
+
+                                        <button type="submit" class="btn btn-gold">Add to basket <i
+                                                class="fa fa-plus"></i></button>
                                     </form>
                                 </div>
                                 <a href="{% url 'products' %}" class="btn btn-custom my-5">Back to Products</a>
@@ -139,8 +161,9 @@
                     </div>
                 </div>
             </div>
-            </div>
-    </main>
+        </div>
+    </div>
+</main>
 
 
 <script>
@@ -151,4 +174,9 @@
 
 </script>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}
