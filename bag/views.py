@@ -6,7 +6,16 @@ from bag.contexts import bag_contents
 def view_bag(request):
     """ A view that renders the bag contents page """
 
-    return render(request, 'bag/bag.html')
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
+
+    context = {
+        'available_brands': available_brands,
+        'available_categories': available_categories,
+    }
+
+    return render(request, 'bag/bag.html', context)
 
 
 def add_to_bag(request, product_id):
