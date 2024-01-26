@@ -23,7 +23,7 @@ def view_bag(request):
 def add_to_bag(request, product_id):
     """ Add a quantity of the specified product to the shopping bag """
 
-    product = PointeShoeProduct.objects.get(pk=product_id)
+    product = get_object_or_404(PointeShoeProduct, pk=product_id)
     quantity = int(request.POST.get('quantity'))
     size_id = request.POST.get('size_id')
     width_id = request.POST.get('width_id')
@@ -49,15 +49,19 @@ def add_to_bag(request, product_id):
 def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
+    product = get_object_or_404(PointeShoeProduct, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag = request.session.get('bag', {})
 
     if quantity > 0:
         bag[item_id] = quantity
+        messages.success(request, f'Updated {product.title} quantity to {bag[item_id]}')
     else:
         bag.pop(item_id, None)
+        messages.success(request, f'Removed {product.title} from your bag')
 
     request.session['bag'] = bag
+
     return redirect(reverse('view_bag'))
 
 
@@ -65,17 +69,14 @@ def remove_from_bag(request, item_id):
     """Remove the item from the shopping bag"""
 
     try:
+        product = get_object_or_404(PointeShoeProduct, pk=item_id)
         bag = request.session.get('bag', {})
-        if 'product_size' in request.POST:
-            size = request.POST['product_size']
-            del bag[item_id]['items_by_size'][size]
-            if not bag[item_id]['items_by_size']:
-                bag.pop(item_id)
-        else:
-            bag.pop(item_id)
+        bag.pop(item_id)
+        messages.success(request, f'Removed {product.title} from your bag')
 
         request.session['bag'] = bag
         return HttpResponse(status=200)
 
     except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
