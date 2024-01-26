@@ -40,24 +40,27 @@
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
                                 </td>
                                 <td>
-                                    <form class="update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+                                    <form class="update-form" method="POST"
+                                        action="{% url 'adjust_bag' item.item_id %}">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="quantity"><strong>Quantity:</strong></label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
-                                                    <button class="decrement-qty btn btn-sm rounded-0" data-item_id="{{ item.item_id }}"
+                                                    <button class="decrement-qty btn btn-sm rounded-0"
+                                                        data-item_id="{{ item.item_id }}"
                                                         id="decrement-qty_{{ item.item_id }}">
                                                         <span>
                                                             <i class="fas fa-minus fa-sm"></i>
                                                         </span>
                                                     </button>
                                                 </div>
-                                                <input class="form-control form-control-sm qty_input" type="number" name="quantity"
-                                                    value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
-                                                    id="id_qty_{{ item.item_id }}">
+                                                <input class="form-control form-control-sm qty_input" type="number"
+                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                                 <div class="input-group-append">
-                                                    <button class="increment-qty btn btn-sm rounded-0" data-item_id="{{ item.item_id }}"
+                                                    <button class="increment-qty btn btn-sm rounded-0"
+                                                        data-item_id="{{ item.item_id }}"
                                                         id="increment-qty_{{ item.item_id }}">
                                                         <span>
                                                             <i class="fas fa-plus fa-sm"></i>
@@ -67,7 +70,8 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button type="submit" class="update-btn btn btn-link text-decoration-none text-primary btn-sm mr-3 px-3">
+                                            <button type="submit"
+                                                class="update-btn btn btn-link text-decoration-none text-primary btn-sm mr-3 px-3">
                                                 Update
                                             </button>
                                             <button type="submit" id="remove_{{ item.item_id }}"
@@ -124,7 +128,7 @@
     $('.update-link').click(function (e) {
         var form = $(this).prev('.update-form');
         form.submit();
-    })
+    });
 
     // Remove item and reload on click
     $('.remove-btn').click(function (e) {
