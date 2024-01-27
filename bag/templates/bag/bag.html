@@ -36,8 +36,12 @@
                             <tr>
                                 <td>Name: {{ item.pointe_shoe_product.title }}<br>Size: {{ item.size.size }}<br>Width:
                                     {{ item.width.width }}</td>
+                                {% if item.product.image %}
                                 <td class="p-3 smaller-image d-none d-sm-table-cell">
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}">
+                                    {% else %}
+                                    <img class="w-100 img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                                {% endif %}
                                 </td>
                                 <td>
                                     <form class="update-form" method="POST"
