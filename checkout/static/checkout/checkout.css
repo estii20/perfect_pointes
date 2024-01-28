@@ -1,0 +1,18 @@
+/* Checkout */
+
+/* Form fields */
+.custom-fieldset {
+    margin-bottom: 20px;
+}
+
+.custom-fieldset input[type="text"],
+.custom-fieldset input[type="email"],
+.custom-fieldset select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-fieldset input[type="checkbox"] {
+    margin-right: 5px;
+}
