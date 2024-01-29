@@ -11,26 +11,68 @@
 {% block content %}
 <main>
     <div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column">
-        <!-- Order Summary -->
+        <!-- Order Information -->
         <div class="row">
             <div class="col text-center">
                 <hr>
                 <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you</h2>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email
-                        }}</strong>.</p>
+                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{
+                        order.email }}</strong>.</p>
                 <hr>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-lg-7"></div>
-        </div>
-        
-        <div class="row">
-            <div class="col-12 col-lg-7 text-right">
-                <a href="{% url 'products' %}"><button class="btn btn-large"> Continue Shopping <i
-                            class="fa fa-shooping-cart"></i></button></a>
-                </a>
+        <div style="background-color: #ffffff;">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li>
+                            <h3>Order Number:</h3> {{ order.order_number }}
+                        </li>
+                        <li>
+                            <h3>Order Placed:</h3> {{ order.date }}
+                        </li>
+                        <li>
+                            <h3>Order Amount:</h3> £ {{ order.grand_total }}
+                        </li>
+                        <li>
+                            <h3>Delivery Address:</h3>
+                            <p>
+                                {{ order.street_address1 }},
+                                {% if order.street_address2 %} {{ order.street_address2 }} {% endif %},
+                                {{ order.town_or_city }},
+                                {% if order.county %} {{ order.county }} {% endif %},
+                                {% if order.postcode %} {{ order.postcode }} {% endif %}
+                                {{ order.country }}
+                            </p>
+                        </li>
+                        <li>
+                            <h3>Delivery Phone Number:</h3> {{ order.phone_number }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        {% for item in order.lineitems.all %}
+                        <li>
+                            {{ item.quantity }} x {{ item.pointe_shoe_product.title }} {{ item.size.size }} {{
+                            item.width.width }}
+                            €{{ item.pointe_shoe_product.price }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-12 col-lg-7 text-right">
+                    <a href="{% url 'products' %}">
+                        <button class="btn btn-large"> Continue Shopping
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
