@@ -1,8 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
-from django.shortcuts import get_object_or_404, reverse, HttpResponse
+from django.shortcuts import get_object_or_404
 from products.models import PointeShoeProduct, Size, Width
-
 
 def bag_contents(request):
     bag_items = []
@@ -20,7 +19,8 @@ def bag_contents(request):
                 size = get_object_or_404(Size, pk=size_id)
                 width = get_object_or_404(Width, pk=width_id)
 
-                total += quantity * pointe_shoe_product.price
+                item_price = pointe_shoe_product.price
+                total += quantity * item_price
                 product_count += quantity
 
                 bag_items.append({
@@ -29,6 +29,7 @@ def bag_contents(request):
                     'pointe_shoe_product': pointe_shoe_product,
                     'size': size,
                     'width': width,
+                    'item_price': item_price,
                 })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
