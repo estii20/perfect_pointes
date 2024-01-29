@@ -3,7 +3,7 @@
 {% load bag_tools %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -97,13 +97,15 @@
                     <!-- Delivery -->
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
-                        {{ order_form.phone_number | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.county | as_crispy_field }}
+                        <div class="form-field-with-border">
+                        Phone Number:{{ order_form.phone_number | as_crispy_field }}
+                        Country:{{ order_form.country | as_crispy_field }}
+                        Postcode:{{ order_form.postcode | as_crispy_field }}
+                        Town/City:{{ order_form.town_or_city | as_crispy_field }}
+                        Address 1:{{ order_form.street_address1 | as_crispy_field }}
+                        Address 2:{{ order_form.street_address2 | as_crispy_field }}
+                        County:{{ order_form.county | as_crispy_field }}
+                        </div>
                         <div class="form-check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
                             <label class="form-check-label" for="id-save-info">Save this delivery information to my
