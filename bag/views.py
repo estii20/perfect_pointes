@@ -11,6 +11,7 @@ def view_bag(request):
     available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
 
+
     context = {
         'available_brands': available_brands,
         'available_categories': available_categories,
@@ -50,43 +51,56 @@ def adjust_bag(request, product_id):
 
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
     quantity = int(request.POST.get('quantity'))
-    size_id = request.POST.get('size_id')
-    width_id = request.POST.get('width_id')
+    size_id = int(request.POST.get('size_id'))
+    width_id = int(request.POST.get('width_id'))
+    bag = request.session.get('bag', {})
 
     item_key = f"{size_id}_{width_id}"
 
-    bag = request.session.get('bag', {})
-
-    if product_id in bag and item_key in bag[product_id]['items']:
-        if quantity > 0:
-            bag[product_id]['items'][item_key] = quantity
-            messages.success(request, f'Updated {product.title} quantity to {quantity}')
+    if quantity > 0:
+        if product_id in bag:
+            if item_key in bag[product_id]['items']:
+                bag[product_id]['items'][item_key] = quantity
+            else:
+                bag[product_id]['items'][item_key] = quantity
         else:
-            del bag[product_id]['items'][item_key]
-            if not bag[product_id]['items']:
-                bag.pop(product_id)
-            messages.success(request, f'Removed {product.title} from your bag')
+            bag[product_id] = {'items': {item_key: quantity}}
+        messages.success(request, f'Updated {product.title} quantity to {quantity}')
+    else:
+        bag.pop(product_id, None)
+        messages.success(request, f'Removed {product.title} from your bag')
 
-        request.session['bag'] = bag
-
+    request.session['bag'] = bag
     return redirect(reverse('view_bag'))
 
 
-def remove_from_bag(request, product_id):
+def remove_from_bag(request, item_id, size_id=None, width_id=None):
     """Remove the item from the shopping bag"""
 
     try:
-        product = get_object_or_404(PointeShoeProduct, pk=product_id)
-        size_id = request.POST.get('size_id')
-        width_id = request.POST.get('width_id')
-        item_key = f"{size_id}_{width_id}"
-        
+        product = get_object_or_404(PointeShoeProduct, pk=item_id)
         bag = request.session.get('bag', {})
-        del bag[product_id]['items'][item_key]
-        if not bag[product_id]['items']:
-            bag.pop(product_id)
-        messages.success(request, f'Removed {product.title} from your bag')
-
+        
+        # Construct the key based on size_id and width_id
+        item_key = f"{size_id}_{width_id}" if size_id and width_id else None
+        
+        # Check if the item exists in the bag
+        if item_id in bag:
+            if item_key:
+                # Remove the item based on size and width
+                if item_key in bag[item_id]['items']:
+                    bag[item_id]['items'].pop(item_key)
+                    if not bag[item_id]['items']:
+                        bag.pop(item_id)
+                    messages.success(request, f'Removed size {size_id} {product.title} from your bag')
+                else:
+                    messages.error(request, f'Item with size {size_id} not found in your bag')
+            else:
+                bag.pop(item_id)
+                messages.success(request, f'Removed {product.title} from your bag')
+        else:
+            messages.error(request, f'Item not found in your bag')
+        
         request.session['bag'] = bag
         return HttpResponse(status=200)
 
