@@ -30,17 +30,21 @@ def add_to_bag(request, product_id):
     redirect_url = request.POST.get('redirect_url')
 
     item_key = f"{size_id}_{width_id}"
+    product_id_str = str(product_id)
 
     bag = request.session.get('bag', {})
 
-    if product_id in bag:
-        if item_key in bag[product_id]['items']:
-            bag[product_id]['items'][item_key] += quantity
+    if product_id_str in bag:
+        if item_key in bag[product_id_str]['items']:
+            bag[product_id_str]['items'][item_key] += quantity
+            messages.success(request, f'Updated quantity of {product.title} in your bag')
         else:
-            bag[product_id]['items'][item_key] = quantity
+            bag[product_id_str]['items'][item_key] = quantity
+            messages.success(request, f'Added {product.title} to your bag')
     else:
-        bag[product_id] = {'items': {item_key: quantity}}
+        bag[product_id_str] = {'items': {item_key: quantity}}
         messages.success(request, f'Added {product.title} to your bag')
+
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -81,13 +85,10 @@ def remove_from_bag(request, item_id, size_id=None, width_id=None):
         product = get_object_or_404(PointeShoeProduct, pk=item_id)
         bag = request.session.get('bag', {})
         
-        # Construct the key based on size_id and width_id
         item_key = f"{size_id}_{width_id}" if size_id and width_id else None
         
-        # Check if the item exists in the bag
         if item_id in bag:
             if item_key:
-                # Remove the item based on size and width
                 if item_key in bag[item_id]['items']:
                     bag[item_id]['items'].pop(item_key)
                     if not bag[item_id]['items']:
