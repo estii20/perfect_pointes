@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -17,26 +17,26 @@
                 <hr>
                 <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you</h2>
                 <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>
-                    {{ order.email }}</strong>.</p>
+                        {{ order.email }}</strong>.</p>
                 <hr>
             </div>
         </div>
 
-        <div style="background-color: #ffffff;">
-            <div class="row">
-                <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="d-flex flex-column align-items-center">
                     <ul>
                         <li>
-                            <h3>Order Number:</h3> {{ order.order_number }}
+                            <h3 class="gold-text">Order Number:</h3> {{ order.order_number }}
                         </li>
                         <li>
-                            <h3>Order Placed:</h3> {{ order.date }}
+                            <h3 class="gold-text">Order Placed:</h3> {{ order.date }}
                         </li>
                         <li>
-                            <h3>Order Amount:</h3> £ {{ order.grand_total }}
+                            <h3 class="gold-text">Order Amount:</h3> £ {{ order.grand_total }}
                         </li>
                         <li>
-                            <h3>Delivery Address:</h3>
+                            <h3 class="gold-text">Delivery Address:</h3>
                             <p>
                                 {{ order.street_address1 }},
                                 {% if order.street_address2 %} {{ order.street_address2 }} {% endif %},
@@ -47,28 +47,23 @@
                             </p>
                         </li>
                         <li>
-                            <h3>Delivery Phone Number:</h3> {{ order.phone_number }}
+                            <h3 class="gold-text">Delivery Phone Number:</h3> {{ order.phone_number }}
                         </li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul>
-                        {% for item in order.lineitems.all %}
-                        <li>
-                            {{ item.quantity }} x {{ item.pointe_shoe_product.title }} {{ item.size.size }} 
-                            {{ item.width.width }}
-                            €{{ item.pointe_shoe_product.price }}
-                        </li>
-                        {% endfor %}
                     </ul>
                 </div>
             </div>
+            <div class="col-md-4">
+                <ul>
+                    {% for item in order.lineitems.all %}
+                    <li>
+                        {{ item.quantity }} x {{ item.pointe_shoe_product.title }} - {{ item.size.size }} {{ item.width.width }}
+                    {% endfor %}
             <br>
 
-            <div class="row">
-                <div class="col-12 col-lg-7 text-right">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-lg-6 text-center">
                     <a href="{% url 'products' %}">
-                        <button class="btn btn-large"> Continue Shopping
+                        <button class="btn btn-large btn-custom"> Continue Shopping
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </a>

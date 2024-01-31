@@ -77,7 +77,7 @@
                                 {% endif %}
                                 <p class="card-text mb-3"><strong>{{ product.pointe_shoe.price }} EUR</strong></p>
                                 <p class="card-text">
-                                    <strong>Color:</strong> {{ product.pointe_shoe.get_color_display }}
+                                    <strong>Color:</strong> {{ product.pointe_shoe.get_friendly_name | title }}
                                 </p>
                                 <p class="card-text">
                                     <strong>Shank:</strong> {{ product.pointe_shoe.get_shank_display }}

@@ -91,20 +91,22 @@
                     <!-- Details -->
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
+                        <div class="form-field-with-border">
+                        <strong>Full Name:{{ order_form.full_name | as_crispy_field }}</strong>
+                        <strong>Email:{{ order_form.email | as_crispy_field }}</strong>
+                        </div>
                     </fieldset>
                     <!-- Delivery -->
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
                         <div class="form-field-with-border">
-                        Phone Number:{{ order_form.phone_number | as_crispy_field }}
-                        Country:{{ order_form.country | as_crispy_field }}
-                        Postcode:{{ order_form.postcode | as_crispy_field }}
-                        Town/City:{{ order_form.town_or_city | as_crispy_field }}
-                        Address 1:{{ order_form.street_address1 | as_crispy_field }}
-                        Address 2:{{ order_form.street_address2 | as_crispy_field }}
-                        County:{{ order_form.county | as_crispy_field }}
+                        <strong>Phone Number:{{ order_form.phone_number | as_crispy_field }}</strong>
+                        <strong>Country:{{ order_form.country | as_crispy_field }}</strong>
+                        <strong>Postcode:{{ order_form.postcode | as_crispy_field }}</strong>
+                        <strong>Town/City:{{ order_form.town_or_city | as_crispy_field }}</strong>
+                        <strong>Address 1:{{ order_form.street_address1 | as_crispy_field }}</strong>
+                        <strong>Address 2:{{ order_form.street_address2 | as_crispy_field }}</strong>
+                        <strong>County:{{ order_form.county | as_crispy_field }}</strong>
                         </div>
                         <div class="form-check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
