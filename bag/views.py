@@ -78,32 +78,32 @@ def adjust_bag(request, product_id):
     return redirect(reverse('view_bag'))
 
 
-def remove_from_bag(request, item_id, size_id=None, width_id=None):
+def remove_from_bag(request, product_id, size_id, width_id):
     """Remove the item from the shopping bag"""
 
     try:
-        product = get_object_or_404(PointeShoeProduct, pk=item_id)
+        product = get_object_or_404(PointeShoeProduct, pk=product_id)
         bag = request.session.get('bag', {})
         
-        item_key = f"{size_id}_{width_id}" if size_id and width_id else None
+        item_key = f"{size_id}_{width_id}"
         
-        if item_id in bag:
+        if product_id in bag:
             if item_key:
-                if item_key in bag[item_id]['items']:
-                    bag[item_id]['items'].pop(item_key)
-                    if not bag[item_id]['items']:
-                        bag.pop(item_id)
+                if item_key in bag[product_id]['items']:
+                    bag[product_id]['items'].pop(item_key)
+                    if not bag[product_id]['items']:
+                        bag.pop(product_id)
                     messages.success(request, f'Removed size {size_id} {product.title} from your bag')
                 else:
                     messages.error(request, f'Item with size {size_id} not found in your bag')
             else:
-                bag.pop(item_id)
+                bag.pop(product_id)
                 messages.success(request, f'Removed {product.title} from your bag')
         else:
             messages.error(request, f'Item not found in your bag')
         
         request.session['bag'] = bag
-        return HttpResponse(status=200)
+        return redirect('view_bag')
 
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
