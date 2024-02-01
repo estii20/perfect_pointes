@@ -3,7 +3,7 @@
 {% load bag_tools %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -11,6 +11,7 @@
 
 {% block content %}
 <main>
+    <div class="overlay-checkout"></div>
     <div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column">
         <!-- Order Summary -->
         <div class="row">
@@ -92,21 +93,21 @@
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
                         <div class="form-field-with-border">
-                        <strong>Full Name:{{ order_form.full_name | as_crispy_field }}</strong>
-                        <strong>Email:{{ order_form.email | as_crispy_field }}</strong>
+                            <strong>Full Name:</strong><br>{{ order_form.full_name | as_crispy_field }}
+                            <strong>Email:</strong><br>{{ order_form.email | as_crispy_field }}
                         </div>
                     </fieldset>
                     <!-- Delivery -->
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
                         <div class="form-field-with-border">
-                        <strong>Phone Number:{{ order_form.phone_number | as_crispy_field }}</strong>
-                        <strong>Country:{{ order_form.country | as_crispy_field }}</strong>
-                        <strong>Postcode:{{ order_form.postcode | as_crispy_field }}</strong>
-                        <strong>Town/City:{{ order_form.town_or_city | as_crispy_field }}</strong>
-                        <strong>Address 1:{{ order_form.street_address1 | as_crispy_field }}</strong>
-                        <strong>Address 2:{{ order_form.street_address2 | as_crispy_field }}</strong>
-                        <strong>County:{{ order_form.county | as_crispy_field }}</strong>
+                            <strong>Phone Number:</strong><br>{{ order_form.phone_number | as_crispy_field }}
+                            <strong>Country:</strong><br>{{ order_form.country | as_crispy_field }}
+                            <strong>Postcode:</strong><br>{{ order_form.postcode | as_crispy_field }}
+                            <strong>Town/City:</strong><br>{{ order_form.town_or_city | as_crispy_field }}
+                            <strong>Address 1:</strong><br>{{ order_form.street_address1 | as_crispy_field }}
+                            <strong>Address 2:</strong><br>{{ order_form.street_address2 | as_crispy_field }}
+                            <strong>County:</strong><br>{{ order_form.county | as_crispy_field }}
                         </div>
                         <div class="form-check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
