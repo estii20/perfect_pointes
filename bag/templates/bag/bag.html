@@ -39,6 +39,9 @@
                                     {% if item.pointe_shoe_product.image %}
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}"
                                         alt="{{ item.pointe_shoe_product.title }}">
+                                    {% else %}
+                                    <img class="img-fluid rounded" src="{% static 'images/no-image.jpg' %}"
+                                        alt="{{ item.pointe_shoe_product.title }}">
                                     {% endif %}
                                 </td>
                                 <td>

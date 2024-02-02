@@ -22,7 +22,11 @@
             {% for item in bag_items %}
             <div class="row">
                 <div class="col-3 my-1">
+                    {% if product.image %}
                     <img class="w-100 rounded-circle border border-dark" src="{{ item.pointe_shoe_product.image.url }}">
+                    {% else %}
+                    <img class="w-100 rounded-circle border border-dark" src="{% static 'images/no-image.jpg' %}">
+                    {% endif %}
                 </div>
                 <div class="col-9">
                     <p class="my-0"><strong>{{ item.pointe_shoe_product.title }}</strong></p>

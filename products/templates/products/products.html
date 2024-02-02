@@ -96,7 +96,7 @@
                                 </a>
                                 {% else %}
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <img src="{{ MEDIA_URL }}media/no-image.jpg" alt="{{ product.name }}"
+                                    <img src="{% static 'images/no-image.jpg' %}" alt="{{ product.name }}"
                                         class="card-img-top rounded-image hover-zoom ripple img-fluid" alt="{{ product.title }}">
                                         <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
                                 </a>
