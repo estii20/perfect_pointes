@@ -90,11 +90,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user me-1"></i>
-                                My Account
+                                Account
                             </a>
                             <div class="dropdown-menu" aria-labelledby="accountDropdown">
                                 {% if user.is_authenticated %}
                                 <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                                <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
                                 {% else %}
                                 <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
                                 <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
@@ -161,7 +162,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"> Product Management </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item text-dark" href="#">My Profile</a>
+                                    <a class="dropdown-item text-dark" href="{% url 'profile' %}">My Profile</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item text-dark" href="{% url 'account_logout' %}">Logout</a>

@@ -9,13 +9,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="overlay-profile"></div>
-<div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column">
-    <div class="row">
-        <div class="col text-center">
-            <hr>
-            <h2 class="gold-text gold-text-padding logo-font mb-4">My Profile</h2>
-            <hr>
+
+<div class="container-fluid p-0">
+    <div class="row no-gutter-row">
+        <div class="col-12 p-0">
+            <div class="position-relative bg-light shadow-lg rounded">
+                <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}"
+                    class="img-fluid full-viewport" alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
+                <div class="overlay"></div>
+                <div class="col-4 p-4 content-container text-dark gold-frame">
+                    <h1 class="gold-text">My Profile</h1>
+                    {{ profile }}
+                    
+                    <a class="btn btn-custom" href="{% url 'products' %}" aria-label="Shop Now">SHOP NOW</a>
+                </div>
+            </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
