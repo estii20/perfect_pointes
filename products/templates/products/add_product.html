@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column py-4">
+        <!-- Order Summary -->
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h2 class="gold-text logo-font mb-4">Product Management</h2>
+                <h5 class="text-muted">Add a Product</h5>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'add_product' %}" class="form mb-4" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center">
+                        <button class="btn btn-custom mr-2" type="submit">Add Product</button>
+                        <a class="btn btn-outline-secondary" href="{% url 'products' %}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
