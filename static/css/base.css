@@ -433,7 +433,7 @@ input::placeholder {
 /* Responsive font size for smaller screens */
 @media (max-width: 767px) {
     .gold-text {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 
@@ -532,12 +532,9 @@ input::placeholder {
     /* text-info */
 }
 
-/* Media Queries */
-
-/* Responsive content container for smaller screens */
-
-@media (max-width: 575.98px) {
-    .content-container {
-        margin-left: 0;
-    }
+.allauth-form-inner-content {
+    position: relative;
+    z-index: 2;
 }
+
+

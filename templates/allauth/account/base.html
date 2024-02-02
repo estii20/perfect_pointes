@@ -2,22 +2,16 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid p-0">
-    <div class="row no-gutter-row">
-        <div class="col-12 p-0">
-            <div class="position-relative bg-light shadow-lg rounded">
-                <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}"
-                    class="img-fluid full-viewport" alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
-                <div class="overlay"></div>
-                <div class="content-container text-dark gold-frame position-absolute start-0 p-4 pr-4">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
-                                {% block inner_content %}
-                                {% endblock %}
-                            </div>
-                        </div>
-                    </div>
+<div class="container-fluid p-0 position-relative">
+    <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}" class="img-fluid full-viewport"
+        alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
+    <div class="overlay"></div>
+    <div class="row no-gutters">
+        <div class="col-12">
+            <div class="light-pink-bg gold-frame position-absolute top-50 start-50 translate-middle">
+                <div class="allauth-form-inner-content">
+                    {% block inner_content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

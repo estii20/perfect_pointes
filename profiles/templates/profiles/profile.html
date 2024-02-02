@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container-fluid p-0">
     <div class="row no-gutter-row">
         <div class="col-12 p-0">
@@ -17,14 +16,32 @@
                 <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}"
                     class="img-fluid full-viewport" alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
                 <div class="overlay"></div>
-                <div class="col-4 p-4 content-container text-dark gold-frame">
-                    <h1 class="gold-text">My Profile</h1>
-                    {{ profile }}
-                    
-                    <a class="btn btn-custom" href="{% url 'products' %}" aria-label="Shop Now">SHOP NOW</a>
+                <div class="col-12 center-content">
+                    <div class="col-4 p-4 content-container text-dark gold-frame">
+                        <h1 class="gold-text">My Profile</h1>
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <p class="text-muted">Default Delivery Information</p>
+                                <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button class="btn-custom text-uppercase float-right">Update Information</button>
+                                </form>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <p class="text-muted">Order History</p>
+                                {{ orders }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}
