@@ -13,8 +13,8 @@
             <div class="col text-center">
                 <hr>
                 <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you</h2>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{
-                        order.email }}</strong>.</p>
+                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>
+                    {{ order.email }}</strong>.</p>
                 <hr>
             </div>
         </div>
@@ -77,6 +77,14 @@
 
             <div class="row">
                 <div class="col-12 col-lg-7 text-right">
+                    {% if from_profile %}
+                    <a href="{% url 'profile' %}" class="btn-custom">
+                        <span>
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Back to Profile</span>
+                    </a>
+                    {% else %}
                     <a href="{% url 'products' %}">
                         <button class="btn btn-large"> Continue Shopping <i class="fa fa-shopping-cart"></i></button>
                     </a>
