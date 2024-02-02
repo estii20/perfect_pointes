@@ -7,7 +7,6 @@ from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand, Co
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
-
     products = PointeShoeProduct.objects.filter(availability=True)
     query = None
     categories = None
@@ -24,8 +23,8 @@ def all_products(request):
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('title'))
             elif sortkey == 'color':
-                sortkey = 'color_name'
-                products = products.annotate(color_name=Lower('pointe_shoe__color__name'))
+                sortkey = 'pointe_shoe__color__name'
+                products = products.order_by(sortkey)
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -90,16 +89,16 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """ A view to show individual product details """
-
     available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_colors = Color.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
 
     context = {
         'available_brands': available_brands,
         'available_categories': available_categories,
+        'available_colors': available_colors,
         'product': product,
     }
-    
 
     return render(request, 'products/product_detail.html', context)
