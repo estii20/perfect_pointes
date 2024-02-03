@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from products.models import PointeShoeProduct, PointeShoeBrand, Category, Size, Width
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -24,10 +25,15 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
 
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
         'on_profile_page': True
     }
 
