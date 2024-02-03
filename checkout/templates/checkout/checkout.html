@@ -11,7 +11,7 @@
 
 {% block content %}
 <main>
-    <div class="container-fluid light-pink-bg min-vh-100 d-flex flex-column">
+    <main class="container-fluid light-pink-bg d-flex flex-column">
         <!-- Order Summary -->
         <div class="row">
             <div class="col text-center">
@@ -51,8 +51,8 @@
                     </div>
                     <div class="col-3 text-end">
                         <!-- Item Price -->
-                        <p class="my-0">€{{ item.pointe_shoe_product.price }}</p>
-                        <p class="my-0">€{{ item.pointe_shoe_product.price | calc_subtotal:item.quantity }}</p>
+                        <p class="my-0">Price per item: €{{ item.pointe_shoe_product.price }}</p>
+                        <p class="my-0">Total Price: €{{ item.pointe_shoe_product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -76,9 +76,9 @@
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0">${{ total | floatformat:2 }}</p>
-                        <p class="my-0">${{ delivery | floatformat:2 }}</p>
-                        <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0">€{{ total | floatformat:2 }}</p>
+                        <p class="my-0">€{{ delivery | floatformat:2 }}</p>
+                        <p class="my-0"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
             </div>

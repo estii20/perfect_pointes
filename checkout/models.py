@@ -5,7 +5,7 @@ from django.conf import settings
 
 from django_countries.fields import CountryField
 
-from products.models import PointeShoeProduct
+from products.models import PointeShoeProduct, Color, PointeShoe, Size, Width
 from profiles.models import UserProfile
 
 
@@ -64,7 +64,10 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(PointeShoeProduct, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
+    product_size = models.CharField(max_length=50, null=True, blank=True)
+    product_width = models.CharField(max_length=5, null=True, blank=True)
+    product_color = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL)
+    product_title = models.CharField(max_length=255, null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
@@ -75,6 +78,8 @@ class OrderLineItem(models.Model):
         """
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
+
+        self.order.update_total()
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'

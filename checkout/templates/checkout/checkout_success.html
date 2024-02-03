@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col text-center">
                 <hr>
-                <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you</h2>
+                <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you {{ order.full_name }}</h2>
                 <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>
                     {{ order.email }}</strong>.</p>
                 <hr>
@@ -20,74 +20,75 @@
         </div>
 
         <div style="background-color: #ffffff;">
-            <!-- Responsive Table -->
+            <!-- Order Summary -->
             <div class="table-responsive">
-                <table>
-                    <tr>
-                        <th>Order Number</th>
-                        <td>{{ order.order_number }}</td>
-                    </tr>
-                    <tr>
-                        <th>Order Placed</th>
-                        <td>{{ order.date }}</td>
-                    </tr>
-                    <tr>
-                        <th>Order Amount</th>
-                        <td>£ {{ order.grand_total }}</td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Address</th>
-                        <td>
-                            {{ order.street_address1 }},
-                            {% if order.street_address2 %} {{ order.street_address2 }} {% endif %},
-                            {{ order.town_or_city }},
-                            {% if order.county %} {{ order.county }} {% endif %},
-                            {% if order.postcode %} {{ order.postcode }} {% endif %}
-                            {{ order.country }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Phone Number</th>
-                        <td>{{ order.phone_number }}</td>
-                    </tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Placed</th>
+                            <th>Order Amount</th>
+                            <th>Delivery Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ order.date }}</td>
+                            <td>€ {{ order.grand_total | floatformat:2 }}</td>
+                            <td>
+                                {{ order.street_address1 }},
+                                {% if order.street_address2 %} {{ order.street_address2 }} {% endif %},
+                                {{ order.town_or_city }},
+                                {% if order.county %} {{ order.county }} {% endif %},
+                                {% if order.postcode %} {{ order.postcode }} {% endif %}
+                                {{ order.country }}
+                            </td>
+                            <td>{{ order.phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                Order Number: {{ order.order_number }}
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 
             <!-- Order Items -->
             <div class="table-responsive">
-                <table>
-                    <tr>
-                        <th>Quantity</th>
-                        <th>Title</th>
-                        <th>Size</th>
-                        <th>Width</th>
-                        <th>Price</th>
-                    </tr>
-                    {% for item in order.lineitems.all %}
-                    <tr>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.pointe_shoe_product.title }}</td>
-                        <td>{{ item.size.size }}</td>
-                        <td>{{ item.width.width }}</td>
-                        <td>€{{ item.pointe_shoe_product.price }}</td>
-                    </tr>
-                    {% endfor %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order.lineitems.all %}
+                        <tr>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.product }}</td>
+                            <td>€{{ item.lineitem_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
 
+            <!-- Navigation Buttons -->
             <div class="row">
-                <div class="col-12 col-lg-7 text-right">
+                <div class="col-lg-7 text-right">
                     {% if from_profile %}
                     <a href="{% url 'profile' %}" class="btn-custom">
-                        <span>
-                            <i class="fas fa-angle-left"></i>
-                        </span>
+                        <span><i class="fas fa-angle-left"></i></span>
                         <span class="text-uppercase">Back to Profile</span>
                     </a>
                     {% else %}
                     <a href="{% url 'products' %}">
                         <button class="btn btn-large"> Continue Shopping <i class="fa fa-shopping-cart"></i></button>
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
