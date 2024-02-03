@@ -235,6 +235,7 @@ input::placeholder {
     border-radius: 10px;
 }
 
+
 /* From https: //css-tricks.com/snippets/css/ribbon/ */
 .ribbon {
     font-size: 16px !important;
@@ -296,12 +297,23 @@ input::placeholder {
     z-index: 1;
 }
 
+/* Product Detail */
+
+.btn-custom.increment-qty {
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+.btn-custom.decrement-qty {
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
 /* Size and Width Dropdown */
 .custom-dropdown {
     position: relative;
     display: inline-block;
-    width: 150px;
-    padding: 10px;
+    width: 200px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -309,13 +321,11 @@ input::placeholder {
 }
 
 .custom-dropdown select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 200px;
+    width: 100%;
+    height: auto;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
     background-color: #fff;
     cursor: pointer;
@@ -333,7 +343,6 @@ input::placeholder {
 
 .custom-dropdown select:focus {
     outline: none;
-    border-color: #555;
 }
 
 .custom-dropdown::after {
