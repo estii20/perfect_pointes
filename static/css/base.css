@@ -475,7 +475,7 @@ input::placeholder {
     }
 }
 
-/* Allauth form formatting */
+/* Allauth form formatting - Code taken from walkthrough Boutique Ado */
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
@@ -537,6 +537,7 @@ input::placeholder {
     z-index: 2;
 }
 
+/* Product Form */
 /* Crispy form fields*/
 .crispy .form-group {
     margin-bottom: 1rem;
@@ -584,4 +585,32 @@ input::placeholder {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Product Form - Code taken from walkthrough Boutique Ado */
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: #dc3545;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0;
 }
