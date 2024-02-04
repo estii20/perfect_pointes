@@ -484,13 +484,16 @@ input::placeholder {
     }
 }
 
-/* Allauth form formatting - Code taken from walkthrough Boutique Ado */
+/* Allauth inner content */
+.allauth-form-inner-content {
+    border: 2px solid #000;
+    padding: 20px;
+    border-radius: 10px;
+}
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
-    /* mt-4 */
     color: #6c757d;
-    /* text-secondary */
 }
 
 .allauth-form-inner-content input {
@@ -508,24 +511,17 @@ input::placeholder {
 
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'] {
-    /* btn */
     display: inline-block;
     font-weight: 400;
     color: #fff;
     text-align: center;
     vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     background-color: #000;
     border: 1px solid #000;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 0;
-
-    /* standard bootstrap btn transitions */
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -538,62 +534,50 @@ input::placeholder {
 
 .allauth-form-inner-content a {
     color: #17a2b8;
-    /* text-info */
-}
-
-.allauth-form-inner-content {
-    position: relative;
-    z-index: 2;
 }
 
 /* Product Form */
 /* Crispy form fields*/
-.crispy .form-group {
+
+.crispy {
     margin-bottom: 1rem;
 }
 
-.crispy .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+.crispy label {
     font-weight: bold;
 }
 
-.crispy .form-control {
+.crispy input[type="text"],
+.crispy input[type="email"],
+.crispy input[type="password"],
+.crispy select,
+.crispy textarea {
     width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
+    padding: 8px;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-radius: 5px;
 }
 
-.crispy .form-control:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.crispy select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px;
+    background: url('path_to_arrow_icon') no-repeat scroll right center transparent;
 }
 
-.crispy .form-select {
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.crispy input[type="submit"] {
+    background-color: #8c734d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.crispy .form-select:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.crispy input[type="submit"]:hover {
+    background-color: #9a896f;
 }
 
 /* Product Form - Code taken from walkthrough Boutique Ado */
