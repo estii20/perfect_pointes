@@ -60,11 +60,11 @@
                     <thead>
                         <tr>
                             <th>Qty</th>
-                            <th>Product</th>
+                            <th>Shoe</th>
                             <th>Size</th>
-                            <th>Width</th>
                             <th>Color</th>
                             <th>Price</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,10 +72,12 @@
                         <tr>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.product_title | title }}</td>
-                            <td>{{ item.product_size }}</td>
-                            <td>{{ item.product_width | title }}</td>
+                            <td>{{ item.product_size }}{{ item.product_width | title }}</td>
                             <td>{{ item.product_color | title }}</td>
                             <td>€{{ item.lineitem_total }}</td>
+                            <td>
+                                <a href="{% url 'repurchase_product' item.product.id %}" class="btn btn-custom my-5">Buy Again</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -86,7 +88,7 @@
             <div class="row">
                 <div class="col-lg-7 text-right">
                     {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn-custom my-5">
+                    <a href="{% url 'profile' %}" class="btn btn-custom my-5">
                         <span><i class="fas fa-angle-left"></i></span>
                         <span class="text-uppercase">Back to Profile</span>
                     </a>

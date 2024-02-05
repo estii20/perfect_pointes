@@ -217,3 +217,14 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+def repurchase_product(request, product_id):
+    # Retrieve the product
+    product = get_object_or_404(PointeShoeProduct, pk=product_id)
+
+    # Add a success message (optional)
+    messages.success(request, f"Redirecting to {product.title} for repurchase.")
+
+    # Redirect the user to the product detail page
+    return redirect(reverse('product_detail', args=[product_id]))
