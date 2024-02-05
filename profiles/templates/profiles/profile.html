@@ -52,10 +52,11 @@
                                                 <ul class="list-unstyled">
                                                     {% for item in order.lineitems.all %}
                                                     <li class="small">
-                                                        Title: {{ item.product }} x {{ item.quantity }}
-                                                        Size: {{ item.size |upper }}
-                                                        Width: {{ item.width }}
+                                                        Title: {{ item.product_title | title }} x {{ item.quantity }}
                                                     </li>
+                                                    <li class="small">Size: {{ item.product_size }}</li>
+                                                    <li class="small">Width: {{ item.product_width | title }}</li>
+                                                    <li class="small">Color: {{ item.product_color | title }}</li>                                                    
                                                     {% endfor %}
                                                 </ul>
                                             </td>

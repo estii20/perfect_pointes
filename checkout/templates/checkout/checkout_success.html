@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col text-center">
                 <hr>
-                <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you {{ order.full_name }}</h2>
+                <h2 class="gold-text gold-text-padding logo-font mb-4">Thank you {{ order.full_name | title }}</h2>
                 <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>
                     {{ order.email }}</strong>.</p>
                 <hr>
@@ -36,12 +36,12 @@
                             <td>{{ order.date }}</td>
                             <td>€ {{ order.grand_total | floatformat:2 }}</td>
                             <td>
-                                {{ order.street_address1 }},
-                                {% if order.street_address2 %} {{ order.street_address2 }} {% endif %},
-                                {{ order.town_or_city }},
-                                {% if order.county %} {{ order.county }} {% endif %},
-                                {% if order.postcode %} {{ order.postcode }} {% endif %}
-                                {{ order.country }}
+                                {{ order.street_address1 | title }},
+                                {% if order.street_address2 %} {{ order.street_address2 | title }} {% endif %},
+                                {{ order.town_or_city | title }},
+                                {% if order.county %} {{ order.county | title }} {% endif %},
+                                {% if order.postcode %} {{ order.postcode | title }} {% endif %}
+                                {{ order.country | title }}
                             </td>
                             <td>{{ order.phone_number }}</td>
                         </tr>
@@ -59,8 +59,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Quantity</th>
+                            <th>Qty</th>
                             <th>Product</th>
+                            <th>Size</th>
+                            <th>Width</th>
+                            <th>Color</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -68,7 +71,10 @@
                         {% for item in order.lineitems.all %}
                         <tr>
                             <td>{{ item.quantity }}</td>
-                            <td>{{ item.product }}</td>
+                            <td>{{ item.product_title | title }}</td>
+                            <td>{{ item.product_size }}</td>
+                            <td>{{ item.product_width | title }}</td>
+                            <td>{{ item.product_color | title }}</td>
                             <td>€{{ item.lineitem_total }}</td>
                         </tr>
                         {% endfor %}
@@ -80,7 +86,7 @@
             <div class="row">
                 <div class="col-lg-7 text-right">
                     {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn-custom">
+                    <a href="{% url 'profile' %}" class="btn-custom my-5">
                         <span><i class="fas fa-angle-left"></i></span>
                         <span class="text-uppercase">Back to Profile</span>
                     </a>

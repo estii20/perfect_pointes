@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -137,6 +138,7 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
+    bag = request.session.get('bag', {})
     line_items = order.lineitems.all()
 
     if request.user.is_authenticated:
@@ -160,12 +162,53 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
 
     if 'bag' in request.session:
         del request.session['bag']
+
+    for item in line_items:
+        # Get the item ID
+        item_id = item.id
+        if str(item_id) in bag:
+            # Retrieve bag item details
+            bag_item = bag[str(item_id)]
+            selected_size = bag_item.get('size')
+            selected_width = bag_item.get('width')
+            if selected_size and selected_width:
+                selected_size_str = str(selected_size.size)
+                selected_width_str = str(selected_width.width)
+                item.product_size = selected_size_str
+                item.product_width = selected_width_str
+                item.save()
+
+        pointe_shoe_product = item.product
+        selected_size = pointe_shoe_product.pointe_shoe.available_sizes.first()
+        selected_width = pointe_shoe_product.pointe_shoe.available_widths.first()
+        
+        item.product_size = str(selected_size.size)
+        item.product_width = str(selected_width.width)
+
+        product_title = pointe_shoe_product.title
+        product_color_friendly_name = pointe_shoe_product.pointe_shoe.color.get_friendly_name()
+
+        item.product_title = product_title
+        item.product_color = product_color_friendly_name
+        item.save()
+
+        pointe_shoe_product = item.product
+        selected_size = pointe_shoe_product.pointe_shoe.available_sizes.first()
+        selected_width = pointe_shoe_product.pointe_shoe.available_widths.first()
+        
+        item.product_size = str(selected_size.size)
+        item.product_width = str(selected_width.width)
+
+        product_title = pointe_shoe_product.title
+        product_color = pointe_shoe_product.pointe_shoe.color.get_friendly_name()
+
+        item.product_title = product_title
+        item.product_color = product_color
+        item.save()
 
     template = 'checkout/checkout_success.html'
     context = {
