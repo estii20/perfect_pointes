@@ -210,10 +210,15 @@ def checkout_success(request, order_number):
         item.product_color = product_color
         item.save()
 
+        available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+        available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
         'line_items': line_items,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
     }
 
     return render(request, template, context)
@@ -223,8 +228,6 @@ def repurchase_product(request, product_id):
     # Retrieve the product
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
 
-    # Add a success message (optional)
     messages.success(request, f"Redirecting to {product.title} for repurchase.")
 
-    # Redirect the user to the product detail page
     return redirect(reverse('product_detail', args=[product_id]))
