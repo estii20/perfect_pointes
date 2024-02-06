@@ -585,7 +585,7 @@ input::placeholder {
     overflow: hidden;
 }
 
-.btn-file input[type="file"] {
+.input {
     position: absolute;
     top: 0;
     right: 0;
