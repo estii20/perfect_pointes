@@ -51,10 +51,14 @@ def add_to_bag(request, product_id):
 def adjust_bag(request, product_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
-    product = get_object_or_404(PointeShoeProduct, pk=product_id)
-    quantity = int(request.POST.get('quantity'))
-    size_id = int(request.POST.get('size_id'))
-    width_id = int(request.POST.get('width_id'))
+    try:
+        product = get_object_or_404(PointeShoeProduct, pk=product_id)
+        quantity = int(request.POST.get('quantity'))
+        size_id = int(request.POST.get('size_id'))
+        width_id = int(request.POST.get('width_id'))
+    except ValueError:
+        return redirect(reverse_lazy('view_bag'))
+
     bag = request.session.get('bag', {})
 
     item_key = f"{size_id}_{width_id}"
