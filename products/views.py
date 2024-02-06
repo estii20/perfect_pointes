@@ -125,9 +125,14 @@ def add_product(request):
     else:
         form = ProductForm()
 
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
     template = 'products/add_product.html'
     context = {
         'form': form,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
     }
 
     return render(request, template, context)
@@ -153,10 +158,15 @@ def edit_product(request, product_id):
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.title}')
 
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'product': product,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
     }
 
     return render(request, template, context)
