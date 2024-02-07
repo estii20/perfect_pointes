@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand, Color
-from .forms import ProductForm, PointeShoeForm, SizeForm, WidthForm, ColorForm
+from .forms import PointeShoeProductForm
 
 
 def all_products(request):
@@ -107,6 +107,9 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+from django.contrib.auth.decorators import login_required
+
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -115,7 +118,7 @@ def add_product(request):
         return redirect(reverse('home'))
     
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = PointeShoeProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!')
@@ -123,7 +126,7 @@ def add_product(request):
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
-        form = ProductForm()
+        form = PointeShoeProductForm()
 
     available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
@@ -136,6 +139,7 @@ def add_product(request):
     }
 
     return render(request, template, context)
+
 
 
 @login_required

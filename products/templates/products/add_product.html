@@ -22,11 +22,7 @@
                                 {{ field | as_crispy_field }}
                             </div>
                             {% else %}
-                            <div class="form-group">
-                                <label class="btn btn-custom ml-2 my-3" style="cursor: pointer;">
-                                    Select Image<input type="file" name="image" style="display: none;">
-                                </label>
-                            </div>
+                            {{ field }}
                             {% endif %}
                             {% endfor %}
                             <div class="text-center">
@@ -44,12 +40,20 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("input[type=file]").addEventListener("change", function () {
-            var fileName = this.files[0].name;
-            var label = document.querySelector('label.btn-custom');
-            label.textContent = "Selected: " + fileName;
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#new-image').change(function () {
+            var file = $('#new-image')[0].files[0];
+            if (file) {
+                $('#filename').text(`Image will be set to: ${file.name}`);
+            } else {
+                $('#filename').text('No image selected');
+            }
+        });
+
+        $('#image-upload').click(function () {
+            $('#new-image').val(null);
+            $('#filename').text('Select Image');
         });
     });
 </script>

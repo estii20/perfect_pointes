@@ -1,14 +1,32 @@
 from django import forms
 from .widgets import CustomClearableFileInput
-from .models import PointeShoeProduct, Category, PointeShoe, Width, Size, Color
+from .models import PointeShoe, Size, Width, Color, Category, PointeShoeBrand, PointeShoeProduct
 
 
-class ProductForm(forms.ModelForm):
+from django import forms
+from .models import PointeShoeProduct, PointeShoe, PointeShoeBrand, Size, Width, Color
+
+
+class PointeShoeProductForm(forms.ModelForm):
+    brand = forms.ModelChoiceField(queryset=PointeShoeBrand.objects.all())
+    pointe_shoe = forms.ModelChoiceField(queryset=PointeShoe.objects.all())
+
     class Meta:
         model = PointeShoeProduct
         fields = '__all__'
+        exclude = ['link', 'sku', 'title', 'pointe_shoe', 'image_url']  
 
+    available_sizes = forms.ModelMultipleChoiceField(queryset=Size.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+    available_widths = forms.ModelMultipleChoiceField(queryset=Width.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+    shank = forms.ChoiceField(choices=PointeShoe.shank_choices)
+    color = forms.ModelChoiceField(queryset=Color.objects.all(), empty_label=None)
+    ribbon = forms.ChoiceField(choices=PointeShoe.ribbon_choices)
+    arch = forms.ChoiceField(choices=PointeShoe.arch_choices)
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    feature = forms.CharField(widget=forms.Textarea)
+    new_pointe_shoe_name = forms.CharField(label='Pointe Shoe Name', max_length=100)
+    new_pointe_shoe_sku = forms.CharField(label='SKU', max_length=50)
+    new_pointe_shoe_price = forms.DecimalField(label='Price', max_digits=10, decimal_places=2)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -17,42 +35,4 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].choices = friendly_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
-
-
-class PointeShoeForm(forms.ModelForm):
-    class Meta:
-        model = PointeShoe
-        fields = '__all__'
-
-
-class SizeForm(forms.ModelForm):
-    class Meta:
-        model = Size
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        friendly_names = [(size.id, size.get_friendly_name()) for size in Size.objects.all()]
-        self.fields['size'].choices = friendly_names
-
-
-class WidthForm(forms.ModelForm):
-    class Meta:
-        model = Width
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        friendly_names = [(width.id, width.get_friendly_name()) for width in Width.objects.all()]
-        self.fields['width'].choices = friendly_names
-
-
-class ColorForm(forms.ModelForm):
-    class Meta:
-        model = Color
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        friendly_names = [(color.get_friendly_name(), color.get_friendly_name()) for color in Color.objects.all()]
-        self.fields['name'].widget = forms.Select(choices=friendly_names)
+            
