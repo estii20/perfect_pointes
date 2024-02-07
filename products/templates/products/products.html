@@ -29,7 +29,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="brandDropdown">
                             {% for brand in available_brands %}
-                            <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc{{ brand.name }}">{{ brand.name | title }}</a>
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc{{ brand.name }}">
+                                {{ brand.name | title }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -58,7 +59,8 @@
                         <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                             {% for category in available_categories %}
                             <a class="dropdown-item" 
-                            href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">{{category.get_friendly_name | title }}</a>
+                            href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">
+                            {{category.get_friendly_name | title }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -108,8 +110,8 @@
                                             {{ product.pointe_shoe.status | title }}
                                         </p>
                                     </strong>
-                                    <h5 class="card-title gold-text mb-3 my-5">{{ product.title }}</h5>
-                                    <p class="card-text lead mb-0">{{ product.pointe_shoe.category.friendly_name }}</p>
+                                    <h5 class="card-title gold-text mb-3 my-5">{{ product.title | title }}</h5>
+                                    <p class="card-text lead mb-0">{{ product.pointe_shoe.category.friendly_name | title}}</p>
                                     <p class="card-text text-uppercase">{{ product.brand.name }}</p>
                                     <h6 class="mb-3">{{ product.pointe_shoe.price }} EUR</h6>
                                     <a href="{% url 'product_detail' product.id %}" class="btn btn-custom">More Details</a>
@@ -131,29 +133,17 @@
                         <i class="fa-regular fa-circle-up" style="color: #000; margin: auto;"></i>
                     </a>
                 </div>
-            </main>
-        {% endblock %}
+                </main>
+                {% endblock %}
+                
+                {% block postloadjs %}
+                {{ block.super }}
+                {% block postloadjs %}
+                {{ block.super }}
+                <script type="text/javascript">
+                    $('.btt-top').click(function (e) {
+                        window.scrollTo(0, 0);
+                    })
+                </script>
+                {% endblock %}
 
-        {% block postloadjs %}
-        {{ block.super }}
-        <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-                var bttTop = document.querySelector('.btt-top');
-
-                window.addEventListener('scroll', function () {
-                    if (window.scrollY > 100) {
-                        bttTop.classList.add('show');
-                    } else {
-                        bttTop.classList.remove('show');
-                    }
-                });
-
-                bttTop.addEventListener('click', function () {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        </script>
-        {% endblock %}
