@@ -107,9 +107,6 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-from django.contrib.auth.decorators import login_required
-
-
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -128,18 +125,12 @@ def add_product(request):
     else:
         form = PointeShoeProductForm()
 
-    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-
     template = 'products/add_product.html'
     context = {
         'form': form,
-        'available_brands': available_brands,
-        'available_categories': available_categories,
     }
 
     return render(request, template, context)
-
 
 
 @login_required
@@ -151,7 +142,7 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
+        form = PointeShoeProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
@@ -159,7 +150,7 @@ def edit_product(request, product_id):
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
-        form = ProductForm(instance=product)
+        form = PointeShoeProductForm(instance=product)
         messages.info(request, f'You are editing {product.title}')
 
     available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()

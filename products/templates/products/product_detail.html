@@ -24,15 +24,18 @@
                                 <img src="{{ product.image.url }}"
                                     class="card-img-top rounded-image hover-zoom ripple img-fluid product-image d-block mx-auto"
                                     alt="{{ product.title }}">
-                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
+                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} 
+                                    <span>Arch</span>
+                                </div>
                             </a>
                             {% else %}
                             <a href="">
                                 <img src="{% static 'images/no-image.jpg' %}"
                                     class="card-img-top rounded-image hover-zoom ripple img-fluid product-image d-block mx-auto"
                                     alt="{{ product.title }}">
-                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span
-                                        class="overlay-text">Arch</span></div>
+                                <div class="overlay-text">{{ product.pointe_shoe.arch | title }} 
+                                    <span>Arch</span>
+                                </div>
                             </a>
                             {% endif %}
                             <!-- Quantity -->
@@ -116,7 +119,7 @@
                             {% endif %}
                             <p class="card-text mb-3"><strong>{{ product.pointe_shoe.price }} EUR</strong></p>
                             <p class="card-text"><strong>Color:</strong> {{ product.pointe_shoe.color.get_friendly_name | title }}</p>
-                            <p class="card-text"><strong>Shank:</strong> {{ product.pointe_shoe.get_shank_display | title }}</p>
+                            <p class="card-text"><strong>Shank:</strong> {{ product.pointe_shoe.get_shank_display| upper }}</p>
                             <p class="card-text"><strong>Ribbon:</strong> {{ product.pointe_shoe.get_ribbon_display | title }}</p>
                             <p class="card-text"><strong>Feature:</strong> {{ product.pointe_shoe.feature }}</p>
                             {% if request.user.is_superuser %}
