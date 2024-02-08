@@ -5,7 +5,7 @@
     <div class="w-100 toast-capper bg-success"></div>
     <div class="toast-header bg-white">
         <strong class="mr-auto">Success!</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <button type="button" class="ml-1 mb-0.5 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -24,15 +24,19 @@
             {% for item in bag_items %}
             <div class="row">
                 <div class="col-3 my-1">
-                    {% if product.image %}
-                    <img class="w-100 rounded-circle border border-dark" src="{{ item.pointe_shoe_product.image.url }}">
+                    {% if item.pointe_shoe_product.image %}
+                    <img class="w-100 rounded-circle border border-dark" 
+                    src="{{ item.pointe_shoe_product.image.url }}" 
+                    alt="{{ item.pointe_shoe_product.title | title }}">
                     {% else %}
-                    <img class="w-100 rounded-circle border border-dark" src="{% static 'images/no-image.jpg' %}">
+                    <img class="w-100 rounded-circle border border-dark" 
+                    src="{% static 'images/no-image.jpg' %}" 
+                    alt="{{ item.pointe_shoe_product.title | title }}">
                     {% endif %}
                 </div>
                 <div class="col-9">
-                    <p class="my-0"><strong>{{ item.pointe_shoe_product.title }}</strong></p>
-                    <p class="my-0 small">Size:{{ item.size.size }} Width:{{ item.width.width }}</p>
+                    <p class="my-0"><strong>{{ item.pointe_shoe_product.title | title }}</strong></p>
+                    <p class="my-0 small">Size:{{ item.size.size }} Width:{{ item.width.width | upper }}</p>
                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                 </div>
             </div>
@@ -48,7 +52,7 @@
                 </strong>
                 {% if free_delivery_delta > 0 %}
                 <p class="mb-0 p-2 bg-warning shadow-sm text-center">
-                    Spend <strong>${{ free_delivery_delta }}</strong> more to get free next day delivery!
+                    Spend <strong>${{ free_delivery_delta }}</strong> more to get free delivery!
                 </p>
                 {% endif %}
                 <a href="{% url 'view_bag' %}" class="btn btn-custom btn-block rounded-0">

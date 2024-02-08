@@ -38,10 +38,10 @@
                                 <td class="p-3 smaller-image d-none d-sm-table-cell">
                                     {% if item.pointe_shoe_product.image %}
                                     <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}"
-                                        alt="{{ item.pointe_shoe_product.title }}">
+                                        alt="{{ item.pointe_shoe_product.title | title  }}">
                                     {% else %}
                                     <img class="img-fluid rounded" src="{% static 'images/no-image.jpg' %}"
-                                        alt="{{ item.pointe_shoe_product.title }}">
+                                        alt="{{ item.pointe_shoe_product.title | title }}">
                                     {% endif %}
                                 </td>
                                 <td>

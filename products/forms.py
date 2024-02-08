@@ -33,6 +33,11 @@ class PointeShoeProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            self.fields['new_pointe_shoe_sku'].initial = instance.pointe_shoe.sku
+            self.fields['feature'].initial = instance.pointe_shoe.feature
+
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
 
