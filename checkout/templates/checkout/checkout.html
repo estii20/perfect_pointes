@@ -41,6 +41,9 @@
                         {% if item.pointe_shoe_product.image %}
                         <img class="img-fluid rounded" src="{{ item.pointe_shoe_product.image.url }}"
                             alt="{{ item.pointe_shoe_product.title }}">
+                        {% else %}
+                        <img src="{% static 'images/no-image.jpg' %}" alt="{{ product.name }}"
+                                class="img-fluid rounded" alt="{{ product.title }}">
                         {% endif %}
                     </div>
                     <div class="col-6">

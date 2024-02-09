@@ -1,6 +1,11 @@
 /* Checkout */
 
 /* Form fields */
+
+#card-element {
+    border: 1px solid black;
+}
+
 .custom-fieldset {
     margin-bottom: 20px;
 }

@@ -135,83 +135,31 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-
     bag = request.session.get('bag', {})
     line_items = order.lineitems.all()
 
-    if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
-        # Attach the user's profile to the order
-        order.user_profile = profile
-        order.save()
-
-        # Save the user's info
-        if save_info:
-            profile_data = {
-                'default_phone_number': order.phone_number,
-                'default_country': order.country,
-                'default_postcode': order.postcode,
-                'default_town_or_city': order.town_or_city,
-                'default_street_address1': order.street_address1,
-                'default_street_address2': order.street_address2,
-                'default_county': order.county,
-            }
-            user_profile_form = UserProfileForm(profile_data, instance=profile)
-            if user_profile_form.is_valid():
-                user_profile_form.save()
-
-    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to {order.email}.')
-
-    if 'bag' in request.session:
-        del request.session['bag']
-
     for item in line_items:
-        # Get the item ID
-        item_id = item.id
-        if str(item_id) in bag:
-            # Retrieve bag item details
-            bag_item = bag[str(item_id)]
-            selected_size = bag_item.get('size')
-            selected_width = bag_item.get('width')
-            if selected_size and selected_width:
-                selected_size_str = str(selected_size.size)
-                selected_width_str = str(selected_width.width)
-                item.product_size = selected_size_str
-                item.product_width = selected_width_str
-                item.save()
+        selected_size = item.product.pointe_shoe.available_sizes.first()
+        selected_width = item.product.pointe_shoe.available_widths.first()
 
-        pointe_shoe_product = item.product
-        selected_size = pointe_shoe_product.pointe_shoe.available_sizes.first()
-        selected_width = pointe_shoe_product.pointe_shoe.available_widths.first()
-        
-        item.product_size = str(selected_size.size)
-        item.product_width = str(selected_width.width)
+        if selected_size:
+            item.product_size = str(selected_size.size)
+        if selected_width:
+            item.product_width = str(selected_width.width)
 
-        product_title = pointe_shoe_product.title
-        product_color_friendly_name = pointe_shoe_product.pointe_shoe.color.get_friendly_name()
+        product_title = item.product.title
+        product_color_friendly_name = item.product.pointe_shoe.color.get_friendly_name()
 
         item.product_title = product_title
         item.product_color = product_color_friendly_name
         item.save()
 
-        pointe_shoe_product = item.product
-        selected_size = pointe_shoe_product.pointe_shoe.available_sizes.first()
-        selected_width = pointe_shoe_product.pointe_shoe.available_widths.first()
-        
-        item.product_size = str(selected_size.size)
-        item.product_width = str(selected_width.width)
+    if 'bag' in request.session:
+        del request.session['bag']
 
-        product_title = pointe_shoe_product.title
-        product_color = pointe_shoe_product.pointe_shoe.color.get_friendly_name()
-
-        item.product_title = product_title
-        item.product_color = product_color
-        item.save()
-
-        available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-        available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
 
     template = 'checkout/checkout_success.html'
     context = {
@@ -225,7 +173,9 @@ def checkout_success(request, order_number):
 
 
 def repurchase_product(request, product_id):
-    # Retrieve the product
+    """
+    After checkout repurchase product
+    """
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
 
     messages.success(request, f"Redirecting to {product.title} for repurchase.")

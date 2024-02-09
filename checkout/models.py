@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.conf import settings
 
 from django_countries.fields import CountryField
+from decimal import Decimal
 
 from products.models import PointeShoeProduct, Color, PointeShoe, Size, Width
 from profiles.models import UserProfile
@@ -73,7 +74,7 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the lineitem total
+        Save method to set the lineitem total
         and update the order total.
         """
         if isinstance(self.product_size, Size):
@@ -83,7 +84,11 @@ class OrderLineItem(models.Model):
         if isinstance(self.product_color, Color):  
             self.product_color = self.product_color.get_friendly_name()  
 
-        self.lineitem_total = self.product.price * self.quantity
+        if self.product.price is not None:
+            self.lineitem_total = self.product.price * self.quantity
+        else:
+            self.lineitem_total = Decimal('0.00')
+
         super().save(*args, **kwargs)
 
         self.order.update_total()
