@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -26,11 +26,12 @@
                                 {{ field|as_crispy_field }}
                             </div>
                             {% endfor %}
-                            <button class="btn-custom rounded text-uppercase float-right mt-3" style="padding: 10px 20px;">Update</button>
+                            <button class="btn-custom rounded text-uppercase float-right mt-3"
+                                style="padding: 10px 20px;">Update</button>
                         </form>
                     </div>
                     <div class="col-12">
-                        <div class="scrollable-content"style="max-height: 200px; overflow-y: auto;">
+                        <div class="scrollable-content" style="max-height: 200px; overflow-y: auto;">
                             <p class="text-muted mt-5">Order History</p>
                             <div class="order-history table-responsive">
                                 <table class="table table-sm table-borderless">
@@ -60,7 +61,7 @@
                                                     </li>
                                                     <li class="small">Size: {{ item.product_size }}</li>
                                                     <li class="small">Width: {{ item.product_width | title }}</li>
-                                                    <li class="small">Color: {{ item.product_color | title }}</li>                                                    
+                                                    <li class="small">Color: {{ item.product_color | title }}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </td>
