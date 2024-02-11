@@ -6,71 +6,84 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid p-0 position-relative">
+<div class="container-fluid p-0 position-relative vh-100">
     <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}" class="img-fluid full-viewport"
         alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
     <div class="overlay"></div>
-    <div class="container position-absolute top-50 start-50 translate-middle" style="z-index: 1;">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card mt-5">
-                    <div class="card-header">
-                        <h5 class="gold-text">My Profile</h5>
+    <div class="row no-gutters justify-content-center align-items-center position-absolute top-0 start-0 end-0 bottom-0"
+    style="z-index: 1;">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4 gold-frame">
+                        <div class="card-header">
+                            <h5 class="gold-text text-center text-lg-start" style="font-size: 2rem;">Delivery Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-group row">
+                                    <div class="col-sm-8">
+                                        {{ field|as_crispy_field }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="form-group row">
+                                    <div class="col-sm-8 offset-sm-4">
+                                        <button class="btn-custom rounded text-uppercase" style="padding: 7px 15px;">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="text-muted">Delivery Information</p>
-                        <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                            {% csrf_token %}
-                            {% for field in form %}
-                            <div class="crispy-border">
-                                {{ field|as_crispy_field }}
-                            </div>
-                            {% endfor %}
-                            <button class="btn-custom rounded text-uppercase float-right mt-3"
-                                style="padding: 10px 20px;">Update</button>
-                        </form>
-                    </div>
-                    <div class="col-12">
-                        <div class="scrollable-content" style="max-height: 200px; overflow-y: auto;">
-                            <p class="text-muted mt-5">Order History</p>
-                            <div class="order-history table-responsive">
-                                <table class="table table-sm table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>Order Number</th>
-                                            <th>Date</th>
-                                            <th>Items</th>
-                                            <th>Order Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for order in orders %}
-                                        <tr>
-                                            <td>
-                                                <a href="{% url 'order_history' order.order_number %}"
-                                                    title="{{ order.order_number }}">
-                                                    {{ order.order_number|truncatechars:6 }}
-                                                </a>
-                                            </td>
-                                            <td>{{ order.date }}</td>
-                                            <td>
-                                                <ul class="list-unstyled">
-                                                    {% for item in order.lineitems.all %}
-                                                    <li class="small">
-                                                        Title: {{ item.product_title | title }} x {{ item.quantity }}
-                                                    </li>
-                                                    <li class="small">Size: {{ item.product_size }}</li>
-                                                    <li class="small">Width: {{ item.product_width | title }}</li>
-                                                    <li class="small">Color: {{ item.product_color | title }}</li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </td>
-                                            <td>${{ order.grand_total }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
+                </div>
+                {% if orders %}
+                <div class="col-md-6">
+                    <div class="card mb-4 gold-frame">
+                        <div class="card-header">
+                            <h5 class="gold-text text-center text-lg-start" style="font-size: 1rem;">Order History</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="scrollable-content" style="max-height: 400px; overflow-y: auto;">
+                        <p class="text-muted">Order History</p>
+                        <div class="order-history table-responsive">
+                            <table class="table table-sm table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Order Number</th>
+                                        <th>Date</th>
+                                        <th>Items</th>
+                                        <th>Order Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'order_history' order.order_number %}"
+                                                title="{{ order.order_number }}">
+                                                {{ order.order_number|truncatechars:6 }}
+                                            </a>
+                                        </td>
+                                        <td>{{ order.date }}</td>
+                                        <td>
+                                            <ul class="list-unstyled">
+                                                {% for item in order.lineitems.all %}
+                                                <li class="small">
+                                                    Title: {{ item.product_title | title }} x {{ item.quantity }}
+                                                </li>
+                                                <li class="small">Size: {{ item.product_size }}</li>
+                                                <li class="small">Width: {{ item.product_width | title }}</li>
+                                                <li class="small">Color: {{ item.product_color | title }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>${{ order.grand_total }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -78,6 +91,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block postloadjs %}
