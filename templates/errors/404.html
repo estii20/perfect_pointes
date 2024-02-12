@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid light-pink-bg">
+    <div class="row">
+        <div class="col-md-6 my-auto form-container text-center rounded mx-auto my-2 py-2 gold-frame">
+            <h1 class="gold-text">Error 404: Not Found</h1>
+            <h2>The page is not available</h2>
+            <div>
+                <a href="{% url 'products' %}" class="btn btn-md btn-custom my-2">
+                    Keep shopping instead
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
