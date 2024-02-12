@@ -128,20 +128,8 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="btt-button btn btn-custom shadow-sm rounded-0">
-                    <a class="btt-top d-flex h-100">
-                        <i class="fa-regular fa-circle-up" style="color: #000; margin: auto;"></i>
-                    </a>
-                </div>
-                </main>
-                {% endblock %}
-                
-                {% block postloadjs %}
-                {{ block.super }}
-                <script type="text/javascript">
-                    $('.btt-top').click(function (e) {
-                        window.scrollTo(0, 0);
-                    })
-                </script>
-                {% endblock %}
+            </div>
+        </main>
+    {% endblock %}
+
 

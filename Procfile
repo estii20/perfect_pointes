@@ -1,0 +1,1 @@
+web: gunicorn perfect_pointes.wsgi:application
