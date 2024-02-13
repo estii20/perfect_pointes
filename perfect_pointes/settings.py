@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['8000-estii20-perfect-pointes-qx55w4kmmz.us2.codeanyapp.com', 'perfect-pointes.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['perfect-pointes-d5136a797ac1.herokuapp.com', 'localhost']
 
 # Application definition
 
