@@ -1,0 +1,583 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    color: #565D47;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Dancing Script', sans-serif;
+}
+
+/* Alert */
+
+.alert-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.alert-container .col-12 {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #EAAC9D;
+}
+
+.site-wide-alert {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    background-color: #EAAC9D;
+    border-color: #EAAC9D;
+}
+
+/* Logo */
+
+.logo {
+    max-width: 100px;
+    font-family: 'Dancing Script',
+        sans-serif;
+    color: #FFD700;
+    font-size: 3vw;
+}
+
+.rounded-logo {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+
+.navbar {
+    margin-bottom: 0;
+    width: 100%;
+    border: 0;
+}
+
+.navbar-nav a.nav-link {
+    font-size: 18px;
+}
+
+.navbar-brand {
+    margin-right: 15px;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item::marker {
+    display: none;
+}
+
+.navbar .navbar-toggler {
+    border: 0;
+}
+
+input::placeholder {
+    padding-left: 5px;
+}
+
+/* Homepage */
+
+.gold-text {
+    background: linear-gradient(45deg, #ffd700, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 3px rgba(212, 175, 55, 0.5);
+    font-size: 3vw;
+}
+
+.full-viewport {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(234, 172, 157, 0.7);
+    z-index: 1;
+}
+
+.image-container {
+    position: relative;
+    z-index: 0;
+}
+
+.content-container {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: white;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.gold-frame {
+    background-color: #f1e0b7;
+    border: 4px double gold;
+}
+
+.content-container h1,
+.content-container p {
+    margin-bottom: 20px;
+}
+
+.no-gutter-row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+}
+
+/* Additional styles for buttons */
+
+.btn-custom {
+    background-color: #B49C73;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-custom:hover {
+    background-color: #8c734d;
+}
+
+.btn-custom::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 80%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.btn-custom:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 1;
+}
+
+/* Product Page */
+
+.light-pink-bg {
+    background-color: #fdf2d8;
+}
+
+.dropbtn {
+    background-color: #B49C73;
+    font-size: 18px;
+    border: none;
+}
+
+.hoverable-image {
+    transition: transform 0.2s;
+}
+
+.hoverable-image:hover {
+    transform: scale(1.1);
+}
+
+.gold-text-padding {
+    padding-top: 20px;
+}
+
+.rounded-custom {
+    border-radius: 15px;
+    border: 2px solid #ccc;
+}
+
+.rounded-custom:hover {
+    border-color: #8c734d;
+}
+
+.rounded-image {
+    border-radius: 15px;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    background: #B49C73;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+
+/* From https: //css-tricks.com/snippets/css/ribbon/ */
+.ribbon {
+    font-size: 16px !important;
+
+    width: 50%;
+
+    position: relative;
+    background: #e6846c;
+    color: #fff;
+    text-align: center;
+    padding: 1em 2em;
+    margin: 2em auto 3em;
+}
+
+.ribbon:before,
+.ribbon:after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: -1em;
+    border: 1.5em solid #e6846c;
+    z-index: -1;
+}
+
+.ribbon:before {
+    left: -2em;
+    border-right-width: 1.5em;
+    border-left-color: transparent;
+}
+
+.ribbon:after {
+    right: -2em;
+    border-left-width: 1.5em;
+    border-right-color: transparent;
+}
+
+.ribbon .ribbon-content:before,
+.ribbon .ribbon-content:after {
+    content: "";
+    position: absolute;
+    display: block;
+    border-style: solid;
+    border-color: #e6846c transparent transparent transparent;
+    bottom: -1em;
+}
+
+.ribbon .ribbon-content:before {
+    left: 0;
+    border-width: 1em 0 0 1em;
+}
+
+.ribbon .ribbon-content:after {
+    right: 0;
+    border-width: 1em 1em 0 0;
+}
+
+.non-semantic-protector {
+    position: relative;
+    z-index: 1;
+}
+
+/* Product Detail */
+
+.btn-custom.increment-qty {
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+.btn-custom.decrement-qty {
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+/* Size and Width Dropdown */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-dropdown select {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.custom-dropdown::before {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #555;
+    pointer-events: none;
+}
+
+.custom-dropdown select:focus {
+    outline: none;
+}
+
+.custom-dropdown::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.btt-button {
+    height: 42px;
+    width: 42px;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Bag */
+
+.btn-gold {
+    background-color: gold;
+    color: #000;
+}
+
+.update-btn {
+    cursor: pointer;
+}
+
+.update-column {
+    width: 150px;
+    white-space: nowrap;
+}
+
+/* Bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+/* Convenience classes - colors copied from Bootstrap */
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+    border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+    border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+    border-bottom-color: #343a40 !important;
+}
+
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Media Queries */
+
+/* Responsive font size for smaller screens */
+@media (max-width: 767px) {
+    .gold-text {
+        font-size: 2rem;
+    }
+}
+
+/* Responsive font and image size for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+    .gold-text {
+        font-size: 4rem;
+    }
+
+    .smaller-image {
+        height: 100px;
+    }
+}
+
+/* Responsive font and image size for larger screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .gold-text {
+        font-size: 4rem;
+    }
+
+    .smaller-image {
+        height: 150px;
+        
+    }
+}
+
+/* Container, image and font size on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+
+    .gold-text {
+        font-size: 3rem;
+    }
+
+    .smaller-image {
+        height: 200px;
+    }
+}
+
+/* Allauth inner content */
+.allauth-form-inner-content {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.allauth-container a,
+.allauth-form-inner-content a {
+    color: #000;
+}
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    color: #6c757d;
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 5px;
+    margin: 5px;
+    width: 100%;
+    background-color: #fff;
+    padding: 8px;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #000;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 5px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {
+    color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a,
+.back-to-login {
+    color: #17a2b8;
+}
+
+.allauth-form-inner-content a {
+    color: #000;
+}
+
+/* Product Form */
+/* Crispy form fields */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Product Form - Code taken from walkthrough Boutique Ado */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0 !important;
+    border-color: #dc3545;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0 !important;
+}
