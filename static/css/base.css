@@ -30,15 +30,15 @@ h3 {
 .alert-container .col-12 {
     padding-left: 0;
     padding-right: 0;
-    background-color: #EAAC9D;
+    background-color: #ffc107;
 }
 
 .site-wide-alert {
     border-radius: 0;
     margin-bottom: 0;
     padding: 5px 15px;
-    background-color: #EAAC9D;
-    border-color: #EAAC9D;
+    background-color: #ffc107;
+    border-color: #ffc107;
 }
 
 /* Logo */
@@ -154,7 +154,7 @@ input::placeholder {
 /* Additional styles for buttons */
 
 .btn-custom {
-    background-color: #B49C73;
+    background-color: #827155;
     color: #fff;
     transition: background-color 0.3s ease-in-out;
     position: relative;
@@ -191,7 +191,7 @@ input::placeholder {
 }
 
 .dropbtn {
-    background-color: #B49C73;
+    background-color: #827155;
     font-size: 18px;
     border: none;
 }
@@ -214,7 +214,7 @@ input::placeholder {
 }
 
 .rounded-custom:hover {
-    border-color: #8c734d;
+    border-color: #827155;
 }
 
 .rounded-image {
@@ -239,9 +239,7 @@ input::placeholder {
 /* From https: //css-tricks.com/snippets/css/ribbon/ */
 .ribbon {
     font-size: 16px !important;
-
     width: 50%;
-
     position: relative;
     background: #e6846c;
     color: #fff;
@@ -550,7 +548,6 @@ input::placeholder {
     width: 100%;
     background-color: #fff;
     border: 1px solid #000;
-    border-radius: 0;
     padding: 8px;
     margin-bottom: 10px;
 }
