@@ -619,7 +619,8 @@ input::placeholder {
     border-color: #ffc107; 
 }
 
-.btn-subscribe:hover {
+.btn-subscribe:hover,
+.btn-subscribe:focus {
     background-color: #ffca28; 
     border-color: #ffca28; 
 }
@@ -633,11 +634,19 @@ input::placeholder {
     color: #ffc107;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
 /* Mailchimp */
 
 #mc_embed_signup {
     background:#fff; 
-    clear:left; font:14px 
-    Helvetica,Arial,sans-serif; 
+    clear: left; 
+    font: 14px; 
     width: 600px;
+}
+
+#mc-embedded-subscribe {
+    margin: 10px 0 !important;
 }
