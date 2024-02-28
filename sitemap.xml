@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=asc&amp;brand=Grishko</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=asc&amp;brand=Freed%20of%20London</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=asc&amp;brand=Capezio</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=asc&amp;brand=Bloch</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Wide%20fit</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Shoes%20for%20narrow%20feet</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Best%20Sellers</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Shoes%20for%20beginners</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Recommended%20for%20intermediate%20dancers</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Medium%20fit</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Extra%20wide%20fit</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Endorsed%20by%20professional%20dancers</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Traditional</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=New%20Arrivals</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=category&amp;direction=asc&amp;category=Recommended%20for%20beginners</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/bag/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=ascGrishko</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=color&amp;direction=asc&amp;color=satin_pink</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=price&amp;direction=asc</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=price&amp;direction=desc</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/33/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/34/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/35/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/36/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=ascFreed%20of%20London</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=color&amp;direction=asc&amp;color=satin_beige</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/29/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/30/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/31/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/32/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=ascCapezio</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/19/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/24/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/25/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/26/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/27/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/28/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/?sort=brand&amp;direction=ascBloch</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/18/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/20/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/21/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/22/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://perfect-pointes-d5136a797ac1.herokuapp.com/products/23/</loc>
+  <lastmod>2024-02-28T15:03:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
