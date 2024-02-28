@@ -442,7 +442,7 @@ input::placeholder {
 /* Responsive font and image size for medium screens */
 @media (min-width: 768px) and (max-width: 991px) {
     .gold-text {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     .smaller-image {
@@ -453,7 +453,7 @@ input::placeholder {
 /* Responsive font and image size for larger screens */
 @media (min-width: 992px) and (max-width: 1199px) {
     .gold-text {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 
     .smaller-image {
@@ -577,4 +577,67 @@ input::placeholder {
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0 !important;
+}
+
+/* Footer */
+
+.footer {
+    width: 100%;
+    background-color: #827155;
+    color: #fff;
+}
+
+.footer-heading {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer-divider {
+    border-color: #fff;
+}
+
+.footer-social h3, .footer-subscribe h2 {
+    color: #fff;
+}
+
+.footer-social p, .footer-subscribe p {
+    color: #fff;
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: #ffc107;
+}
+
+.btn-subscribe {
+    background-color: #ffc107; 
+    border-color: #ffc107; 
+}
+
+.btn-subscribe:hover {
+    background-color: #ffca28; 
+    border-color: #ffca28; 
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: #ffc107;
+}
+
+/* Mailchimp */
+
+#mc_embed_signup {
+    background:#fff; 
+    clear:left; font:14px 
+    Helvetica,Arial,sans-serif; 
+    width: 600px;
 }

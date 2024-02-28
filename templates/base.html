@@ -33,6 +33,8 @@
         <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <!-- Base CSS -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <!-- Mailchimp -->
+        <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     {% endblock %}
 
     {% block extra_css %}
@@ -213,31 +215,43 @@
     {% endblock %}
 
     <!-- Footer -->
-  <footer class="container-wrapper">
-    <div class="container quotes-container content-container">
-      <section class="footer">
-        <div class="row">
-          <div class="col-12 page-header mb-4">
-            <h2 class="text-uppercase">Stay in touch:</h2>
-            <hr class="block-divider block-divider--short">
-          </div>
-       </div>
-       <div class="row">
-         <div class="col-12 col-md-6">
-           <h3>Social</h3>
-           <p>Keep up to date with all our latest offers</p>
-           <a href="https://www.facebook.com/profile.php?id=61556815891966" target="_blank"><i class="fab fa-facebook-square"></i> Follow us on Facebook!</a>
-         </div>
-         <div class="col-12 col-md-6">
-           <h2>Subscribe!</h2>
-           <p>Get exclusive offers and discount codes by subscribing to our monthly newsletter</p>
-           <!-- Mailchimp signup form here -->
-         </div>
-       </div>
-     </section>
-   </div>
- </footer>
-<!-- /.footer -->
+    <footer class="footer mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="footer-heading my-2">Contact</h2>
+                    <p class="footer-subtitle"><i class="fa-solid fa-envelope"></i> 
+                        <a href="mailto:perfect-pointes@gmail.com" class="social-link">perfect-pointes@gmail.com</a></p>
+                    <p class="footer-subtitle"><i class="fa-brands fa-whatsapp"></i> 
+                        <a href="tel:+44586878878" class="social-link">+44 586 878 878</a></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h3>Social</h3>
+                    <p>Keep up to date with all our latest offers</p>
+                    <a href="https://www.facebook.com/profile.php?id=61556815891966" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-square"></i> Follow us on Facebook!</a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2>Subscribe!</h2>
+                    <p>Get exclusive offers and discount codes by subscribing to our monthly newsletter</p>
+                    <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=a9f7abe1c6d99284ca1eea9aa&amp;id=c30dbdf2ce&amp;f_id=006ef6e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                        <div class="form-group">
+                            <label for="mce-EMAIL">Email Address:</label>
+                            <input type="email" name="EMAIL" class="form-control required email" id="mce-EMAIL" required="" value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-subscribe">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- /.footer -->      
 
     {% block postloadjs %}
     <script type="text/javascript">
@@ -245,6 +259,23 @@
             $('.toast').toast('show');
         });
     </script>
+
+    <!-- mailchimp scripts -->  
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script type="text/javascript">
+    (function($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[0]='EMAIL';ftypes[0]='email';
+        fnames[1]='FNAME';ftypes[1]='text';
+        fnames[2]='LNAME';ftypes[2]='text';
+        fnames[3]='ADDRESS';ftypes[3]='address';
+        fnames[4]='PHONE';ftypes[4]='phone';
+        fnames[5]='BIRTHDAY';ftypes[5]='birthday';
+    }(jQuery));
+    var $mcj = jQuery.noConflict(true);
+    </script>
+
     {% endblock %}
 
 
