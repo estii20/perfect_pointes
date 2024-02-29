@@ -493,16 +493,19 @@ input::placeholder {
     color: #6c757d;
 }
 
-.allauth-form-inner-content input {
-    border-color: #000;
-    border-radius: 5px;
-    margin: 5px;
+.allauth-form-inner-content input,
+.allauth-form-inner-content select,
+.allauth-form-inner-content textarea {
     width: 100%;
     background-color: #fff;
+    border: 1px solid #000;
     padding: 8px;
+    margin-bottom: 10px;
 }
 
-.allauth-form-inner-content input::placeholder {
+.allauth-form-inner-content input::placeholder,
+.allauth-form-inner-content select::placeholder,
+.allauth-form-inner-content textarea::placeholder {
     color: #aab7c4;
 }
 
@@ -519,7 +522,10 @@ input::placeholder {
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 5px;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, 
+                background-color .15s ease-in-out, 
+                border-color .15s ease-in-out, 
+                box-shadow .15s ease-in-out;
 }
 
 .allauth-form-inner-content button:hover,

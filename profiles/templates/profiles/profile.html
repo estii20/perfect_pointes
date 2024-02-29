@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid p-0 position-relative vh-100">
+<div class="container-fluid p-0 position-relative">
     <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}" class="img-fluid full-viewport"
         alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
     <div class="overlay"></div>
     <div class="row no-gutters justify-content-center align-items-center position-absolute top-0 start-0 end-0 bottom-0"
     style="z-index: 1;">
-        <div class="col-lg-8">
+        <div class="col-lg-8 my-2">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-4 gold-frame">
@@ -92,6 +92,8 @@
     </div>
 </div>
 {% endif %}
+</div>
+</div> 
 {% endblock %}
 
 {% block postloadjs %}
