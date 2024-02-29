@@ -125,9 +125,14 @@ def add_product(request):
     else:
         form = PointeShoeProductForm()
 
+    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+
     template = 'products/add_product.html'
     context = {
         'form': form,
+        'available_brands': available_brands,
+        'available_categories': available_categories,
     }
 
     return render(request, template, context)
