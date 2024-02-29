@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import PointeShoeProduct, PointeShoe, Category, PointeShoeBrand, Color
-from .forms import PointeShoeProductForm
+from .forms import PointeShoeProductForm, PointeShoeProductEditForm
 
 
 def all_products(request):
@@ -142,7 +142,7 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
     if request.method == 'POST':
-        form = PointeShoeProductForm(request.POST, request.FILES, instance=product)
+        form = PointeShoeProductEditForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
@@ -150,7 +150,7 @@ def edit_product(request, product_id):
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
-        form = PointeShoeProductForm(instance=product)
+        form = PointeShoeProductEditForm(instance=product)
         messages.info(request, f'You are editing {product.title}')
 
     available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()

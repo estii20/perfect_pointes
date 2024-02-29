@@ -6,7 +6,6 @@ from .models import PointeShoe, Size, Width, Color, PointeShoeBrand, PointeShoeP
 class PointeShoeProductForm(forms.ModelForm):
     new_pointe_shoe_name = forms.CharField(label='Pointe Shoe Name', max_length=100, required=False)
     new_pointe_shoe_sku = forms.CharField(label='SKU', max_length=50, required=False)
-    new_pointe_shoe_width = forms.ChoiceField(choices=PointeShoe.width_choices, required=False)
     new_pointe_shoe_shank = forms.ChoiceField(choices=PointeShoe.shank_choices, required=False)
     new_pointe_shoe_color = forms.ModelChoiceField(queryset=Color.objects.all(), empty_label=None, label='Color', required=False)
     new_pointe_shoe_price = forms.DecimalField(label='Price', max_digits=10, decimal_places=2, required=False)
@@ -36,7 +35,6 @@ class PointeShoeProductForm(forms.ModelForm):
                 sku=self.cleaned_data['new_pointe_shoe_sku'],
                 defaults={
                     'name': self.cleaned_data['new_pointe_shoe_name'],
-                    'width': self.cleaned_data['new_pointe_shoe_width'],
                     'shank': self.cleaned_data['new_pointe_shoe_shank'],
                     'color': self.cleaned_data['new_pointe_shoe_color'],
                     'price': self.cleaned_data['new_pointe_shoe_price'],
@@ -61,3 +59,86 @@ class PointeShoeProductForm(forms.ModelForm):
                 instance.pointe_shoe.available_widths.set(self.cleaned_data['available_widths'])
                 self.save_m2m()
             return instance
+
+
+class PointeShoeProductEditForm(forms.ModelForm):
+    shank = forms.ChoiceField(choices=PointeShoe.shank_choices, required=False)
+    color = forms.ModelChoiceField(queryset=Color.objects.all(), label='Color', required=False, empty_label=None)
+    ribbon = forms.ChoiceField(choices=PointeShoe.ribbon_choices, label='Ribbon', required=False)
+    status = forms.ChoiceField(choices=PointeShoe.status_choices, label='Status', required=True) 
+    feature = forms.CharField(label='Feature', widget=forms.Textarea(attrs={'rows': 4}), required=False)
+    logo = forms.ImageField(label='Logo', required=False, widget=CustomClearableFileInput)
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    brand = forms.ModelChoiceField(queryset=PointeShoeBrand.objects.all(), label='Brand', required=True) 
+    available_sizes = forms.ModelMultipleChoiceField(queryset=Size.objects.all(), required=False, widget=forms.CheckboxSelectMultiple, label='Available Sizes')
+    available_widths = forms.ModelMultipleChoiceField(queryset=Width.objects.all(), required=False, widget=forms.CheckboxSelectMultiple, label='Available Widths')
+    
+    arch_choices = [
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
+    ]
+
+    arch = forms.ChoiceField(choices=arch_choices, required=False)
+
+    brand_description = forms.CharField(
+        label='Brand Description',
+        widget=forms.Textarea(attrs={'rows': 4}),
+        required=False
+    )
+
+    class Meta:
+        model = PointeShoeProduct
+        fields = ['title', 'availability', 'image', 'image_url', 'price', 'category', 'brand', 'status', 'feature']
+        widgets = {
+            'sku': forms.HiddenInput(),
+            'image': forms.HiddenInput(),
+            'image_url': forms.HiddenInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            brand = instance.pointe_shoe.brand
+            self.fields['logo'].initial = brand.logo
+            self.fields['feature'].initial = instance.pointe_shoe.feature
+            self.fields['shank'].initial = instance.pointe_shoe.shank
+            self.fields['color'].initial = instance.pointe_shoe.color
+            self.fields['ribbon'].initial = instance.pointe_shoe.ribbon
+            self.fields['status'].initial = instance.pointe_shoe.status
+            self.fields['arch'].initial = instance.pointe_shoe.arch
+            self.fields['category'].initial = instance.pointe_shoe.category
+            self.fields['brand_description'].initial = brand.description
+
+            self.initial_brand_description = brand.description
+            self.fields['brand_description'] = forms.CharField(
+                label='Brand Description',
+                widget=forms.Textarea(attrs={'rows': 4}),
+                initial=self.initial_brand_description,
+                required=False
+            )    
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+            brand = instance.pointe_shoe.brand
+            brand.logo = self.cleaned_data['logo']
+            brand.save()
+
+            if hasattr(instance, 'pointe_shoe') and instance.pointe_shoe:
+                instance.pointe_shoe.feature = self.cleaned_data['feature']
+                instance.pointe_shoe.price = self.cleaned_data['price']  
+                instance.pointe_shoe.shank = self.cleaned_data['shank'] 
+                instance.pointe_shoe.color = self.cleaned_data['color'] 
+                instance.pointe_shoe.ribbon = self.cleaned_data['ribbon'] 
+                instance.pointe_shoe.status = self.cleaned_data['status'] 
+                instance.pointe_shoe.category = self.cleaned_data['category'] 
+                instance.pointe_shoe.arch = self.cleaned_data['arch'] 
+                instance.pointe_shoe.brand.description = self.cleaned_data['brand_description'] 
+                instance.pointe_shoe.save()
+
+            brand.description = self.cleaned_data['brand_description']
+            brand.save()
+        return instance

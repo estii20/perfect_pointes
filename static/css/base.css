@@ -550,6 +550,7 @@ input::placeholder {
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group select,
+.form-group input[type="number"],
 .form-group textarea {
     width: 100%;
     background-color: #fff;
