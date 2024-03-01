@@ -6,29 +6,34 @@
 
 {% block content %}
 <main>
-    <div class="container-fluid px-0" style="background-color: #e4d6be;">
+    <div class="container-fluid px-0 light-pink-bg">
         <!-- Order Summary -->
         <div class="row justify-content-center">
             <div class="col-lg-6 my-2">
-                <div class="card light-pink-bg gold-frame">
+                <div class="card gold-frame">
                     <div class="card-body">
                         <h2 class="card-title gold-text logo-font mb-4 text-center">Product Management</h2>
                         <h5 class="card-subtitle mb-4 text-muted text-center">Edit a Product</h5>
-                        <form method="POST" action="{% url 'edit_product' product.id %}" class="mb-4"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{% url 'edit_product' product.id %}" class="mb-4" 
+                        enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for field in form %}
-                            {% if field.name != 'image' %}
-                            <div class="form-group">
-                                {{ field | as_crispy_field }}
-                            </div>
-                            {% else %}
-                            {{ field }}
-                            {% endif %}
+                                {% if field.name != 'image' %}
+                                    <div class="form-group">
+                                        <label for="{{ field.id }}" class="visually-hidden">{{ field.label }}</label>
+                                        {{ field | as_crispy_field }}
+                                    </div>
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
                             {% endfor %}
                             <div class="text-center">
-                                <button class="btn btn-custom mr-2" type="submit">Update Product</button>
-                                <a class="btn btn-outline-secondary" href="{% url 'products' %}">Cancel</a>
+                                <button class="btn btn-custom mr-2" type="submit" 
+                                aria-label="Update Product">Update Product
+                                </button>
+                                <a class="btn btn-outline-secondary" href="{% url 'products' %}" 
+                                aria-label="Cancel">Cancel
+                                </a>
                             </div>
                         </form>
                     </div>

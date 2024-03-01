@@ -13,9 +13,10 @@
                 <div class="row">
                     <div class="col-12 center">
                         <h1 class="gold-text gold-text-padding">Pointe Shoes</h1>
-                        <div class="col m12 s12 center">A selection of all our
-                            pointe shoes, sort and browse our categories and brands
-                            for your perfect shoe!
+                        <div class="col m12 s12 center">
+                            <p>A selection of all our pointe shoes, sort and browse our categories and brands 
+                                for your perfect shoe!
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -92,16 +93,20 @@
                             <div class="card rounded-custom h-100">
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <img src="{{ product.image.url }}" class="card-img-top rounded-image hover-zoom ripple img-fluid"
+                                    <img src="{{ product.image.url }}" 
+                                        class="card-img-top rounded-image hover-zoom ripple img-fluid"
                                         alt="{{ product.title }}" style="width: 400px; height: 600px;">
-                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
+                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} 
+                                            <span>Arch</span></div>
                                 </a>
                                 {% else %}
                                 <a href="">
                                     <img src="{% static 'images/no-image.jpg' %}" alt="{{ product.name }}"
-                                        class="card-img-top rounded-image hover-zoom ripple img-fluid" alt="{{ product.title }}"
+                                        class="card-img-top rounded-image hover-zoom ripple img-fluid" 
+                                        alt="{{ product.title }}"
                                         style="width: 400px; height: 600px;">
-                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} <span>Arch</span></div>
+                                        <div class="overlay-text">{{ product.pointe_shoe.arch | title }} 
+                                            <span>Arch</span></div>
                                 </a>
                                 {% endif %}
                                 <div class="card-body non-semantic-protector">

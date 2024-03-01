@@ -1,14 +1,17 @@
 from django.shortcuts import render
-from . import views
-from products.models import PointeShoeBrand, Category, PointeShoeProduct
+from products.models import PointeShoeBrand, Category
 
 
 def index(request):
     """ A view to return the index page """
 
-    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_brands = (PointeShoeBrand.objects
+                        .filter(pointeshoe__pointeshoeproduct__availability=True)
+                        .distinct())
 
+    available_categories = (Category.objects
+                            .filter(pointeshoe__pointeshoeproduct__availability=True)
+                            .distinct())
 
     context = {
         'available_brands': available_brands,

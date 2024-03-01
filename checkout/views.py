@@ -1,18 +1,19 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
-from django.views.decorators.http import require_POST
-from django.contrib import messages
+import json
+import stripe
 from django.conf import settings
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-
-from .forms import OrderForm
-from .models import Order, OrderLineItem
-from products.models import PointeShoeProduct, PointeShoeBrand, Category, Size, Width
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.views.decorators.http import require_POST
+from bag.contexts import bag_contents
+from products.models import (
+    PointeShoeProduct, PointeShoeBrand, Category
+)
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
-from bag.contexts import bag_contents
-
-import stripe
-import json
+from .forms import OrderForm
+from .models import Order, OrderLineItem
 
 
 @require_POST
@@ -20,15 +21,21 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
-            'username': request.user,
-        })
+        stripe.PaymentIntent.modify(
+            pid,
+            metadata={
+                'bag': json.dumps(request.session.get('bag', {})),
+                'save_info': request.POST.get('save_info'),
+                'username': request.user,
+            }
+        )
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed right now. Please try again later.')
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed right now. '
+            'Please try again later.'
+        )
         return HttpResponse(content=e, status=400)
 
 
@@ -79,7 +86,11 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(
+                request,
+                'There was an error with your form. '
+                'Please double check your information.'
+            )
     else:
         bag = request.session.get('bag', {})
         if not bag:
@@ -115,10 +126,22 @@ def checkout(request):
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+            messages.warning(
+                request,
+                'Stripe public key is missing. '
+                'Did you forget to set it in your environment?'
+            )
 
-        available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-        available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+        available_brands = (
+            PointeShoeBrand.objects
+            .filter(pointeshoe__pointeshoeproduct__availability=True)
+            .distinct()
+        )
+        available_categories = (
+            Category.objects
+            .filter(pointeshoe__pointeshoeproduct__availability=True)
+            .distinct()
+        )
 
         context = {
             'order_form': order_form,
@@ -132,9 +155,6 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
     order = get_object_or_404(Order, order_number=order_number)
     bag = request.session.get('bag', {})
     line_items = order.lineitems.all()
@@ -158,8 +178,16 @@ def checkout_success(request, order_number):
     if 'bag' in request.session:
         del request.session['bag']
 
-    available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
-    available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+    available_brands = (
+        PointeShoeBrand.objects
+        .filter(pointeshoe__pointeshoeproduct__availability=True)
+        .distinct()
+    )
+    available_categories = (
+        Category.objects
+        .filter(pointeshoe__pointeshoeproduct__availability=True)
+        .distinct()
+    )
 
     template = 'checkout/checkout_success.html'
     context = {

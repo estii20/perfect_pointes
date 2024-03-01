@@ -10,10 +10,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Online store for the perfect fit pointe shoes for beginner and advanced ballet dancers">
-        <meta name="keywords" content="Bloch pointe shoe fitting, Freed pointe shoes, Bloch pointe shoes, Freed pointe shoes, Capezio pointe shoes, Grishko
-                    pointe shoes, Freed of London pointe shoes, best ballet pointe shoes for wide feet, best pointe shoes for beginners,
-                    Capezio pointe shoe, buy Grishko pointe shoes, pointe shoes online, best pointe shoes for foot type">
+        <meta name="description" content="Online store for the perfect fit pointe shoes for beginner 
+                    and advanced ballet dancers">
+        <meta name="keywords" content="Bloch pointe shoe fitting, Freed pointe shoes, 
+                    Bloch pointe shoes, Freed pointe shoes, Capezio pointe shoes, Grishko
+                    pointe shoes, Freed of London pointe shoes, best ballet pointe shoes for wide feet, 
+                    best pointe shoes for beginners,
+                    Capezio pointe shoe, buy Grishko pointe shoes, pointe shoes online, 
+                    best pointe shoes for foot type">
     {% endblock %}
 
     {% block extra_meta %}
@@ -66,7 +70,9 @@
                 <div class="row d-none d-sm-block">
                     <div class="col-12">
                         <div class="site-wide-alert alert alert-warning text-center">
-                            <strong><i class="fa-solid fa-truck"></i> Free delivery and returns on all orders over €{{ free_delivery_threshold }}</strong>
+                            <strong><i class="fa-solid fa-truck"></i> 
+                                Free delivery and returns on all orders over €{{ free_delivery_threshold }}
+                            </strong>
                         </div>
                     </div>
                 </div>
@@ -81,7 +87,8 @@
                         alt="Logo of Perfect Pointes">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -93,7 +100,8 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" href="#" 
+                                id="accountDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user me-1"></i>
                                 Account
                             </a>
@@ -109,19 +117,22 @@
                         </li>
                         <!-- Shop Dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" 
+                                href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-solid fa-heart me-1"></i> Shop
                             </a>
                             <div class="dropdown-menu" aria-labelledby="shopDropdown">
                                 {% for brand in available_brands %}
-                                <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc&brand={{ brand.name }}">
+                                <a class="dropdown-item" 
+                                    href="{% url 'products' %}?sort=brand&direction=asc&brand={{ brand.name }}">
                                     {{ brand.name | title }}
                                 </a>
                                 {% endfor %}
                                     <hr class="dropdown-divider">
                                 {% for category in available_categories %}
-                                <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">
+                                <a class="dropdown-item" 
+                                    href="{% url 'products' %}?sort=category&direction=asc&category={{ category.name }}">
                                     {{ category.get_friendly_name | title }}
                                 </a>
                                 {% endfor %}
@@ -134,7 +145,8 @@
                         <li class="nav-item">
                             <form class="d-flex rounded" method="GET" action="{% url 'products' %}">
                                 {% if search_term %}
-                                <input class="form-control me-2 rounded" style="background-color: #fdf2d8;" type="search" name="q"
+                                <input class="form-control me-2 rounded" 
+                                    style="background-color: #fdf2d8;" type="search" name="q"
                                     placeholder="Find your pointes" aria-label="Search" value="{{ search_term }}">
                                 <button class="btn btn-custom" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -228,38 +240,72 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 my-2">
                     <h3>Social</h3>
                     <p>Keep up to date with all our latest offers</p>
                     <a href="https://www.facebook.com/profile.php?id=61556815891966" target="_blank" class="social-link">
                         <i class="fab fa-facebook-square"></i> Follow us on Facebook!</a>
+                    <!-- About Us -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h2>About Us</h2>
+                            <p>Perfect Pointes is your premier destination for exquisite pointe shoes.  
+                                Founded by passionate dancers, Perfect Pointes is dedicated to providing the highest quality 
+                                products to elevate your dance experience. We hope you find your perfect shoe. 
+                                Don't worry we provide a free return service, full refund on returns within 90 days of purchase.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 my-2">
                     <h2>Subscribe!</h2>
                     <p>Get exclusive offers and discount codes by subscribing to our monthly newsletter</p>
-                    <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=a9f7abe1c6d99284ca1eea9aa&amp;id=c30dbdf2ce&amp;f_id=006ef6e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                    <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=a9f7abe1c6d99284ca1eea9aa&amp;id=c30dbdf2ce&amp;f_id=006ef6e6f0" 
+                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" 
+                        class="validate" target="_blank">
                         <div class="form-group">
                             <label for="mce-EMAIL">Email Address:</label>
                             <input type="email" name="EMAIL" class="form-control required email" id="mce-EMAIL" required="" value="">
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-subscribe">Subscribe</button>
+                            <button type="submit" name="subscribe" id="mc-embedded-subscribe" 
+                            class="btn btn-primary btn-subscribe text-dark text-uppercase">Subscribe</button>
                         </div>
                     </form>
                 </div>
             </div>
-         <!-- GDPR Compliance Link -->
-         <div class="row mt-3">
-            <div class="col-12 text-center">
-                <p class="text-white">For GDPR compliance, please refer to our 
-                    <a href="https://www.termsfeed.com/live/af7beee8-c4b2-4394-bf87-ace5e9e52994" target="_blank" 
-                    class="social-link underline">privacy policy</a>.</p>
+            <!-- Useful Links -->
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <h2>Useful Links</h2>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><a href="https://grishkoshop.com/Page/en-US/26/pointessizechart" 
+                        target="_blank" class="social-link">Pointe Shoe Size Chart</a>
+                    </li>
+                    <li><a href="https://youtu.be/NGfaWRMsS1o" 
+                        target="_blank" class="social-link">YouTube for Grishko 2007 shoe</a>
+                    </li>
+                    <li>
+                        <a href="https://youtu.be/wr1UPWesLFU" 
+                        target="_blank" class="social-link">
+                        Fitting professional Bloch pointe shoes New York Ballet Company
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <!-- GDPR Compliance Link -->
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="text-white">For GDPR compliance, please see our 
+                        <a href="https://www.termsfeed.com/live/af7beee8-c4b2-4394-bf87-ace5e9e52994" 
+                        target="_blank" 
+                        class="social-link underline">privacy policy</a>.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
     </footer>
-
-    <!-- /.footer -->      
+    <!-- /.footer -->
 
     {% block postloadjs %}
     <script type="text/javascript">

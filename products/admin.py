@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, PointeShoeBrand, PointeShoe, Size, Width, PointeShoeProduct, Color
+from .models import (Category, PointeShoeBrand, PointeShoe, Size,
+                     Width, PointeShoeProduct, Color)
 
 
 @admin.register(Category)

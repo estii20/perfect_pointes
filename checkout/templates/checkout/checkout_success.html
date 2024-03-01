@@ -40,7 +40,7 @@
                                 {% if order.street_address2 %} {{ order.street_address2 | title }} {% endif %},
                                 {{ order.town_or_city | title }},
                                 {% if order.county %} {{ order.county | title }} {% endif %},
-                                {% if order.postcode %} {{ order.postcode | title }} {% endif %}
+                                {% if order.postcode %} {{ order.postcode | upper }} {% endif %}
                                 {{ order.country | title }}
                             </td>
                             <td>{{ order.phone_number }}</td>
@@ -76,7 +76,8 @@
                             <td>{{ item.product_color | title }}</td>
                             <td>€{{ item.lineitem_total }}</td>
                             <td>
-                                <a href="{% url 'repurchase_product' item.product.id %}" class="btn btn-custom my-5">Buy Again</a>
+                                <a href="{% url 'repurchase_product' item.product.id %}" class="btn btn-custom my-5" 
+                                aria-label="Buy Again">Buy Again</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -90,11 +91,11 @@
                     {% if from_profile %}
                     <a href="{% url 'profile' %}" class="btn btn-custom my-5">
                         <span><i class="fas fa-angle-left"></i></span>
-                        <span class="text-uppercase">Back to Profile</span>
+                        <span class="text-uppercase" aria-label="Back to Profile">Back to Profile</span>
                     </a>
                     {% else %}
                     <a href="{% url 'products' %}">
-                        <button class="btn btn-large"> Continue Shopping <i class="fa fa-shopping-cart"></i></button>
+                        <button class="btn btn-large" aria-label="Continue Shopping"> Continue Shopping <i class="fa fa-shopping-cart"></i></button>
                     </a>
                     {% endif %}
                 </div>

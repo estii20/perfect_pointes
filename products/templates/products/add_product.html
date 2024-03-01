@@ -6,11 +6,11 @@
 
 {% block content %}
 <main>
-    <div class="container-fluid px-0" style="background-color: #e4d6be;">
+    <div class="container-fluid px-0 light-pink-bg">
         <!-- Order Summary -->
         <div class="row justify-content-center">
             <div class="col-lg-6 my-2">
-                <div class="card light-pink-bg gold-frame">
+                <div class="card gold-frame">
                     <div class="card-body">
                         <h2 class="card-title gold-text logo-font mb-4 text-center">Product Management</h2>
                         <h5 class="card-subtitle mb-4 text-muted text-center">Add a Product</h5>
@@ -26,8 +26,12 @@
                             {% endif %}
                             {% endfor %}
                             <div class="text-center">
-                                <button class="btn btn-custom mr-2" type="submit">Add Product</button>
-                                <a class="btn btn-outline-secondary" href="{% url 'products' %}">Cancel</a>
+                                <button class="btn btn-custom mr-2" type="submit" aria-label="Add Product">
+                                    Add Product
+                                </button>
+                                <a class="btn btn-outline-secondary" href="{% url 'products' %}" 
+                                    aria-label="Cancel">Cancel
+                                </a>
                             </div>
                         </form>
                     </div>

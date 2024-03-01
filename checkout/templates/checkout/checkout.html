@@ -113,8 +113,8 @@
                         </div>
                         <div class="form-check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
-                            <label class="form-check-label" for="id-save-info">Save this delivery information to my
-                                profile</label>
+                            <label class="form-check-label" for="id-save-info">
+                                Save this delivery information to my profile</label>
                             <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
                                 checked>
                             {% else %}
@@ -137,10 +137,10 @@
                     </fieldset>
                     <!-- Buttons -->
                     <div class="submit-button text-right mt-5 mb-2">
-                        <a href="{% url 'view_bag' %}" class="btn btn-custom">
+                        <a href="{% url 'view_bag' %}" class="btn btn-custom" aria-label="Adjust Bag">
                             <span class="font-weight-bold">Adjust Bag</span>
                         </a>
-                        <button id="submit-button" class="btn btn-custom">
+                        <button id="submit-button" class="btn btn-custom" aria-label="Complete Order">
                             <span class="font-weight-bold">Complete Order</span>
                             <span>
                                 <i class="fa-solid fa-lock"></i>
@@ -158,11 +158,13 @@
         </div>
     </div>
     <div id="loading-overlay">
-        <h1 class="text-light">
-            <span>
-                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-            </span>
-        </h1>
+        <div class="spinner-container">
+            <h1 class="text-light">
+                <span>
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </span>
+            </h1>
+        </div>
     </div>
 </main>
 {% endblock %}

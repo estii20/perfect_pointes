@@ -83,6 +83,10 @@ select option[value=""] {
     transform: translate(-50%, -50%);
 }
 
+.spinner-container {
+    text-align: center; 
+}
+
 /* Checkout success table */
 .table-responsive {
     overflow-x: auto;
