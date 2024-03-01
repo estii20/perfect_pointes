@@ -176,8 +176,7 @@ class PointeShoeProductEditForm(forms.ModelForm):
             instance.save()
             brand = instance.pointe_shoe.brand
             brand.logo = self.cleaned_data['logo']
-            brand.save()
-
+            
             if hasattr(instance, 'pointe_shoe') and instance.pointe_shoe:
                 instance.pointe_shoe.feature = self.cleaned_data['feature']
                 instance.pointe_shoe.price = self.cleaned_data['price']
@@ -187,8 +186,9 @@ class PointeShoeProductEditForm(forms.ModelForm):
                 instance.pointe_shoe.status = self.cleaned_data['status']
                 instance.pointe_shoe.category = self.cleaned_data['category']
                 instance.pointe_shoe.arch = self.cleaned_data['arch']
-                instance.pointe_shoe.brand.description = \
-                    self.cleaned_data['brand_description']
+                instance.pointe_shoe.available_sizes.set(self.cleaned_data['available_sizes'])
+                instance.pointe_shoe.available_widths.set(self.cleaned_data['available_widths'])
+                instance.pointe_shoe.brand.description = self.cleaned_data['brand_description']
                 instance.pointe_shoe.save()
 
             brand.description = self.cleaned_data['brand_description']

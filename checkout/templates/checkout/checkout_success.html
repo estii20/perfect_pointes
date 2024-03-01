@@ -36,12 +36,12 @@
                             <td>{{ order.date }}</td>
                             <td>€ {{ order.grand_total | floatformat:2 }}</td>
                             <td>
-                                {{ order.street_address1 | title }},
-                                {% if order.street_address2 %} {{ order.street_address2 | title }} {% endif %},
-                                {{ order.town_or_city | title }},
+                                {{ order.street_address1 | title }}
+                                {% if order.street_address2 %} {{ order.street_address2 | title }} {% endif %}
+                                {{ order.town_or_city | title }}
                                 {% if order.county %} {{ order.county | title }} {% endif %},
                                 {% if order.postcode %} {{ order.postcode | upper }} {% endif %}
-                                {{ order.country | title }}
+                                {{ order.country | upper }}
                             </td>
                             <td>{{ order.phone_number }}</td>
                         </tr>
@@ -72,7 +72,7 @@
                         <tr>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.product_title | title }}</td>
-                            <td>{{ item.product_size }}{{ item.product_width | title }}</td>
+                            <td>{{ item.product_size }}{{ item.product_width | upper }}</td>
                             <td>{{ item.product_color | title }}</td>
                             <td>€{{ item.lineitem_total }}</td>
                             <td>
@@ -95,7 +95,9 @@
                     </a>
                     {% else %}
                     <a href="{% url 'products' %}">
-                        <button class="btn btn-large" aria-label="Continue Shopping"> Continue Shopping <i class="fa fa-shopping-cart"></i></button>
+                        <button class="btn btn-large" aria-label="Continue Shopping"> Continue Shopping 
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
                     </a>
                     {% endif %}
                 </div>

@@ -109,9 +109,6 @@
                                 {% if user.is_authenticated %}
                                 <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                                 <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
-                                {% else %}
-                                <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
-                                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
                                 {% endif %}
                             </div>
                         </li>
@@ -147,12 +144,14 @@
                                 {% if search_term %}
                                 <input class="form-control me-2 rounded" 
                                     style="background-color: #fdf2d8;" type="search" name="q"
-                                    placeholder="Find your pointes" aria-label="Search" value="{{ search_term }}">
+                                    placeholder="Find your pointes" aria-label="Search" 
+                                    value="{{ search_term }}">
                                 <button class="btn btn-custom" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                                 {% else %}
-                                <input class="form-control rounded" type="form-control" style="background-color: #fdf2d8;" name="q"
+                                <input class="form-control rounded" type="form-control" 
+                                    style="background-color: #fdf2d8;" name="q"
                                     placeholder="Find your pointes">
                                 <button class="btn btn-custom" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -161,7 +160,8 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <a class="{% if grand_total %} {% else %} {% endif %} nav-link" href="{% url 'view_bag' %}">
+                            <a class="{% if grand_total %} {% else %} {% endif %} nav-link" 
+                                href="{% url 'view_bag' %}">
                                 <i class="fa-solid fa-cart-shopping me-1"></i>
                                 <span class="my-0">
                                     {% if grand_total %}
@@ -175,21 +175,28 @@
                         <li class="nav-item dropdown">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Product Management </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link dropdown-toggle text-dark" 
+                                href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false"> Product Management </a>
+                            <ul class="dropdown-menu" 
+                            aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                                    <a href="{% url 'add_product' %}" 
+                                        class="dropdown-item">Add Product</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-dark" href="{% url 'account_logout' %}">Logout</a>
+                                    <a class="dropdown-item text-dark" 
+                                        href="{% url 'account_logout' %}">Logout</a>
                                 </li>
                                 {% else %}
                                 <li>
-                                    <a class="dropdown-item text-dark" href="{% url 'account_signup' %}">Register</a>
+                                    <a class="dropdown-item text-dark" 
+                                        href="{% url 'account_signup' %}">Register</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-dark" href="{% url 'account_login' %}">Login</a>
+                                    <a class="dropdown-item text-dark" 
+                                        href="{% url 'account_login' %}">Login</a>
                                 </li>
                             </ul>
                             {% endif %}
@@ -233,7 +240,8 @@
                 <div class="col-12 text-center">
                     <h2 class="footer-heading my-2">Contact</h2>
                     <p class="footer-subtitle"><i class="fa-solid fa-envelope"></i> 
-                        <a href="mailto:perfect-pointes@gmail.com" class="social-link">perfect-pointes@gmail.com</a></p>
+                        <a href="mailto:perfect-pointes@gmail.com" 
+                            class="social-link">perfect-pointes@gmail.com</a></p>
                     <p class="footer-subtitle"><i class="fa-brands fa-whatsapp"></i> 
                         <a href="tel:+44586878878" class="social-link">+44 586 878 878</a></p>
                 </div>
@@ -243,7 +251,8 @@
                 <div class="col-12 col-md-6 my-2">
                     <h3>Social</h3>
                     <p>Keep up to date with all our latest offers</p>
-                    <a href="https://www.facebook.com/profile.php?id=61556815891966" target="_blank" class="social-link">
+                    <a href="https://www.facebook.com/profile.php?id=61556815891966" 
+                        target="_blank" class="social-link">
                         <i class="fab fa-facebook-square"></i> Follow us on Facebook!</a>
                     <!-- About Us -->
                     <div class="row mt-3">
@@ -251,8 +260,11 @@
                             <h2>About Us</h2>
                             <p>Perfect Pointes is your premier destination for exquisite pointe shoes.  
                                 Founded by passionate dancers, Perfect Pointes is dedicated to providing the highest quality 
-                                products to elevate your dance experience. We hope you find your perfect shoe. 
-                                Don't worry we provide a free return service, full refund on returns within 90 days of purchase.</p>
+                                products to elevate your dance experience. We hope you find your perfect shoe.
+                            </p>
+                            <p>Don't worry we provide a free return service, 
+                                full refund on returns within 90 days of purchase.
+                            </p>
                         </div>
                     </div>
                 </div>
