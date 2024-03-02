@@ -6,7 +6,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
 from bag.contexts import bag_contents
 from products.models import (
     PointeShoeProduct, PointeShoeBrand, Category
@@ -40,7 +39,6 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-@login_required  
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -66,8 +64,8 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
+            # Check if user is authenticated and save profile data
             if request.user.is_authenticated and request.POST.get('save-info') == 'on':
-
                 user = request.user
                 profile_data = {
                     'default_phone_number': form_data['phone_number'],
@@ -78,11 +76,12 @@ def checkout(request):
                     'default_street_address2': form_data['street_address2'],
                     'default_county': form_data['county'],
                 }
-
                 profile_data['user_id'] = user.id
                 profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
+
             order.save()
 
+            # Create order line items
             for product_id, item_data in bag.items():
                 product = get_object_or_404(PointeShoeProduct, pk=product_id)
                 if isinstance(item_data, int):
@@ -101,6 +100,7 @@ def checkout(request):
                         )
                         order_line_item.save()
 
+            # Set session variable for saving info
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
@@ -120,21 +120,31 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        # If user is authenticated, pre-populate form with profile data
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
         if not stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
-        available_brands = (
-            PointeShoeBrand.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
-        available_categories = (
-            Category.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
+        available_brands = PointeShoeBrand.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
+        available_categories = Category.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
 
         context = {
             'order_form': order_form,
