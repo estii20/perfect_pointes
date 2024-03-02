@@ -64,20 +64,22 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
+            if request.user.is_authenticated and request.POST.get('save-info') == 'on':
+                user = request.user
+                profile_data = {
+                    'default_phone_number': form_data['phone_number'],
+                    'default_country': form_data['country'],
+                    'default_postcode': form_data['postcode'],
+                    'default_town_or_city': form_data['town_or_city'],
+                    'default_street_address1': form_data['street_address1'],
+                    'default_street_address2': form_data['street_address2'],
+                    'default_county': form_data['county'],
+                }
+                profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
+            else:
+                pass
+
             order.save()
-
-            user = request.user
-            profile_data = {
-                'default_phone_number': form_data['phone_number'],
-                'default_country': form_data['country'],
-                'default_postcode': form_data['postcode'],
-                'default_town_or_city': form_data['town_or_city'],
-                'default_street_address1': form_data['street_address1'],
-                'default_street_address2': form_data['street_address2'],
-                'default_county': form_data['county'],
-            }
-
-            profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
 
             for product_id, item_data in bag.items():
                 product = get_object_or_404(PointeShoeProduct, pk=product_id)
@@ -100,7 +102,7 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
@@ -116,24 +118,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        if request.user.is_authenticated:
-            try:
-                profile = UserProfile.objects.get(user=request.user)
-                order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
-                })
-            except UserProfile.DoesNotExist:
-                order_form = OrderForm()
-        else:
-            order_form = OrderForm()
+        order_form = OrderForm()
 
         if not stripe_public_key:
             messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
