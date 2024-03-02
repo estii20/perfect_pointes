@@ -43,8 +43,8 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    bag = request.session.get('bag', {})
     if request.method == 'POST':
-        bag = request.session.get('bag', {})
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -56,13 +56,30 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
-
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+            
+            if 'save-info' in request.POST:
+                profile_data = {
+                    'default_phone_number': form_data['phone_number'],
+                    'default_country': form_data['country'],
+                    'default_postcode': form_data['postcode'],
+                    'default_town_or_city': form_data['town_or_city'],
+                    'default_street_address1': form_data['street_address1'],
+                    'default_street_address2': form_data['street_address2'],
+                    'default_county': form_data['county'],
+                }
+
+                profile, created = UserProfile.objects.update_or_create(
+                    user=request.user,
+                    defaults=profile_data
+                )
+            
+            order.user_profile = request.user.userprofile
             order.save()
 
             for product_id, item_data in bag.items():
@@ -83,16 +100,13 @@ def checkout(request):
                         )
                         order_line_item.save()
 
+            request.session['bag'] = {}
+
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(
-                request,
-                'There was an error with your form. '
-                'Please double check your information.'
-            )
+            messages.error(request, 'There was an error with your form. Please double check your information.')
     else:
-        bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
             return redirect(reverse('view_bag'))
@@ -106,40 +120,27 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        if request.user.is_authenticated:
-            try:
-                profile = UserProfile.objects.get(user=request.user)
-                order_form = OrderForm(initial={
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
-                })
-            except UserProfile.DoesNotExist:
-                order_form = OrderForm()
-        else:
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            order_form = OrderForm(initial={
+                'phone_number': profile.default_phone_number,
+                'country': profile.default_country,
+                'postcode': profile.default_postcode,
+                'town_or_city': profile.default_town_or_city,
+                'street_address1': profile.default_street_address1,
+                'street_address2': profile.default_street_address2,
+                'county': profile.default_county,
+            })
+        except UserProfile.DoesNotExist:
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(
-                request,
-                'Stripe public key is missing. '
-                'Did you forget to set it in your environment?'
-            )
+            messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
-        available_brands = (
-            PointeShoeBrand.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
-        available_categories = (
-            Category.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
+        available_brands = PointeShoeBrand.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True).distinct()
+        available_categories = Category.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True).distinct()
 
         context = {
             'order_form': order_form,
