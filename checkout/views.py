@@ -75,7 +75,6 @@ def checkout(request):
                 'default_street_address1': form_data['street_address1'],
                 'default_street_address2': form_data['street_address2'],
                 'default_county': form_data['county'],
-                'user_id': user.id  
             }
 
             profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
