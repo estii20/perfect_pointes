@@ -84,7 +84,9 @@ select option[value=""] {
 }
 
 .spinner-container {
+    position: relative;
     text-align: center; 
+    height: 100%;
 }
 
 /* Checkout success table */
