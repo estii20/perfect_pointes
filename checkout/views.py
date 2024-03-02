@@ -63,6 +63,20 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+
+            if request.user.is_authenticated and request.POST.get('save-info') == 'on':
+                profile, created = UserProfile.objects.get_or_create(user=request.user)
+                profile.full_name = form_data['full_name']
+                profile.email = form_data['email']
+                profile.phone_number = form_data['phone_number']
+                profile.country = form_data['country']
+                profile.postcode = form_data['postcode']
+                profile.town_or_city = form_data['town_or_city']
+                profile.street_address1 = form_data['street_address1']
+                profile.street_address2 = form_data['street_address2']
+                profile.county = form_data['county']
+                profile.save()
+
             order.save()
 
             for product_id, item_data in bag.items():
