@@ -39,7 +39,6 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-@require_POST
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -54,8 +53,8 @@ def checkout(request):
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
-            'street_address2': request.POST.get('street_address2', ''),
-            'county': request.POST.get('county', ''),
+            'street_address2': request.POST['street_address2'],
+            'county': request.POST['county'],
         }
 
         order_form = OrderForm(form_data)
@@ -65,55 +64,44 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
 
-            if request.user.is_authenticated and request.POST.get('save-info') == 'on':
-                user = request.user
-                profile_data = {
-                    'default_phone_number': form_data['phone_number'],
-                    'default_country': form_data['country'],
-                    'default_postcode': form_data['postcode'],
-                    'default_town_or_city': form_data['town_or_city'],
-                    'default_street_address1': form_data['street_address1'],
-                    'default_street_address2': form_data['street_address2'],
-                    'default_county': form_data['county'],
-                }
+            order.save()
 
-                profile_data['user_id'] = user.id
-                profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
+            user = request.user
+            profile_data = {
+                'default_phone_number': form_data['phone_number'],
+                'default_country': form_data['country'],
+                'default_postcode': form_data['postcode'],
+                'default_town_or_city': form_data['town_or_city'],
+                'default_street_address1': form_data['street_address1'],
+                'default_street_address2': form_data['street_address2'],
+                'default_county': form_data['county'],
+                'user_id': user.id  
+            }
 
-                order.save()
+            profile, created = UserProfile.objects.get_or_create(user=user, defaults=profile_data)
 
-                for product_id, item_data in bag.items():
-                    product = get_object_or_404(PointeShoeProduct, pk=product_id)
-                    if isinstance(item_data, int):
+            for product_id, item_data in bag.items():
+                product = get_object_or_404(PointeShoeProduct, pk=product_id)
+                if isinstance(item_data, int):
+                    order_line_item = OrderLineItem(
+                        order=order,
+                        product=product,
+                        quantity=item_data,
+                    )
+                    order_line_item.save()
+                else:
+                    for size_width, quantity in item_data['items'].items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            quantity=item_data,
+                            quantity=quantity,
                         )
                         order_line_item.save()
-                    else:
-                        for size_width, quantity in item_data['items'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                            )
-                            order_line_item.save()
 
-                request.session['save_info'] = 'save-info' in request.POST
-                return redirect(reverse('checkout_success', args=[order.order_number]))
-            else:
-                messages.error(
-                    request,
-                    'There was an error with your form. '
-                    'Please double check your information.'
-                )
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(
-                request,
-                'There was an error with your form. '
-                'Please double check your information.'
-            )
+            messages.error(request, 'There was an error with your form. Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
@@ -149,22 +137,12 @@ def checkout(request):
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(
-                request,
-                'Stripe public key is missing. '
-                'Did you forget to set it in your environment?'
-            )
+            messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
-        available_brands = (
-            PointeShoeBrand.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
-        available_categories = (
-            Category.objects
-            .filter(pointeshoe__pointeshoeproduct__availability=True)
-            .distinct()
-        )
+        available_brands = PointeShoeBrand.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True).distinct()
+        available_categories = Category.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True).distinct()
 
         context = {
             'order_form': order_form,
