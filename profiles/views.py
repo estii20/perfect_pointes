@@ -25,7 +25,7 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    response = render(request, 'profiles/profile.html', {
+    context = {
         'form': form,
         'orders': profile.orders.all(),
         'available_brands': PointeShoeBrand.objects.filter(
@@ -35,9 +35,16 @@ def profile(request):
             pointeshoe__pointeshoeproduct__availability=True
         ).distinct(),
         'on_profile_page': True,
-    })
-    response.set_cookie('csrftoken', value=request.COOKIES.get('csrftoken', ''), secure=True)
-    return response
+        'default_phone_number': profile.default_phone_number,
+        'default_country': profile.default_country,
+        'default_postcode': profile.default_postcode,
+        'default_town_or_city': profile.default_town_or_city,
+        'default_street_address1': profile.default_street_address1,
+        'default_street_address2': profile.default_street_address2,
+        'default_county': profile.default_county,
+    }
+
+    return render(request, 'profiles/profile.html', context)
 
 
 def order_history(request, order_number):
