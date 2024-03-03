@@ -111,3 +111,5 @@ __Marketing Strategies__
 - Low-budget as it is a small-scale business, budget to be reassessed if becomes successful. The site will definitely work using email and social media.
 
 [Link to README.md](README.md)
+
+[Link Testing README.md](TESTING_README.md)

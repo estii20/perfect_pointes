@@ -298,14 +298,16 @@ input::placeholder {
 
 /* Product Detail */
 
-.btn-custom.increment-qty {
-    padding: 10px 20px;
-    margin: 0 10px;
+.qty_input {
+    max-width: 100px;
+    height: 40px;
 }
 
+.btn-custom.increment-qty,
 .btn-custom.decrement-qty {
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 6px 12px; 
+    min-width: auto; 
+    height: 40px;
 }
 
 /* Size and Width Dropdown */

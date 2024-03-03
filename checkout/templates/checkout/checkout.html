@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col text-center">
                 <hr>
-                <h2 class="gold-text gold-text-padding logo-font mb-4">Checkout</h2>
+                <h2 class="gold-text gold-text-padding logo-font mb-4"><strong>Checkout</strong></h2>
                 <hr>
             </div>
         </div>
@@ -102,7 +102,7 @@
                     <!-- Delivery -->
                     <fieldset class="rounded px-3 mb-5 custom-fieldset">
                         <legend class="fieldset-label small text-black px-2 w-auto"></legend>
-                        <div class="form-field-with-border">
+                        <div class="form-field-with-border" style="min-height: 3rem; line-height: 1.5;">
                             <strong>Phone Number:</strong><br>{{ order_form.phone_number | as_crispy_field }}
                             <strong>Address 1:</strong><br>{{ order_form.street_address1 | as_crispy_field }}
                             <strong>Address 2:</strong><br>{{ order_form.street_address2 | as_crispy_field }}                            

@@ -88,8 +88,6 @@ Homepage
 
 ![Perfect Pointes](documentation/testing/homepage_accessibility.png "Lighthouse")
 
-![Perfect Pointes](documentation/testing/seo_homepage.png "Lighthouse")
-
 Products
 
 ![Perfect Pointes](documentation/testing/lighthouse_products.png "Lighthouse")
@@ -105,6 +103,10 @@ Bag
 Product Management
 
 ![Perfect Pointes](documentation/testing/product_management_lighthouse.png "Lighthouse")
+
+Profile
+
+![Perfect Pointes](documentation/testing/lighthouse_profile.png "Lighthouse")
 
 __Stripe Testing__
 
@@ -307,9 +309,11 @@ Product Page Back to top button not working. I tried to research and update this
 
 Website Logo, Favicon and landing page image were not available throughout the website using the media URL, despite adding the context processor 'django.template.context_processors.media', into the settings.py file.  I added an image folder to my static folder to contain these images instead and added the tag {% static %} . Thanks to my mentor Brian this was easily rectified.
 
-404 Favicon Errors: The application seems to be working ok and showing the favicon but HTML IDE terminal is reporting the error.
-
 Loading products from SQLite to Heroku Postgres: As my products were added through the django admin site when deploying the website to Heroku my product database was not there. Thanks to the slack channel and the guide on Transferring SQLite to Heroku Postgres I was able to solve this problem. 
 [Code Institute Slack Channel](https://code-institute-room.slack.com/files/UPDFEU62U/F02SZ5T16HG/transferring_database_data_from_sqlite_to_heroku_postgres.pdf) 
 
+Profile Page working in production but not in the deployed project. I had to save the default profile fields exactly as the elephant SQL table to make the data save correctly.
+
 [Link to README.md](README.md)
+
+[Link to Marketing and SEO README.md](SEO_MKTG_README.md)

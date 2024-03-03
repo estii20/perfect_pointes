@@ -43,20 +43,15 @@
                                 {% csrf_token %}
                                 <div class="form-group align-items-center justify-content-center my-2 flex-nowrap">
                                     <label for="quantity" class="mr-3"></label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend justify-content-center my-2">
-                                            <button class="btn-custom decrement-qty btn-xs" 
-                                                data-item_id="{{ product.id }}">
+                                    <div class="input-group justify-content-center">
+                                        <div class="input-group-prepend">
+                                            <button class="btn-custom decrement-qty btn-xs" data-item_id="{{ product.id }}">
                                                 <i class="fas fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input class="form-control qty_input text-center justify-content-center my-2" 
-                                            type="number" name="quantity" value="1" min="1" max="99"
-                                            style="max-width: 170px;" 
-                                            data-item_id="{{ product.id }}">
-                                        <div class="input-group-append justify-content-center my-2">
-                                            <button class="btn-custom increment-qty btn-xs" 
-                                                data-item_id="{{ product.id }}">
+                                        <input class="form-control qty_input text-center" type="number" name="quantity" value="1" min="1" max="99">
+                                        <div class="input-group-append">
+                                            <button class="btn-custom increment-qty btn-xs" data-item_id="{{ product.id }}">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
@@ -74,8 +69,7 @@
                                 <!-- Widths -->
                                 <div class="form-group">
                                     <label for="widthsDropdown"><strong>Widths:</strong></label>
-                                    <select class="form-control custom-dropdown" id="widthsDropdown" 
-                                        name="width_id">
+                                    <select class="form-control custom-dropdown" id="widthsDropdown" name="width_id">
                                         {% for width in product.pointe_shoe.available_widths.all %}
                                         <option value="{{ width.id }}">{{ width.width | upper }}</option>
                                         {% endfor %}
@@ -83,13 +77,11 @@
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 <div class="row justify-content-between mx-auto" style="max-width: 400px;">
-                                    <button type="submit" class="btn btn-gold mb-2 mr-2" 
-                                        value="Add to Bag" aria-label="Add to Basket">
+                                    <button type="submit" class="btn btn-gold mb-2 mr-2" value="Add to Bag" aria-label="Add to Basket">
                                         Add to basket 
                                         <i class="fa-solid fa-basket-shopping"></i>
                                     </button>
-                                    <a href="{% url 'products' %}" class="btn btn-custom mb-2" 
-                                        aria-label="Back to Products">Back to Products</a>
+                                    <a href="{% url 'products' %}" class="btn btn-custom mb-2" aria-label="Back to Products">Back to Products</a>
                                 </div>
                             </form>
                         </div>

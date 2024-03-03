@@ -327,6 +327,10 @@ Login/Sign-up/Sign out
 Bootstrap card layout changes responsively based on the screen size.
 Image of each pointe shoe.
 
+Filter by brand, category, price and colour
+
+![Perfect Pointes](documentation/images/filter.png "Products Page")
+
 Image: pointe shoe image with shoe suitability by arch (Low, Medium, High). 
 
 ![Perfect Pointes](documentation/images/arch_type.png "Products Page")
@@ -354,6 +358,10 @@ Dropdowns: variables such as width and size with their available options.
 ![Perfect Pointes](documentation/images/quantity_size_width.png "Product Detail Page") 
 
 ![Perfect Pointes](documentation/images/product_detail.png "Product Detail Page") 
+
+Profile Page
+
+![Perfect Pointes](documentation/images/profile.png "Product Detail Page") 
 
 Brand: information and logo (if added by the admin)
 
@@ -465,7 +473,7 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 - [Django allauth](https://django-allauth.readthedocs.io/en/latest/index.html) used for account registration and authentication
 - [Pillow](https://pillow.readthedocs.io/en/stable/index.html) Python Imaging Library used for image handling
 - [jquery library](https://code.jquery.com/jquery-3.4.1.min.js) for various pieces of functionality including adding and removing items from the shopping cart and handling the increment and decrement of products.
-- [Django crispy forms #](https://django-crispy-forms.readthedocs.io/en/latest/) used to simplify form rendering.
+- [Django crispy forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to simplify form rendering.
 - [Stripe](https://js.stripe.com/v3/ used for secure payments).
 - [Stripe install library](https://pypi.org/project/stripe/) used for secure payments.
 - [Django Countries](https://pypi.org/project/django-countries/) used on checkout page to pass valid country code to Stripe.

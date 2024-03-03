@@ -63,23 +63,24 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             
-            if 'save-info' in request.POST:
-                profile_data = {
-                    'default_phone_number': form_data['phone_number'],
-                    'default_country': form_data['country'],
-                    'default_postcode': form_data['postcode'],
-                    'default_town_or_city': form_data['town_or_city'],
-                    'default_street_address1': form_data['street_address1'],
-                    'default_street_address2': form_data['street_address2'],
-                    'default_county': form_data['county'],
-                }
+            if request.user.is_authenticated:
+                if 'save-info' in request.POST:
+                    profile_data = {
+                        'default_phone_number': form_data['phone_number'],
+                        'default_country': form_data['country'],
+                        'default_postcode': form_data['postcode'],
+                        'default_town_or_city': form_data['town_or_city'],
+                        'default_street_address1': form_data['street_address1'],
+                        'default_street_address2': form_data['street_address2'],
+                        'default_county': form_data['county'],
+                    }
 
-                profile, created = UserProfile.objects.update_or_create(
-                    user=request.user,
-                    defaults=profile_data
-                )
-            
-            order.user_profile = request.user.userprofile
+                    profile, created = UserProfile.objects.update_or_create(
+                        user=request.user,
+                        defaults=profile_data
+                    )
+                    order.user_profile = profile
+
             order.save()
 
             for product_id, item_data in bag.items():
@@ -105,7 +106,8 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(
+                request, 'There was an error with your form. Please double check your information.')
     else:
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
@@ -120,22 +122,26 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        try:
-            profile = UserProfile.objects.get(user=request.user)
-            order_form = OrderForm(initial={
-                'phone_number': profile.default_phone_number,
-                'country': profile.default_country,
-                'postcode': profile.default_postcode,
-                'town_or_city': profile.default_town_or_city,
-                'street_address1': profile.default_street_address1,
-                'street_address2': profile.default_street_address2,
-                'county': profile.default_county,
-            })
-        except UserProfile.DoesNotExist:
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+            messages.warning(
+                request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
         available_brands = PointeShoeBrand.objects.filter(
             pointeshoe__pointeshoeproduct__availability=True).distinct()
