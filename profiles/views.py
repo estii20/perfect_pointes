@@ -42,6 +42,7 @@ def profile(request):
         'default_street_address1': profile.default_street_address1,
         'default_street_address2': profile.default_street_address2,
         'default_county': profile.default_county,
+        'profile': profile, 
     }
 
     return render(request, 'profiles/profile.html', context)
