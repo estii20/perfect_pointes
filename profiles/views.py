@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,25 +24,20 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
 
-    available_brands = PointeShoeBrand.objects.filter(
-        pointeshoe__pointeshoeproduct__availability=True
-    ).distinct()
-    available_categories = Category.objects.filter(
-        pointeshoe__pointeshoeproduct__availability=True
-    ).distinct()
-
-    template = 'profiles/profile.html'
-    context = {
+    response = render(request, 'profiles/profile.html', {
         'form': form,
-        'orders': orders,
-        'available_brands': available_brands,
-        'available_categories': available_categories,
-        'on_profile_page': True
-    }
-
-    return render(request, template, context)
+        'orders': profile.orders.all(),
+        'available_brands': PointeShoeBrand.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True
+        ).distinct(),
+        'available_categories': Category.objects.filter(
+            pointeshoe__pointeshoeproduct__availability=True
+        ).distinct(),
+        'on_profile_page': True,
+    })
+    response.set_cookie('csrftoken', value=request.COOKIES.get('csrftoken', ''), secure=True)
+    return response
 
 
 def order_history(request, order_number):
@@ -52,10 +48,7 @@ def order_history(request, order_number):
         'A confirmation email was sent on the order date.'
     ))
 
-    template = 'checkout/checkout_success.html'
-    context = {
+    return render(request, 'checkout/checkout_success.html', {
         'order': order,
         'from_profile': True,
-    }
-
-    return render(request, template, context)
+    })

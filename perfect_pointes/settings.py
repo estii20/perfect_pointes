@@ -38,7 +38,7 @@ else:
 ALLOWED_HOSTS = [
     'perfect-pointes-d5136a797ac1.herokuapp.com',
     '8000-estii20-perfectpointes-svva4k3t9md.ws-eu108.gitpod.io',
-    'localhost'
+    'localhost',
 ]
 
 
