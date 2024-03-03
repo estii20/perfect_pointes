@@ -16,7 +16,7 @@
                             <h5 class="gold-text text-center text-lg-start" style="font-size: 2rem;">Delivery Information</h5>
                         </div>
                         <div class="card-body">
-                        <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                             {% csrf_token %}
                             <div class="form-group row">
                                 <div class="col-sm-8">
