@@ -105,7 +105,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="accountDropdown">
                                 {% if user.is_authenticated %}
-                                    <span class="dropdown-item">Welcome, {{ user.username }}</span>
+                                    <span class="dropdown-item">Welcome, {{ user.username | title }}</span>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                                     <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
                                 {% else %}
@@ -264,78 +264,95 @@
                 <div class="col-12 col-md-6 my-2">
                     <h2>Subscribe!</h2>
                     <p>Get exclusive offers and discount codes by subscribing to our monthly newsletter</p>
-                    <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=a9f7abe1c6d99284ca1eea9aa&amp;id=c30dbdf2ce&amp;f_id=006ef6e6f0" 
-                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" 
-                        class="validate" target="_blank">
+                    <form action="https://herokuapp.us21.list-manage.com/subscribe/post?u=a9f7abe1c6d99284ca1eea9aa&amp;id=c30dbdf2ce&amp;f_id=006ef6e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
                         <div class="form-group">
                             <label for="mce-EMAIL">Email Address:</label>
-                            <input type="email" name="EMAIL" class="form-control required email" id="mce-EMAIL" required="" value="">
+                            <input type="email" 
+                                name="EMAIL" class="form-control required email" 
+                                id="mce-EMAIL" required="" value="">
                         </div>
                         <div class="form-group">
                             <button type="submit" name="subscribe" id="mc-embedded-subscribe" 
-                            class="btn btn-primary btn-subscribe text-dark text-uppercase">Subscribe</button>
+                                class="btn btn-primary btn-subscribe text-dark text-uppercase">Subscribe</button>
                         </div>
                     </form>
+                    <div id="success-message" style="display: none;" class="alert alert-success" role="alert">
+                        Thank you for subscribing!
+                    </div>
+                </div>
+                <!-- Useful Links -->
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <h2>Useful Links</h2>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li><a href="https://grishkoshop.com/Page/en-US/26/pointessizechart" 
+                            target="_blank" class="social-link">Pointe Shoe Size Chart</a>
+                        </li>
+                        <li><a href="https://youtu.be/NGfaWRMsS1o" 
+                            target="_blank" class="social-link">YouTube for Grishko 2007 shoe</a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/wr1UPWesLFU" 
+                            target="_blank" class="social-link">
+                            Fitting professional Bloch pointe shoes New York Ballet Company
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                <!-- GDPR Compliance Link -->
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-white">For GDPR compliance, please see our 
+                            <a href="https://www.termsfeed.com/live/af7beee8-c4b2-4394-bf87-ace5e9e52994" 
+                            target="_blank" 
+                            class="social-link underline">privacy policy</a>.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <!-- Useful Links -->
-            <div class="row mt-3">
-                <div class="col-12 text-center">
-                    <h2>Useful Links</h2>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li><a href="https://grishkoshop.com/Page/en-US/26/pointessizechart" 
-                        target="_blank" class="social-link">Pointe Shoe Size Chart</a>
-                    </li>
-                    <li><a href="https://youtu.be/NGfaWRMsS1o" 
-                        target="_blank" class="social-link">YouTube for Grishko 2007 shoe</a>
-                    </li>
-                    <li>
-                        <a href="https://youtu.be/wr1UPWesLFU" 
-                        target="_blank" class="social-link">
-                        Fitting professional Bloch pointe shoes New York Ballet Company
-                        </a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <!-- GDPR Compliance Link -->
-            <div class="row mt-3">
-                <div class="col-12 text-center">
-                    <p class="text-white">For GDPR compliance, please see our 
-                        <a href="https://www.termsfeed.com/live/af7beee8-c4b2-4394-bf87-ace5e9e52994" 
-                        target="_blank" 
-                        class="social-link underline">privacy policy</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- /.footer -->
+        </footer>
+        <!-- /.footer -->
 
-    {% block postloadjs %}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.toast').toast('show');
-        });
-    </script>
+        {% block postloadjs %}
+        <script>
+            $(document).ready(function () {
+                $('.toast').toast('show');
+            });
 
-    <!-- mailchimp scripts -->  
-    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-    <script type="text/javascript">
-    (function($) {
-        window.fnames = new Array();
-        window.ftypes = new Array();
-        fnames[0]='EMAIL';ftypes[0]='email';
-        fnames[1]='FNAME';ftypes[1]='text';
-        fnames[2]='LNAME';ftypes[2]='text';
-        fnames[3]='ADDRESS';ftypes[3]='address';
-        fnames[4]='PHONE';ftypes[4]='phone';
-        fnames[5]='BIRTHDAY';ftypes[5]='birthday';
-    }(jQuery));
-    var $mcj = jQuery.noConflict(true);
-    </script>
-    {% endblock %}
+            document.addEventListener("DOMContentLoaded", function() {
+                function displaySuccessMessage() {
+                    let successMessage = document.getElementById("success-message");
+                    successMessage.style.display = "block";
+                    setTimeout(function() {
+                        successMessage.style.display = "none";
+                    }, 3000);
+                }
 
+                // Event listener for newsletter submission
+                document.getElementById("mc-embedded-subscribe-form").addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    displaySuccessMessage();
+                });
+            });
+        </script>
+
+        <!-- mailchimp scripts -->  
+        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                window.fnames = new Array();
+                window.ftypes = new Array();
+                fnames[0]='EMAIL';ftypes[0]='email';
+                fnames[1]='FNAME';ftypes[1]='text';
+                fnames[2]='LNAME';ftypes[2]='text';
+                fnames[3]='ADDRESS';ftypes[3]='address';
+                fnames[4]='PHONE';ftypes[4]='phone';
+                fnames[5]='BIRTHDAY';ftypes[5]='birthday';
+            }(jQuery));
+            var $mcj = jQuery.noConflict(true);
+        </script>
+    {   % endblock %}
 
 </body>
 
