@@ -49,7 +49,7 @@ class PointeShoeProductForm(forms.ModelForm):
 
     class Meta:
         model = PointeShoeProduct
-        fields = ['title', 'availability', 'sku', 'image', 'image_url',
+        fields = ['title', 'sku', 'image', 'image_url',
                   'price', 'category', 'brand', 'status', 'feature']
         widgets = {
             'sku': forms.HiddenInput(),
@@ -139,7 +139,7 @@ class PointeShoeProductEditForm(forms.ModelForm):
 
     class Meta:
         model = PointeShoeProduct
-        fields = ['title', 'availability', 'image', 'image_url',
+        fields = ['title', 'image', 'image_url',
                   'price', 'category', 'brand', 'status', 'feature']
         widgets = {
             'sku': forms.HiddenInput(),
