@@ -29,11 +29,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key_here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if DEVELOPMENT:
-    # Development settings
-    DEBUG = True
-else:
-    DEBUG = False
+# if DEVELOPMENT:
+#     # Development settings
+#     DEBUG = True
+# else:
+#     DEBUG = False
+
+DEVELOPMENT = True
+
+DEBUG = True
+
+print('DEBUG: ', DEBUG)
 
 ALLOWED_HOSTS = [
     'perfect-pointes-d5136a797ac1.herokuapp.com',
@@ -134,6 +140,7 @@ WSGI_APPLICATION = 'perfect_pointes.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if 'DATABASE_URL' in os.environ:
+    print('IN POSTGRES')
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
