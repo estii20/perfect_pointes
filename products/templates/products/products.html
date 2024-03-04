@@ -30,7 +30,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="brandDropdown">
                             {% for brand in available_brands %}
-                            <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc{{ brand.name }}">
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=brand&direction=asc&brand={{ brand.name }}">
                                 {{ brand.name | title }}</a>
                             {% endfor %}
                         </div>
