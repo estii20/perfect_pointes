@@ -14,6 +14,7 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    orders = Order.objects.filter(user_profile=profile)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -27,7 +28,7 @@ def profile(request):
 
     context = {
         'form': form,
-        'orders': profile.orders.all(),
+        'orders': orders, 
         'available_brands': PointeShoeBrand.objects.filter(
             pointeshoe__pointeshoeproduct__availability=True
         ).distinct(),
