@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key')
 # else:
 #     DEBUG = False
 
-DEBUG = False
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
     'perfect-pointes-d5136a797ac1.herokuapp.com',
