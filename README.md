@@ -6,10 +6,12 @@ The site is implemented as a retail store where users can view, search and filte
 General users can purchase pointe shoe products without registering with the site, but are given the chance to save their delivery details and therefore their orders at the checkout page if they so wish.
 Admin users can manage the pointe shoe products. They can update pricing, links to products, pointe shoes on offer, images and product information. They can select if a pointe shoe is in-stock, so that only available shoes are listed on the site.
 Other considerations for an e-commerce B2C site.
-Web Marketing strategies:
-Organic Social - through facebook
-Email - through a newsletter subscription managed via Mailchimp
+    - Web Marketing strategies:
+    - Organic Social - through facebook
+    - Email - through a newsletter subscription managed via Mailchimp
+
 The structure and purpose of the Perfect Pointes project is based on the Code Institute Boutique Ado walkthrough project as part of Portfolio 5 of The Code Institute course.
+
 The functionality of the purchasing process is featured below.
 
 ## Portfolio Project 5
@@ -240,29 +242,32 @@ __Notes on the ER diagram:__
 - US18 : View an order confirmation after checkout and repurchase product
  - As a site user I can view an order confirmation after checkout so that I can see what was ordered and total costs. I can repurchase the product by clicking on the button which takes the user to the relevant product detail page.
 
+- US19 : Receive an email confirmation after checking out.
+ - As a site user I can receive an email confirmation after checking out so that I have a record of my purchases.
+
 ### Admin and Store Management
 
-- US19 : Add a pointe shoe
+- US20 : Add a pointe shoe
  - As a site admin I can add a pointe shoe so that I can sell new products.
 
-- US20 : Edit / update a pointe shoe
+- US21 : Edit / update a pointe shoe
  - As a site admin I can edit / update details for a pointe shoe so that I can change or amend the title, image, brand, colour, size, width, availability, status and features.
 
-- US21 : Delete a pointe shoe
+- US22 : Delete a pointe shoe
  - As a site admin I can delete a product so that I can remove the item for sale.
 
 ### SEO and Web Marketing
 
-- US22 : Subscribe to newsletter
+- US23 : Subscribe to newsletter
  - As a site user I can subscribe to the company newsletter so that I can keep up with company news and offers.
 
-- US23 : View company facebook page
+- US24 : View company facebook page
  - As a site user I can find the company on facebook so that I can keep up to date with company posts.
 
-- US24 : SEO
+- US25 : SEO
  - As a site user I can find the site through web searches so that I can easily access the site.
 
-- US25 : View privacy policy
+- US26 : View privacy policy
  - As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
 
 __Features__
@@ -648,6 +653,8 @@ Site-wide alert code - Code Institute’s Whisky Drop walkthrough project.
 [How to make gold text](https://codingartistweb.com/2020/01/gold-text-effect-css-text-effect/) 
 
 [How to clean data to update product](https://copyprogramming.com/howto/python-django-update-model-from-view-code-example?utm_content=cmp-true) 
+
+[W3C Schools - How to js scroll to top](https://www.w3schools.com/howto/howto_js_scroll_to_top.asp)
 
 
 The website page layout look and feel were influenced by the Grishko, Capezio, Freed of London and Bloch websites.

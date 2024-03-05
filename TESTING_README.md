@@ -263,37 +263,41 @@ Navigation Testing
     -   Passed: As a site user I can view an order confirmation after checkout so that I can see what was ordered and total costs. I can repurchase the product by clicking on the button which takes the user to the product detail page.
     -   Result: Checkout success details the product name, size, colour and width successfully. The price for each item and total cost is displayed. The delivery details are given and there is the option to repurchase the same product again. The repurchase button goes through to the correct product details page.
 
+- US19 : Receive an email confirmation after checking out.
+    -   Passed: As a site user I can receive an email confirmation after checking out so that I have a record of my purchases.
+    -   Result: I can see an email after purchase confirming my order.
+
 
 ### Admin and Store Management
 
-- US19 : Add a pointe shoe
+- US20 : Add a pointe shoe
     - Passed: As a site admin I can add a pointe shoe so that I can sell new products.
     -   Result: Successful in adding a pointe shoe product.
 
-- US20 : Edit / update a pointe shoe
+- US21 : Edit / update a pointe shoe
     -   Passed: As a site admin I can edit / update details for a pointe shoe so that I can change or amend the title, image, brand, colour, size, width, availability, status and features.
     -   Result: Successful in editing a pointe shoe product.
 
-- US21 : Delete a pointe shoe
+- US22 : Delete a pointe shoe
     -   Passed: As a site admin I can delete a product so that I can remove the item for sale.
     -   Result: Successful in deleting a pointe shoe product.
 
 
 ### SEO and Web Marketing
 
-- US22 : Subscribe to newsletter
+- US23 : Subscribe to newsletter
     -   Passed: As a site user I can subscribe to the company newsletter so that I can keep up with company news and offers.
     -   Result: Successful in entering customer details in order to receive a newsletter.
 
-- US23 : View company facebook page
+- US24 : View company facebook page
     -   Passed: As a site user I can find the company on facebook so that I can keep up to date with company posts.
     -   Result: There is a Facebook page for the company.
 
-- US24 : SEO
+- US25 : SEO
     -   Passed: As a site user I can find the site through web searches so that I can easily access the site.
     -   Result: Successful search for Perfect Pointes based on the keywords chosen.
 
-- US25 : View privacy policy
+- US26 : View privacy policy
     -   Passed: As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
     -   Result: The GDPR privacy policy is available on the footer of all the website's pages.
 

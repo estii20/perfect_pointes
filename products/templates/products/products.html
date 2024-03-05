@@ -133,8 +133,36 @@
                         {% endfor %}
                     </div>
                 </div>
+                <!-- Back to top button from W3 https://www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
+                <button onclick="topFunction()" id="back-to-top-btn" 
+                        title="Go to top" class="btn-custom my-4 px-4">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
             </div>
         </main>
+    {% endblock %}
+
+    {% block postloadjs %}
+    <script>
+        var backToTopBtn = document.getElementById("back-to-top-btn");
+
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; 
+            document.documentElement.scrollTop = 0; 
+        }
+    </script>
     {% endblock %}
 
 

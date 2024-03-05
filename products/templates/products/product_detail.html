@@ -91,23 +91,31 @@
                 <div class="col-md-8">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <button type="button" class="btn btn-secondary btn-custom" data-toggle="popover"
-                                title="Shank: S – soft, M – medium, H – hard, SS – super soft, SH – super hard"
-                                data-content="Explanation about Shank.">
+                            <button type="button" class="btn btn-secondary btn-custom" 
+                                    data-toggle="popover" data-trigger="focus"
+                                    title="SS super soft  |  S soft  |  M medium  |  H hard  |  SH super hard"
+                                    data-content="Explanation about Shank.">
                                 Shank Info
                             </button>
-                            <button type="button" class="btn btn-secondary btn-custom" data-toggle="popover"
-                                title="Width: X, XX = Narrow fit width, XXX = Middle fit width, XXXX, XXXXX = Wide fit width"
-                                data-content="Explanation about Width.">
+
+                            <button type="button" class="btn btn-secondary btn-custom" 
+                                    data-toggle="popover" data-trigger="focus"
+                                    title="X,  XX narrow |  XXX, middle  |  XXXX,  XXXXX wide"
+                                    data-content="Explanation about Width.">
                                 Width Info
                             </button>
-                            <button type="button" class="btn btn-secondary btn-custom" data-toggle="popover"
-                                title="Select size one up from street shoe" data-content="Explanation about Sizes.">
+
+                            <button type="button" class="btn btn-secondary btn-custom" 
+                                    data-toggle="popover" data-trigger="focus"
+                                    title="Select size one up from street shoe" 
+                                    data-content="Explanation about Sizes.">
                                 Size Info
                             </button>
-                            <p class="card-text lead mb-0 my-5" style="font-weight: bold;"><strong>{{ product.pointe_shoe.category.name }}</strong>
+                            <p class="card-text lead mb-0 my-5" style="font-weight: bold;">
+                                <strong>{{ product.pointe_shoe.category.name }}</strong>
                             </p>
-                            <p class="card-text card-text text-uppercase" style="font-weight: bold;"><strong>{{ product.brand.name | title }}</strong></p>
+                            <p class="card-text card-text text-uppercase" style="font-weight: bold;">
+                                <strong>{{ product.brand.name | title }}</strong></p>
                             {% if product.pointe_shoe.brand.description %}
                             <p class="card-text my-3" style="font-weight: bold;">
                                 {{ product.pointe_shoe.brand.description }}</p>
@@ -133,7 +141,8 @@
                             </p>
                             {% if request.user.is_superuser %}
                             <small class="ml-3" style="font-weight: bold;">
-                                <a href="{% url 'edit_product' product.id %}"><span aria-label="Edit">Edit</span>
+                                <a href="{% url 'edit_product' product.id %}">
+                                    <span aria-label="Edit">Edit</span>
                                 </a> |
                                 <a class="text-danger" style="font-weight: bold;" 
                                     href="{% url 'delete_product' product.id %}">
@@ -151,6 +160,11 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+    {{ block.super }}
+    {% include 'products/includes/quantity_input_script.html' %}
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
 {% endblock %}

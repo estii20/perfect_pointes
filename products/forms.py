@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError 
 from .widgets import CustomClearableFileInput
 from .models import (
     PointeShoe, Size, Width, Color,
@@ -58,8 +59,23 @@ class PointeShoeProductForm(forms.ModelForm):
             'price': forms.HiddenInput(),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['available_sizes'].queryset = Size.objects.all().order_by('size')
+
+    def clean_new_pointe_shoe_sku(self):
+        sku = self.cleaned_data['new_pointe_shoe_sku']
+        if PointeShoe.objects.filter(sku=sku).exists():
+            raise ValidationError("SKU already exists. Please use a different SKU.")
+        return sku
+
     def save(self, commit=True):
         instance = super().save(commit=False)
+
+        new_pointe_shoe_sku = self.cleaned_data.get('new_pointe_shoe_sku')
+        if new_pointe_shoe_sku:
+            if PointeShoe.objects.filter(sku=new_pointe_shoe_sku).exists():
+                raise ValidationError("SKU already exists. Please use a different SKU.")
 
         pointe_shoe, created = PointeShoe.objects.get_or_create(
             sku=self.cleaned_data['new_pointe_shoe_sku'],
@@ -146,9 +162,10 @@ class PointeShoeProductEditForm(forms.ModelForm):
             'image': forms.HiddenInput(),
             'image_url': forms.HiddenInput(),
         }
-
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['available_sizes'].queryset = Size.objects.all().order_by('size')
         instance = kwargs.get('instance')
         if instance:
             brand = instance.pointe_shoe.brand
