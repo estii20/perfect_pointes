@@ -1,5 +1,7 @@
 # Testing
 
+The deployed website was tested, and the results can be found below;
+
 ## Validator Testing
 
 [HTML Validator](https://validator.w3.org/)
@@ -17,7 +19,6 @@ Products Page
 Product Details Page
 
 ![Perfect Pointes](documentation/testing/product_detail_w3c.png "Validator")
-
 
 Profile Page
 
@@ -78,7 +79,9 @@ JS Stripe
 
 __Manual Testing Test Cases and Results__
 
-I sent the live link to friends who dance and family members for testing and feedback. The site was received positively; design and usability suggestions were considered and acted on. Manual testing and code validation is recorded below:
+I sent the live link to friends who dance and family members for testing and feedback. The site was received positively; design and usability suggestions were considered and acted on. 
+
+Manual testing and code validation is recorded below:
 
 __Performance Testing__
 
@@ -114,6 +117,8 @@ __Stripe Testing__
 
 ![Perfect Pointes](documentation/testing/stripe_logs.png "Stripe")
 
+![Perfect Pointes](documentation/testing/stripe.png "Stripe")
+
 __Browser Compatibility__
 
 Browser Compatibility PASSED
@@ -131,8 +136,6 @@ Microsoft Edge - ☑
 Safari - ☑
 
 __Accessibility Testing__
-
-![Perfect Pointes](documentation/testing/performance.png "Lighthouse")
 
 From using Lighthouse I was able to check the performance and accessibility of the website. 
 
@@ -222,19 +225,17 @@ Navigation Testing
 
 - US10 : Handle errors 404 and 500
     - Passed:  As a site user I can continue shopping after http 404 and 500 response so that I feel I am still working within the website and can navigate easily.
-    - Result: Custom error page 404 which reflect the theme and feel of the website. Continue shopping button works as expected.
-
+    - Result: Custom error page 404 and 500 which reflect the theme and feel of the website. Continue shopping button works as expected.
 
 ### Sorting and Searching
 
 - US11 : Sort list of available pointe shoes
     - Passed:  As a site user I can sort the list of pointe shoes products so that I can easily identify the most suitable shoe categorically sorted by colour, price, brand and category.
-    -   Result: Product details page has a filter by category, price, brand and colour.
+    -   Result: Product details page has a filter by category, price, brand and colour. I can return to all the products in the same filter menu, by selecting "All Pointe Shoes".
 
 - US12 : Search for a pointe shoe by title or feature
     -  Passed:  As a site user I can search for a by title or pointe shoe so that I can find a specific pointe shoe to purchase.
     -  Result: Search function in the navbar functions to find useful results.
-
 
 ### Purchasing and Checkout
 
@@ -266,7 +267,6 @@ Navigation Testing
     -   Passed: As a site user I can receive an email confirmation after checking out so that I have a record of my purchases.
     -   Result: I can see an email after purchase confirming my order.
 
-
 ### Admin and Store Management
 
 - US20 : Add a pointe shoe
@@ -281,22 +281,17 @@ Navigation Testing
     -   Passed: As a site admin I can delete a product so that I can remove the item for sale.
     -   Result: Successful in deleting a pointe shoe product.
 
-
 ### SEO and Web Marketing
 
 - US23 : Subscribe to newsletter
     -   Passed: As a site user I can subscribe to the company newsletter so that I can keep up with company news and offers.
-    -   Result: Successful in entering customer details in order to receive a newsletter.
+    -   Result: Successful in entering customer details in order to receive a newsletter. I receive a success message to confirm submission.
 
 - US24 : View company facebook page
     -   Passed: As a site user I can find the company on facebook so that I can keep up to date with company posts.
-    -   Result: There is a Facebook page for the company.
+    -   Result: There is a Facebook page for the company with a link in the footer.
 
-- US25 : SEO
-    -   Passed: As a site user I can find the site through web searches so that I can easily access the site.
-    -   Result: Successful search for Perfect Pointes based on the keywords chosen.
-
-- US26 : View privacy policy
+- US25 : View privacy policy
     -   Passed: As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
     -   Result: The GDPR privacy policy is available on the footer of all the website's pages.
 
@@ -306,16 +301,20 @@ Remove a Pointe Shoe product from bag: URL repeatedly not found, slack channel p
 
 PointeShoe Form: The form needed to be able to get data from the pointe shoe model and the pointe shoe product model. So that new data could be entered into the form, it was necessary to get the data and post the cleaned data. A thread in copyprogramming.com helped me to fix this (see credits).
 
-Checkout Success: This view returned the pointe shoe with all the available sizes, widths and colours in the checkout confirmation. In the end I managed to get the actual size, width and colour of the shoe purchased.
+Checkout Success: This view returned the pointe shoe with all the available sizes, widths and colours in the checkout confirmation. In the end I managed to get the actual size, width and colour of the shoe purchased to display in the view.
 
-Product Page Back to top button not working. I tried to research and update this functionality, I found the W3C schools how make a JS button solved this problem for me (see credits).
+Product Page Back to top button not working. I tried to research and update this functionality, I found a code snippet in W3C schools, "How make a JS button" solved this problem for me (see credits).
 
 Website Logo, Favicon and landing page image were not available throughout the website using the media URL, despite adding the context processor 'django.template.context_processors.media', into the settings.py file.  I added an image folder to my static folder to contain these images instead and added the tag {% static %} . Thanks to my mentor Brian this was easily rectified.
 
 Loading products from SQLite to Heroku Postgres: As my products were added through the django admin site when deploying the website to Heroku my product database was not there. Thanks to the slack channel and the guide on Transferring SQLite to Heroku Postgres I was able to solve this problem. 
 [Code Institute Slack Channel](https://code-institute-room.slack.com/files/UPDFEU62U/F02SZ5T16HG/transferring_database_data_from_sqlite_to_heroku_postgres.pdf) 
 
-Profile Page working in production but not in the deployed project. I had to save the default profile fields exactly as the elephant SQL table to make the data save correctly.
+Profile Page working in production but not in the deployed project. I had to save the default profile fields exactly as the elephant SQL table to make the data save correctly. Thanks also to Student Support for finding the error 400 on the profile page, as there was an extra "/" in the script causing the problem.
+
+Email Error 500, thanks again to Student Support who helped resolve the problem with the checkout success which was not triggering an email confirmation. It was necessary to add a runtime.txt file to resolve this problem.
+
+No known bugs were noted.
 
 [Link to README.md](README.md)
 

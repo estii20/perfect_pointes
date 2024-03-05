@@ -29,13 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'default_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if DEVELOPMENT:
-#     # Development settings
-#     DEBUG = True
-# else:
-#     DEBUG = False
 
-DEBUG = 'DEBUG' in os.environ
+if DEVELOPMENT:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = [
     'perfect-pointes-d5136a797ac1.herokuapp.com',

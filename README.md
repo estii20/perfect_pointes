@@ -1,14 +1,17 @@
 # Perfect Pointes
 
-The Perfect Pointes project is a B2C e-commerce application which sells pointe shoes directly to ballet dancers, both the professional and the aspiring dancer. The site aims to present users with an attractive and intuitive online shopping experience and encourage return visits through features such as a newsletter, social media posts, and an easy to use user profile function to save customer details and a repurchase button to quickly buy the product again. The store aims to provide a wide variety of fit and functionality, to give the customer as much information as possible to therefore make an informed decision about the pointe shoe they will purchase.
+The Perfect Pointes project is a B2C e-commerce application which sells pointe shoes directly to ballet dancers, both the professional and the aspiring dancer. The site aims to present users with an attractive and intuitive online shopping experience and encourage return visits through features such as a newsletter, social media posts, and an easy to use user profile function to save customer details and a repurchase button to quickly buy the product again. The store aims to provide a wide variety of fit and functionality, to give the customer as much information as possible to make an informed decision about the pointe shoe they will purchase.
 
 The site is implemented as a retail store where users can view, search and filter the pointe shoes on offer, then select items to add to their shopping bag and purchase through a secure single payment.
 General users can purchase pointe shoe products without registering with the site, but are given the chance to save their delivery details and therefore their orders at the checkout page if they so wish.
-Admin users can manage the pointe shoe products. They can update pricing, links to products, pointe shoes on offer, images and product information. They can select if a pointe shoe is in-stock, so that only available shoes are listed on the site.
+
+Admin users can manage the pointe shoe products. They can update pricing, links to products, pointe shoes on offer, images and product information. They can select if a pointe shoe size and width is in-stock, so that only available shoes are listed on the site.
+
 Other considerations for an e-commerce B2C site.
+
     - Web Marketing strategies:
-    - Organic Social - through facebook
-    - Email - through a newsletter subscription managed via Mailchimp
+        - Organic Social - through facebook
+        - Email - through a newsletter subscription managed via Mailchimp
 
 The structure and purpose of the Perfect Pointes project is based on the Code Institute Boutique Ado walkthrough project as part of Portfolio 5 of The Code Institute course.
 
@@ -28,6 +31,7 @@ P5 Project for the Code Institute
 
 - [UX Design](#ux-design)
 - [User Stories](#user-stories)
+- [Features](#features)
 - [Future Features](#future-features)
 - [Languages Used](#languages-used)
 - [Frameworks, Libraries and Programs Used](#frameworks-libraries-and-programs-used)
@@ -44,25 +48,35 @@ P5 Project for the Code Institute
 For a pointe shoe e-commerce website, understanding user needs is crucial for providing a satisfying and effective shopping experience. Here are some user needs that this type of website aims to address:
 
 1. Product Information and Variety:
+
 Accurate Details: Users need comprehensive information about pointe shoes, including materials, sizes and fitting guides.
+
 Variety: Cater to different levels of dancers, offering options suitable for beginners, intermediate, and professional dancers.
 
 2. Ease of Navigation and Search:
+
 Intuitive Interface: Users need an easy-to-navigate website with clear categorisation and filtering options to find the right shoes efficiently.
-Search Functionality: A robust search bar with filters for brand, size, style, and level helps users find specific products quickly.
+
+Search Functionality: A robust search bar with filters for brand, size, style, and level to help users find specific products quickly.
 
 3. Reliable and Secure Shopping:
+
 Trustworthiness: Users need assurance of secure transactions and protection of personal information.
 
 4. User Experience and Convenience:
+
 Mobile Compatibility: With a growing number of users shopping via mobile devices, the site should be mobile-friendly.
-Personalisation: recommended products and saved preferences enhance the shopping experience.
+
+Personalisation: recommended products in the categories and saved preferences enhance the shopping experience.
 
 5. Customer Support and Assistance:
+
 Responsive Support: Access to customer service via email, or phone helps address queries, sizing concerns, or technical issues.
+
 Sizing Guidance: Providing accurate sizing charts or tools helps users choose the right fit.
 
 6. Educational Content:
+
 Guides and Resources: Articles, videos, or guides about proper fitting, care, and maintenance of pointe shoes are valuable to users.
 
 __Colours:__
@@ -73,19 +87,19 @@ Image of the colour palette
 
 Soft Pastel Shades: Light and delicate colours like pale pinks evoke a sense of elegance and femininity associated with ballet.
 
+Neutral Tones: Beige, ivory, or light taupe can complement the pastels and provide a clean, neutral backdrop, allowing the shoes to stand out.
+
+Accent Colours: Subtle accents of gold, silver, or metallic shades can add sophistication without overpowering the overall design.
+
 Site-wide alert: Gold #ffc107
 
 Overlay of black and white landing image: Pink rgba(234, 172, 157, 0.7)
 
 Ribbon: Pink #e6846c
 
-Neutral Tones: Beige, ivory, or light taupe can complement the pastels and provide a clean, neutral backdrop, allowing the shoes to stand out.
-
 Custom button: Brown #827155
 
 Shiny button effect: rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) rgba(234, 172, 157, 0.7)
-
-Accent Colours: Subtle accents of gold, silver, or metallic shades can add sophistication without overpowering the overall design.
 
 Gold font: linear-gradient(45deg, #ffd700, #d4af37)
 
@@ -97,13 +111,16 @@ Sans-Serif Font Lato: For body text and readability, a clean and modern sans-ser
 
 Cursive or Script Fonts: Dancing Script for headings or decorative elements, to add a touch of elegance.
 
-Heading and Body Text Font Pairing:Dancing Script for headings with a sans-serif font Lato for body text to create a contrast that enhances readability while maintaining an elegant feel.
+Heading and Body Text Font Pairing:
+
+    - Dancing Script for headings with a sans-serif font. 
+    - Lato for body text to create a contrast that enhances readability while maintaining an elegant feel.
 
 __Accessibility aims:__
 
-The chosen fonts and colours were chosen to meet accessibility standards for readability and contrast, especially for users with visual impairments.
+The fonts and colours were chosen to meet accessibility standards for readability and contrast, especially for users with visual impairments.
 
-Maintain consistency in font styles and colours throughout the website for a cohesive and professional appearance.
+The aim is to maintain consistency in font styles and colours throughout the website for a cohesive and professional appearance.
 
 __Wireframes__
 
@@ -152,25 +169,43 @@ __Notes on the ER diagram:__
 - Entities:
 
  - Category: Represents different categories for pointe shoes.
+
  - PointeShoeBrand: Brands manufacturing pointe shoes.
+
  - Size: Various sizes available for pointe shoes.
+
  - Width: Different width options for pointe shoes.
+
  - Colour: Various colours available for pointe shoes.
+
  - PointeShoe: Represents different models or types of pointe shoes.
+
  - PointeShoeProduct: Instances of pointe shoes available for purchase.
+
  - Order: Represents an order made by a user.
+
  - OrderLineItem: Represents individual items within an order.
+
  - UserProfile: Profiles associated with each user.
 
 - Relationships:
+
  - Category - PointeShoeBrand: One-to-many (A category can have multiple pointe shoe brands).
+
  - Category - PointeShoe: One-to-many (A category can have multiple pointe shoe models).
+
  - Color - PointeShoe: Many-to-one (A colour can be associated with multiple pointe shoe models).
+
  - Size - PointeShoe: Many-to-many (A pointe shoe can have multiple available sizes, and a size can be associated with multiple pointe shoes).
+
  - Width - PointeShoe: Many-to-many (A pointe shoe can have multiple available widths, and a width can be associated with multiple pointe shoes).
+
  - PointeShoeBrand - PointeShoe: One-to-many (A brand can have multiple pointe shoe models).
+
  - PointeShoe - PointeShoeProduct: One-to-many (A pointe shoe model can have multiple instances available for purchase).
+
  - UserProfile - Order: One-to-many (A user can have multiple orders).
+
  - Order - OrderLineItem: One-to-many (An order can have multiple line items).
 
 - Attribute Inheritance:
@@ -188,7 +223,6 @@ __Notes on the ER diagram:__
 
 - US3 : Access user profile
     - As a site user I can access my personalised user profile so that I can view my personal order history and order confirmations and my payment information.
-
 
 ### Viewing and Navigation
 
@@ -263,19 +297,14 @@ __Notes on the ER diagram:__
 - US24 : View company facebook page
     - As a site user I can find the company on facebook so that I can keep up to date with company posts.
 
-- US25 : SEO
-    - As a site user I can find the site through web searches so that I can easily access the site.
-
-- US26 : View privacy policy
+- US25 : View privacy policy
     - As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
 
-__Features__
+# Features
 
 Below are descriptions of the main features of the application. Many of the features are based on the Boutique Ado walkthrough project and SEO and Web Marketing modules of the course.
 
 Perfect Pointes uses a B2C e-commerce model, selling directly to end customers with single online payments to cover purchases.
-
-Consistent page look and feel.
 
 The page layout, navigation bar, header, footer, colours and fonts have a consistent look and feel on all pages of the website to give the user an intuitive easy to use experience. The navigation bar is responsive on multiple screen sizes - on smaller screens it converts to a 'burger' menu style.
 
@@ -296,11 +325,12 @@ Navbar - mobile view - hamburger for a visual cue
 ![Perfect Pointes](documentation/images/navbar_mob.png "Navbar")
 
 Users receive a more streamlined experience so that they don't get overwhelmed and leave. 
-Navbar - Signup/Login shows instead of Logout if user is not logged in.
+
+Navbar - Signup/Login shows instead of Logout if user is not logged in. If user is logged in, the navbar displays a "Welcome" message.
 
 ![Perfect Pointes](documentation/images/account_nav.png "Navbar")
 
-Staff option for Product Management available logged-in staff member registered as superusers - they receive a dropdown that allows for adding and editing pointe shoe products.
+Staff option for Product Management available logged-in staff member registered as superusers - they receive a dropdown that allows for adding and editing pointe shoe products. When adding a new product the form alerts the admin if the SKU is already in use so that the new product can be added successfully.
 
 ![Perfect Pointes](documentation/images/product_management.png "Navbar") 
 
@@ -329,7 +359,11 @@ Login/Sign-up/Sign out
 ![Perfect Pointes](documentation/images/products.png "Products Page")
 
 Bootstrap card layout changes responsively based on the screen size.
-Image of each pointe shoe.
+There is an image of each pointe shoe. Or an alternative "no-image.jpg" displayed.
+
+Alternative image: no image available image
+
+![Perfect Pointes](documentation/images/no-image.jpg "Products Page") 
 
 Filter by brand, category, price and colour
 
@@ -338,10 +372,6 @@ Filter by brand, category, price and colour
 Image: pointe shoe image with shoe suitability by arch (Low, Medium, High). 
 
 ![Perfect Pointes](documentation/images/arch_type.png "Products Page")
-
-Alternative image: no image available image
-
-![Perfect Pointes](documentation/images/no-image.jpg "Products Page") 
 
 Bow detail to show the shoe suitability for beginner, intermediate and advanced dancers
 
@@ -386,7 +416,9 @@ Continue shopping button.
 ![Perfect Pointes](documentation/images/bag_mob.png "Bag Page") 
 
 Ability for the user to check details and then add quantity to the bag if they are happy with the product and price.
+
 Option for the user to update the number of products, or remove products. Product details and subtotal are shown.
+
 On larger viewports there is a thumbnail image of the product shown.
 
 - Checkout
@@ -401,8 +433,7 @@ Form to enter personal and delivery details.
 
 Register to save details, based on active user status. 
 
-- This feature helps customers to save the order so that they can keep a record of the pointe shoe that is perfect for them. There is a repurchase button that takes users to the same shoe product detail page. Pointe Shoes usually last between 6 to 12 months so they are a frequently purchased product.
-
+- This feature helps customers to save the order so that they can keep a record of the pointe shoe that is perfect for them. 
 ![Perfect Pointes](documentation/images/save_to_profile.png "Checkout Page") 
 
 Stripe payments
@@ -426,7 +457,8 @@ Pointe shoes last between 6-9 months and need to be regularly repurchased, this 
 - User profile
 
 Ability to see past orders and delivery information, ability to edit delivery information.
-Able to click through and check individual orders. Purchase again button to easily navigate to the same shoe as previously purchased.
+
+Able to click through and check individual orders. 
 
 - Privacy Policy - assures users that the site is trustworthy and can be used safely.
 
@@ -434,20 +466,29 @@ Able to click through and check individual orders. Purchase again button to easi
 
 ![Perfect Pointes](documentation/images/footer_mob.png "Footer") 
 
-- Footer with Mailchimp signup, links to static pages and facebook page. About us section with returns information. Links to YouTube and official pointe shoe websites for fitting guide and interesting pointe shoe videos.
+- Footer with Mailchimp signup, links to static pages and facebook page. 
+
+- About us section with returns information. 
+- Links to YouTube and official pointe shoe websites for fitting guide and interesting pointe shoe videos.
 
 Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep shopping' option to guide users to the store.
 
-![Perfect Pointes](documentation/images/404.png "Error Page") 
+![Perfect Pointes](documentation/images/404.png "Error Page")
+
 ![Perfect Pointes](documentation/images/500.png "Error Page") 
 
-### Future Features
+# Future Features
 
 - Ability for staff to add pointe shoe brands, colours, sizes and widths as well as products.
+
 - Wishlist function for the user to add to their profile so they can shop at a later date.
+
 - Promotion and discount codes to add further incentive to purchase from this e-commerce website.
+
 - Loyalty programme to offer further value to the user.
+
 - User Reviews that give genuine customer reviews to assist in decision-making and build credibility for the pointe shoe products.
+
 - Social Validation by sharing success stories or testimonials from professional dancers to add credibility to the quality of the shoes.
 
 # Marketing and SEO README.md
@@ -461,12 +502,13 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 # Technologies Used
 
 ### Languages Used
+
 - HTML5
 - CSS3
 - Jquery
 - Python
 
-# Frameworks, Libraries & Programs Used
+# Frameworks, Libraries and Programs Used
 
 - [Google Fonts](https://fonts.google.com/) used for the Lato and Dancing Script fonts.
 - [Font Awesome](https://fontawesome.com/) was used to add icons for aesthetic and UX purposes.
@@ -491,7 +533,7 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 - [Elephant SQL](9https://api.elephantsql.com/) SQL database service used to store models and data.
 - [Lucid chart](https://lucid.app/) was used to create the Entity Relationship diagrams for the application data model
 - [Balsamiq](https://balsamiq.com/) was used to create the wireframes during the design process.
-- [Codeanywhere](https://app.codeanywhere.com/) IDE.
+- [Codeanywhere](https://app.codeanywhere.com/) IDE for the project.
 - [GitPod](https://gitpod.io/) IDE used to complete the project.
 
 # Deployment and Publishing
@@ -501,9 +543,11 @@ __GitHub__
 - Forking and Cloning
 To work on your own copy of the code, follow these steps for forking and cloning via GitHub:
 In the repository, locate the 'Fork' button at the top right-hand side, adjacent to 'Star'. Click on it to create a new repository, forked from the original.
+
 - To clone the repository, you have two options:
 Within the repository, click on the 'Code' dropdown located next to 'Add File' on the right (underneath the Settings tab). From there, choose the option to download all files and save a local copy.
 Alternatively, within the same 'Code' dropdown, opt to open the code with GitHub Desktop and proceed with your work from there.
+
 - Elephant SQL
 Setting up your ElephantSQL Database
 - Sign in or sign up to an ElephantSQL account. Sign up at [Elephant SQL](https://www.elephantsql.com/) 
@@ -512,7 +556,6 @@ Choose a plan that suits your needs (e.g., Free Tiny Turtle or any other plan).
 Select a region and a name for your database instance.
 Click "Create ElephantSQL" to create your database instance.
 - After your database instance is created, you'll receive a connection string. Copy this string as it will be required to connect to your database.
-
 
 __Heroku__
 
@@ -524,7 +567,7 @@ In the Add-ons search bar, type "Postgres" and select "Heroku Postgres" from the
 - Next, go to "Settings" on the Application Configuration page and click on the "Reveal Config Vars" button. Ensure that the DATABASE_URL has been automatically set up.
 Add a new Config Var called DISABLE_COLLECTSTATIC and assign it a value of 1.
 Add another new Config Var called SECRET_KEY and assign it a value - any random string of letters, digits, and symbols.
-- Update the settings.py file to use the DATABASE_URL and SECRET_KEY 
+- Update the settings.py file to use the DATABASE_URL and SECRET_KEY. 
 - In Codeanywhere, in the project terminal window, initialise the data model in the Postgres database by running the command: python3 manage.py migrate.
 - Set up an admin user in the Postgres database using the command: python3 manage.py createsuperuser.
 - Set DEBUG flag to False in settings.py.
@@ -538,7 +581,6 @@ __Here's how to connect your Heroku app to your GitHub repository__
 Enter the name of your GitHub repository. For example, the repository used for this project is located at [Perfect Pointes Repository](https://github.com/estii20/perfect_pointes/tree/main). Click "Connect" to link up the Heroku app with the GitHub repository code.
 - Scroll down the page and decide whether you want to Automatically Deploy each time changes are pushed to GitHub, or opt for Manual Deploy. For this project, Manual Deploy was selected.
 - You can run the application from the Application Configuration page by clicking on the "Open App" button.
-
 
 __Amazon Web Services (AWS) S3 for storing static files and images:__
 
@@ -669,4 +711,5 @@ The website page layout look and feel were influenced by the Grishko, Capezio, F
 # Acknowledgements
 
 Sincere thanks to my mentor Brian Macharia for his help throughout this project and course.
+Thanks also to Rebecca and Oisin from Code Institute Student Support.
 

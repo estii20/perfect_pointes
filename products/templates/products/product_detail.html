@@ -70,8 +70,8 @@
                                 <div class="form-group">
                                     <label for="widthsDropdown"><strong>Widths:</strong></label>
                                     <select class="form-control custom-dropdown" id="widthsDropdown" name="width_id">
-                                        {% for width in product.pointe_shoe.available_widths.all %}
-                                        <option value="{{ width.id }}">{{ width.width | upper }}</option>
+                                        {% for width in available_widths %}
+                                            <option value="{{ width.id }}">{{ width.width | upper }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

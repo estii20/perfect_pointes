@@ -2,22 +2,19 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid p-0 position-relative">
-    <img src="{% static 'images/nihal-demirci-erenay-0ME-BIUBmUs-unsplash.jpg' %}" class="img-fluid full-viewport"
-        alt="Ballerina en pointe wearing Perfect Pointes Pointe Shoes">
-    <div class="overlay"></div>
-    <div class="row no-gutters">
-        <div class="col-12 d-flex justify-content-center align-items-center position-absolute top-0 start-0 end-0 bottom-0"  
-        style="z-index: 1;">
-            <div class="light-pink-bg gold-frame">
-                <div class="allauth-form-inner-content p-4">
+<div class="container-fluid p-0 position-relative light-pink-bg">
+    <div class="overlay position-absolute top-0 start-0 end-0 bottom-0"></div>
+    <div class="row justify-content-center align-items-center h-100 position-relative" style="z-index: 1;">
+        <div class="col-md-6 col-lg-4">
+            <div class="light-pink-bg gold-frame p-4" style="position: relative; z-index: 2;">
+                <div class="allauth-form-inner-content">
                     {% block inner_content %}
-                    <a class="btn btn-outline-secondary back-to-login" href="{% url 'login' %}">Back to login</a>
+                    <a class="btn btn-outline-secondary back-to-login mb-3 d-block" href="{% url 'login' %}">Back to
+                        login</a>
                     {% endblock %}
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 {% endblock %}
