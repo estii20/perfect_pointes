@@ -97,11 +97,13 @@ def product_detail(request, product_id):
     available_colors = Color.objects.filter(pointeshoe__pointeshoeproduct__availability=True).distinct()
     product = get_object_or_404(PointeShoeProduct, pk=product_id)
     available_widths = product.pointe_shoe.available_widths.all().order_by('width')
+    available_sizes = product.pointe_shoe.available_sizes.all().order_by('size')
 
     context = {
         'available_brands': available_brands,
         'available_categories': available_categories,
         'available_colors': available_colors,
+        'available_widths': available_widths,
         'available_widths': available_widths,
         'product': product,
     }

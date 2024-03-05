@@ -711,5 +711,6 @@ The website page layout look and feel were influenced by the Grishko, Capezio, F
 # Acknowledgements
 
 Sincere thanks to my mentor Brian Macharia for his help throughout this project and course.
+
 Thanks also to Rebecca and Oisin from Code Institute Student Support.
 
