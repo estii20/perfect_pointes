@@ -27,6 +27,8 @@ P5 Project for the Code Institute
 
 ![Perfect Pointes](documentation/images/am_I_responsive.png "Am I Responsive Mockup of Perfect Pointes")
 
+[Perfect Pointes Project Kanban](https://github.com/users/estii20/projects/11/views/1)
+
 ## Table of contents
 
 - [UX Design](#ux-design)
@@ -113,8 +115,8 @@ Cursive or Script Fonts: Dancing Script for headings or decorative elements, to 
 
 Heading and Body Text Font Pairing:
 
-    - Dancing Script for headings with a sans-serif font. 
-    - Lato for body text to create a contrast that enhances readability while maintaining an elegant feel.
+- Dancing Script for headings with a sans-serif font. 
+- Lato for body text to create a contrast that enhances readability while maintaining an elegant feel.
 
 __Accessibility aims:__
 
