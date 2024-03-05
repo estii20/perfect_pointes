@@ -178,7 +178,6 @@ Navigation Testing
  - Menu successfully opens and closes on press/click
  - All buttons lead to corresponding pages
 
-
 ### User Stories Testing
 
 ### Registration and Account Management
@@ -305,11 +304,11 @@ __Debugging and Known bugs__
 
 Remove a Pointe Shoe product from bag: URL repeatedly not found, slack channel provided the answer to the JavaScript URL and view URL, which needed an additional /bag/ added to rectify this issue.
 
-PointeShoe Form: The form needed to be able to get data from the pointe shoe model and the pointe shoe product model. So that new data could be entered into the form, it was necessary to get the data and post the cleaned data. A thread in copyprogramming.com helped me to fix this (see credits below).
+PointeShoe Form: The form needed to be able to get data from the pointe shoe model and the pointe shoe product model. So that new data could be entered into the form, it was necessary to get the data and post the cleaned data. A thread in copyprogramming.com helped me to fix this (see credits).
 
 Checkout Success: This view returned the pointe shoe with all the available sizes, widths and colours in the checkout confirmation. In the end I managed to get the actual size, width and colour of the shoe purchased.
 
-Product Page Back to top button not working. I tried to research and update this functionality, however in the end I could not make the function work. I therefore removed this from my project. This is something that requires further research and will hopefully be added to the project in the future.
+Product Page Back to top button not working. I tried to research and update this functionality, I found the W3C schools how make a JS button solved this problem for me (see credits).
 
 Website Logo, Favicon and landing page image were not available throughout the website using the media URL, despite adding the context processor 'django.template.context_processors.media', into the settings.py file.  I added an image folder to my static folder to contain these images instead and added the tag {% static %} . Thanks to my mentor Brian this was easily rectified.
 

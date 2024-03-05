@@ -27,20 +27,19 @@ P5 Project for the Code Institute
 ## Table of contents
 
 - [UX Design](#ux-design)
-- [User stories](#user-stories)
-- [Features](#features)
+- [User Stories](#user-stories)
 - [Future Features](#future-features)
-- [Technologies Used](#technologies-used)
 - [Languages Used](#languages-used)
-- [Frameworks and Libraries Used](#frameworks-and-libraries-used)
-- [Software and Web Applications Used](#software-and-web-applications-used)
-- [Marketing](#marketing)
-- [Testing](#testing)
-- [Deployment](#deployment)
+- [Frameworks, Libraries and Programs Used](#frameworks-libraries-and-programs-used)
+- [Marketing and SEO README.md](#marketing-and-seo-readmemd)
+- [Testing README.md](#testing-readmemd)
+- [Technologies Used](#technologies-used)
+- [Deployment and Publishing](#deployment-and-publishing)
+- [Resources](#resources)
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 
-### UX Design
+# UX Design
 
 For a pointe shoe e-commerce website, understanding user needs is crucial for providing a satisfying and effective shopping experience. Here are some user needs that this type of website aims to address:
 
@@ -177,98 +176,98 @@ __Notes on the ER diagram:__
 - Attribute Inheritance:
  - PointeShoeProduct inherits attributes from PointeShoe and PointeShoeBrand. 
 
- ## User stories :
+# User stories :
 
 ### Registration and Account Management
 
 - US1 : Register for an account
- - As a site user I can register for an account so that I can view my profile and purchasing history.
+    - As a site user I can register for an account so that I can view my profile and purchasing history.
 
 - US2 : Login and logout
- - As a site user I can easily login or logout so that I can access my personal account information.
+    - As a site user I can easily login or logout so that I can access my personal account information.
 
 - US3 : Access user profile
- - As a site user I can access my personalised user profile so that I can view my personal order history and order confirmations and my payment information.
+    - As a site user I can access my personalised user profile so that I can view my personal order history and order confirmations and my payment information.
 
 
 ### Viewing and Navigation
 
 - US4 : View a list of pointe shoe products
- - As a site user I can view a list of pointe shoes so that I can select some to purchase.
+    - As a site user I can view a list of pointe shoes so that I can select some to purchase.
 
 - US5 : View individual pointe shoe details
- - As a site user I can view details for a pointe shoe so that I can see the description, brand logo, brand information, available sizes, available widths, shank, suitability of product beginner, intermediate, advanced dancer, product colour, product features and pricing.
+    - As a site user I can view details for a pointe shoe so that I can see the description, brand logo, brand information, available sizes, available widths, shank, suitability of product beginner, intermediate, advanced dancer, product colour, product features and pricing.
 
 - US6 : View shopping bag total
- - As a site user I can easily view the total of my purchases at any time to monitor my spending.
+    - As a site user I can easily view the total of my purchases at any time to monitor my spending.
 
 - US7 : Easily understand the purpose of the website and how to navigate it.
- - As a site user I can quickly identify what the website is selling and easily navigate to the pages so that I can quickly find the information and functionality of the pointe shoe product I require.
+    - As a site user I can quickly identify what the website is selling and easily navigate to the pages so that I can quickly find the information and functionality of the pointe shoe product I require.
 
 - US8 : View pointe shoes by category
- - As a site user I can view a specific category of pointe shoes so that I can quickly narrow down the available shoes that I am interested in.
+    - As a site user I can view a specific category of pointe shoes so that I can quickly narrow down the available shoes that I am interested in.
 
 - US9 : View pointe shoe feature
- - As a site user I can view pointe shoe features so that I can easily find the shoe that is best suited to my dance level and foot shape.
+    - As a site user I can view pointe shoe features so that I can easily find the shoe that is best suited to my dance level and foot shape.
 
 - US10 : Handle 404 and 500
- - As a site user I can return to continue shopping after http 404 and 500 response so that I feel I am still working within the website and can navigate easily.
+    - As a site user I can return to continue shopping after http 404 and 500 response so that I feel I am still working within the website and can navigate easily.
 
 ### Sorting and Searching
 
 - US11 : Sort list of available pointe shoes
- - As a site user I can sort the list of pointe shoes products so that I can easily identify the most suitable shoe categorically sorted by colour, price, brand and category.
+    - As a site user I can sort the list of pointe shoes products so that I can easily identify the most suitable shoe categorically sorted by colour, price, brand and category.
 
 - US12 : Search for a pointe shoe by title or feature
- - As a site user I can search for shoes by title or pointe shoe feature so that I can find a specific pointe shoe to purchase.
+    - As a site user I can search for shoes by title or pointe shoe feature so that I can find a specific pointe shoe to purchase.
 
 ### Purchasing and Checkout
 
 - US13 : Add items to shopping bag
- - As a site user I can add items to my shopping bag so that I can choose multiple items to purchase.
+    - As a site user I can add items to my shopping bag so that I can choose multiple items to purchase.
 
 - US14 : Modify bag contents and remove items.
- - As a site user I can modify shopping bag quantities and remove items from the bag so that I can manage the contents and modify any items selected by mistake.
+    - As a site user I can modify shopping bag quantities and remove items from the bag so that I can manage the contents and modify any items selected by mistake.
 
 - US15 : View notifications of user interactions
- - As a site user I can get notifications on screen of my actions so that I can easily understand my interactions during the purchasing process.
+    - As a site user I can get notifications on screen of my actions so that I can easily understand my interactions during the purchasing process.
 
 - US16 : Finalise my order in the checkout page
- - As a site user I can complete my order by going through to the checkout page so that I can see a final total, a summary of my order and I can specify a delivery address and payment details.
+    - As a site user I can complete my order by going through to the checkout page so that I can see a final total, a summary of my order and I can specify a delivery address and payment details.
 
 - US17 : Implement a secure payment process.
- - As a site user I can enter my payment details so that my payment is secure.
+    - As a site user I can enter my payment details so that my payment is secure.
 
 - US18 : View an order confirmation after checkout and repurchase product
- - As a site user I can view an order confirmation after checkout so that I can see what was ordered and total costs. I can repurchase the product by clicking on the button which takes the user to the relevant product detail page.
+    - As a site user I can view an order confirmation after checkout so that I can see what was ordered and total costs. I can repurchase the product by clicking on the button which takes the user to the relevant product detail page.
 
 - US19 : Receive an email confirmation after checking out.
- - As a site user I can receive an email confirmation after checking out so that I have a record of my purchases.
+    -  As a site user I can receive an email confirmation after checking out so that I have a record of my purchases.
 
 ### Admin and Store Management
 
 - US20 : Add a pointe shoe
- - As a site admin I can add a pointe shoe so that I can sell new products.
+    - As a site admin I can add a pointe shoe so that I can sell new products.
 
 - US21 : Edit / update a pointe shoe
- - As a site admin I can edit / update details for a pointe shoe so that I can change or amend the title, image, brand, colour, size, width, availability, status and features.
+    - As a site admin I can edit / update details for a pointe shoe so that I can change or amend the title, image, brand, colour, availability of size and width, status and features.
 
 - US22 : Delete a pointe shoe
- - As a site admin I can delete a product so that I can remove the item for sale.
+    - As a site admin I can delete a product so that I can remove the item for sale.
 
 ### SEO and Web Marketing
 
 - US23 : Subscribe to newsletter
- - As a site user I can subscribe to the company newsletter so that I can keep up with company news and offers.
+    - As a site user I can subscribe to the company newsletter so that I can keep up with company news and offers.
 
 - US24 : View company facebook page
- - As a site user I can find the company on facebook so that I can keep up to date with company posts.
+    - As a site user I can find the company on facebook so that I can keep up to date with company posts.
 
 - US25 : SEO
- - As a site user I can find the site through web searches so that I can easily access the site.
+    - As a site user I can find the site through web searches so that I can easily access the site.
 
 - US26 : View privacy policy
- - As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
+    - As a site user I can view the company privacy policy so that I can see the company is GDPR compliant.
 
 __Features__
 
@@ -451,11 +450,11 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 - User Reviews that give genuine customer reviews to assist in decision-making and build credibility for the pointe shoe products.
 - Social Validation by sharing success stories or testimonials from professional dancers to add credibility to the quality of the shoes.
 
-### Marekting and SEO README.md
+# Marketing and SEO README.md
 
 [Link to Marketing and SEO README.md](SEO_MKTG_README.md)
 
-### Testing README.md
+# Testing README.md
 
 [Link Testing README.md](TESTING_README.md)
 
@@ -467,7 +466,7 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 - Jquery
 - Python
 
-### Frameworks, Libraries & Programs Used
+# Frameworks, Libraries & Programs Used
 
 - [Google Fonts](https://fonts.google.com/) used for the Lato and Dancing Script fonts.
 - [Font Awesome](https://fontawesome.com/) was used to add icons for aesthetic and UX purposes.
@@ -495,7 +494,7 @@ Error pages - 403, 404, 405 and 500 - each with an informative message and 'Keep
 - [Codeanywhere](https://app.codeanywhere.com/) IDE.
 - [GitPod](https://gitpod.io/) IDE used to complete the project.
 
-### Deployment and Publishing
+# Deployment and Publishing
 
 __GitHub__
 
@@ -583,7 +582,7 @@ Obtain the signing secret for the webhooks and save it as a Heroku config var ca
 These steps should help you configure AWS S3 and integrate it with your application effectively.
 
 
-### Resources
+# Resources
 
 [Django 3.2 documentation](https://docs.djangoproject.com/en/4.0/)
 
@@ -625,7 +624,7 @@ Pointe shoes images and product details content
 [Capezio](https://www.capezio.com/women/shoes/pointe-shoes) 
 
 
-### Credits
+# Credits
 
 Assistance on toasts, shopping basket and checkout functionality from Code Institute's Boutique Ado code walkthrough.
 
@@ -667,7 +666,7 @@ The website page layout look and feel were influenced by the Grishko, Capezio, F
 
 [Capezio](https://www.capezio.com/women/shoes/pointe-shoes) 
 
-### Acknowledgements
+# Acknowledgements
 
 Sincere thanks to my mentor Brian Macharia for his help throughout this project and course.
 
