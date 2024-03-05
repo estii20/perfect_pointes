@@ -76,8 +76,8 @@
                             <td>{{ item.product_color | title }}</td>
                             <td>€{{ item.lineitem_total }}</td>
                             <td>
-                                <a href="{% url 'repurchase_product' item.product.id %}" class="btn btn-custom my-5" 
-                                aria-label="Buy Again">Buy Again</a>
+                                <a href="{% url 'repurchase_product' item.product.id %}" class="btn btn-custom btn-sm" 
+                                aria-label="Buy Again"><i class="fa-solid fa-basket-shopping"></i></a>
                             </td>
                         </tr>
                         {% endfor %}

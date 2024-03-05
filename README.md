@@ -9,9 +9,9 @@ Admin users can manage the pointe shoe products. They can update pricing, links 
 
 Other considerations for an e-commerce B2C site.
 
-    - Web Marketing strategies:
-        - Organic Social - through facebook
-        - Email - through a newsletter subscription managed via Mailchimp
+- Web Marketing strategies:
+    - Organic Social - through facebook
+    - Email - through a newsletter subscription managed via Mailchimp
 
 The structure and purpose of the Perfect Pointes project is based on the Code Institute Boutique Ado walkthrough project as part of Portfolio 5 of The Code Institute course.
 
@@ -89,7 +89,7 @@ Soft Pastel Shades: Light and delicate colours like pale pinks evoke a sense of 
 
 Neutral Tones: Beige, ivory, or light taupe can complement the pastels and provide a clean, neutral backdrop, allowing the shoes to stand out.
 
-Accent Colours: Subtle accents of gold, silver, or metallic shades can add sophistication without overpowering the overall design.
+Accent Colours: Subtle accents of gold to add sophistication without overpowering the overall design.
 
 Site-wide alert: Gold #ffc107
 
@@ -211,7 +211,7 @@ __Notes on the ER diagram:__
 - Attribute Inheritance:
  - PointeShoeProduct inherits attributes from PointeShoe and PointeShoeBrand. 
 
-# User stories :
+# User stories
 
 ### Registration and Account Management
 
